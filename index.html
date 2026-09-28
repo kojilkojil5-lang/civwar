@@ -13,9 +13,10 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://kojilkojil5-lang.github.io/civwar/">
 <meta property="og:title" content="문명전쟁 : 키우기">
 <meta property="og:description" content="석기시대부터 미래 문명까지! 장비를 만들고 시대를 진화시키는 방치형 전쟁 RPG">
-<meta property="og:image" content="og.png">
+<meta property="og:image" content="https://kojilkojil5-lang.github.io/civwar/og.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
@@ -126,7 +127,7 @@ body{font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
   max-width:86%;text-align:center}
 
 #panel{background:linear-gradient(#1a1f2e,#141926);border-top:1px solid #2c344a;
-  padding:8px 9px 10px;overflow-y:auto;max-height:55vh}
+  padding:8px 9px 10px;overflow-y:auto;max-height:55dvh;flex:0 1 auto;min-height:0}
 #lvrow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 #lvtxt{font-size:11px;font-weight:800;color:#ffd166;white-space:nowrap}
 #xpbar{flex:1;height:15px;background:#0b0e14;border:1px solid #39435c;border-radius:8px;
@@ -153,7 +154,10 @@ body{font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
 .slot .ic{font-size:19px;filter:grayscale(1);opacity:.3}
 .slot.on .ic{filter:none;opacity:1}
 .slot .nm{font-size:8px;color:#8b96ae;font-weight:600;line-height:1.1}
-.slot .gr{font-size:8.5px;font-weight:800}
+.slot .gr{font-size:8.5px;font-weight:800;line-height:1.1}
+.slot .scp{font-size:9.5px;font-weight:800;color:#ffd166;line-height:1.1;text-shadow:0 1px 2px #000}
+.cpl{display:flex;justify-content:space-between;font-size:11px;font-weight:800;color:#ffd166;
+  background:rgba(255,209,102,.08);border-radius:5px;padding:2px 5px;margin:3px 0 2px}
 .slot.on:after{content:"";position:absolute;inset:0;border-radius:9px;
   box-shadow:inset 0 0 14px var(--gc);opacity:.45;pointer-events:none}
 #forgebox{margin-top:9px;display:flex;gap:6px}
@@ -162,9 +166,9 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   box-shadow:0 3px 0 #10538f}
 #forge:active{transform:translateY(2px);box-shadow:0 1px 0 #10538f}
 #forge:disabled,#upg:disabled{background:#333c52;box-shadow:0 3px 0 #212838;color:#78839a}
-#upg{width:104px;background:linear-gradient(#ffb25d,#f76707);font-size:12px;
+#upg{width:104px;touch-action:none;-webkit-touch-callout:none;background:linear-gradient(#ffb25d,#f76707);font-size:12px;
   box-shadow:0 3px 0 #a14603;line-height:1.35}
-#upg:active{transform:translateY(2px);box-shadow:0 1px 0 #a14603}
+#upg:active,#upg.hold{transform:translateY(2px);box-shadow:0 1px 0 #a14603}
 #opts{display:flex;gap:6px;margin-top:9px;font-size:10.5px;color:#98a3b9;align-items:center;flex-wrap:wrap}
 #opts label{display:flex;gap:4px;align-items:center}
 .mini{background:#2b3348;padding:5px 8px;border-radius:8px;font-size:10.5px;font-weight:700;
@@ -730,6 +734,11 @@ function statPower(s){return Math.round(s.atk*12+s.hp*1.1+s.def*9+s.agl*4+s.crit
 function recalc(){const s=calcStats(S.gear);P.s=s;
   if(P.hp===undefined||P.hp>s.hp)P.hp=s.hp;return s}
 function power(){return statPower(P.s)}
+/* 부품 하나가 책임지는 전투력 = (그 부품을 낀 전투력) − (그 부위를 비운 전투력) */
+function itemCP(k,it){
+  it=it===undefined?S.gear[k]:it;if(!it)return 0;
+  const a=Object.assign({},S.gear),b=Object.assign({},S.gear);a[k]=it;delete b[k];
+  return Math.max(0,statPower(calcStats(a))-statPower(calcStats(b)))}
 function gainOf(k,it){const g2=Object.assign({},S.gear);g2[k]=it;
   return statPower(calcStats(g2))-statPower(calcStats(S.gear))}
 function isUpgrade(k,it){
@@ -1664,8 +1673,9 @@ function fmt(n){
   for(const[v,s]of U){if(n>=v){const x=n/v;return (neg?'-':'')+(x<10?x.toFixed(1):Math.round(x))+s}}
   return (neg?'-':'')+n;
 }
+function renderSlotCP(){document.querySelectorAll('#grid .scp').forEach(e=>{const t='⚔'+fmt(itemCP(e.dataset.k));if(e.textContent!==t)e.textContent=t})}
 function renderTop(){
-  $('scrap').textContent=fmt(S.scrap);
+  $('scrap').textContent=fmt(S.scrap);renderSlotCP();
   $('cp').textContent='전투력 '+fmt(power());
   $('eraTag').innerHTML=ERAS[S.era].n+
     ((S.cycle||0)>0?` <b style="color:${cycColor(S.cycle)};font-size:10.5px">★${S.cycle}회차</b>`:'');
@@ -1705,7 +1715,7 @@ function renderGrid(){
     d.className='slot'+(it?' on':'');
     if(it){d.style.borderColor=GRADES[it.g].c;d.style.setProperty('--gc',GRADES[it.g].c)}
     d.innerHTML=`<div class="ic">${slotIcon(i)}</div><div class="nm">${slotName(i)}</div>`+
-      (it?`<div class="gr" style="color:${GRADES[it.g].c}">${GRADES[it.g].n}</div>`
+      (it?`<div class="gr" style="color:${GRADES[it.g].c}">${GRADES[it.g].n}</div><div class="scp" data-k="${sl.k}">⚔${fmt(itemCP(sl.k))}</div>`
          :`<div class="gr" style="color:#4f5a70">비어있음</div>`);
     d.onclick=()=>openSlot(sl.k);
     g.appendChild(d);
@@ -2068,6 +2078,7 @@ function itemCard(k,it,label,cmpTo){
   return `<div><h4>${label}</h4><div class="card" style="border-color:${g.c}">
     <div class="cardhead"><div class="ic">${slotIcon(i)}</div>
       <div><div class="t">${slotName(i)}</div><div class="g" style="color:${g.c}">${g.n}</div></div></div>
+    <div class="cpl"><span>전투력</span><span>⚔ ${fmt(itemCP(k,it))}</span></div>
     ${oldEra}${lines}</div></div>`;
 }
 function openSlot(k){M.slot=k;M.roll=null;M.mode='slot';M.spent=0;M.best=0;
@@ -2381,6 +2392,7 @@ function tutEl(d){if(!d||!d.target)return null;
 function setBox(el,x,y,w,h){el.style.left=x+'px';el.style.top=y+'px';el.style.width=Math.max(0,w)+'px';el.style.height=Math.max(0,h)+'px'}
 function tutPlace(){
   if(!TUT.on)return;
+  tutScroll(TUT.def);
   const d=TUT.def,vw=innerWidth,vh=innerHeight,el=tutEl(d),bub=$('tbub');
   if(el){
     const r=el.getBoundingClientRect(),p=6,x=r.left-p,y=r.top-p,w=r.width+p*2,h=r.height+p*2;
@@ -2413,6 +2425,14 @@ function typeHTML(el,html,cb){
     if(i>=toks.length){clearInterval(TUT.typing);TUT.typing=null;cb&&cb()}
   },26);
 }
+/* 대상이 화면 밖(작은 화면·카톡 브라우저)에 있으면 패널을 스크롤해 보이게 함 */
+function tutScroll(d){
+  const el=tutEl(d);if(!el)return;
+  const pn=$('panel');if(!pn.contains(el))return;
+  const r=el.getBoundingClientRect(),pr=pn.getBoundingClientRect();
+  if(r.top<pr.top+4||r.bottom>pr.bottom-4)
+    pn.scrollTop+=r.top-pr.top-Math.max(8,(pr.height-r.height)/2);
+}
 function tutShowDef(d){
   TUT.def=d;TUT.on=true;
   if(d.enter)d.enter();
@@ -2423,6 +2443,7 @@ function tutShowDef(d){
   if(d.btn){const b=document.createElement('button');b.className='tbtn';b.textContent=d.btn;
     b.onclick=()=>{SFX.click();TUT.hint?tutClose():tutNext()};bt.appendChild(b)}
   $('tut').classList.add('on');
+  tutScroll(d);
   typeHTML($('ttx'),d.txt,()=>tutPlace());
   tutPlace();requestAnimationFrame(tutPlace);
   clearInterval(TUT.iv);TUT.iv=setInterval(tutPlace,180);
@@ -2803,8 +2824,8 @@ SFX.skRage=function(){if(!sOn())return;
    17. 버전 · 업데이트 알림 · 업데이트 내역
    ─ 새 버전을 올릴 때: 아래 BUILD 숫자와 version.json 의 build 숫자를 같이 올린다
 =========================================================== */
-const BUILD=1, BUILD_NAME='1.0.0';
-const CHANGELOG=[
+const BUILD=3, BUILD_NAME='1.0.2';
+const CHANGELOG=[{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
  {b:1,v:'1.0.0',d:'2026-09-28',items:[
   '석기시대 → 미래시대 6개 문명 진화 · 회귀(회차) 시스템',
   '시대별 유닛 24종 · 움직이는 배경 · 시대별 탄환과 폭발 연출',
@@ -2868,7 +2889,23 @@ function init(){
   setTimeout(checkUpdate,4000);setInterval(checkUpdate,5*60*1000);
 }
 $('forge').onclick=doForge;
-$('upg').onclick=doUpg;
+/* 공방 강화: 누르고 있으면 연속 강화 (점점 빨라짐) */
+(function(){
+  const b=$('upg');let t=null,n=0,held=false;
+  const stop=()=>{held=false;clearTimeout(t);t=null;b.classList.remove('hold')};
+  const can=()=>S.tier<tierCap()&&S.scrap>=upgCost();
+  const step=()=>{if(!held)return;
+    if(!can()){stop();if(n>1)toast('연속 강화 '+n+'회 · 공방 Lv.'+S.tier);return}
+    doUpg();n++;t=setTimeout(step,Math.max(60,220-n*14))};
+  b.addEventListener('pointerdown',e=>{
+    if(e.button>0)return;e.preventDefault();
+    held=true;n=0;b.classList.add('hold');doUpg();n=1;
+    t=setTimeout(step,420)});
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>b.addEventListener(ev,stop));
+  window.addEventListener('blur',stop);
+  b.addEventListener('contextmenu',e=>e.preventDefault());
+  b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();doUpg()}});
+})();
 $('adv').onclick=openAdvance;
 $('reb').onclick=openRebirth;
 $('eGo').onclick=()=>{EM==='rebirth'?doRebirth():doAdvance()};
