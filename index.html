@@ -155,6 +155,7 @@ body{font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif,"
 .slot.on .ic{filter:none;opacity:1}
 .slot .nm{font-size:8px;color:#8b96ae;font-weight:600;line-height:1.1}
 .slot .gr{font-size:8.5px;font-weight:800;line-height:1.1}
+.slot .old{position:absolute;top:3px;right:3px;font-size:8.5px;font-weight:900;color:#fff;background:#e03131;border-radius:6px;padding:1px 4px;animation:dotp 1.4s infinite}
 .slot .scp{font-size:9.5px;font-weight:800;color:#ffd166;line-height:1.1;text-shadow:0 1px 2px #000}
 .cpl{display:flex;justify-content:space-between;font-size:11px;font-weight:800;color:#ffd166;
   background:rgba(255,209,102,.08);border-radius:5px;padding:2px 5px;margin:3px 0 2px}
@@ -577,6 +578,96 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 .bossin .bnm b{display:block;font-size:30px;font-weight:900;color:#fff;text-shadow:0 0 14px #ff2d2d,0 3px 0 #5a0000}
 @keyframes bnm{0%{opacity:0;transform:translateY(-50%) scale(2.2)}14%{opacity:1;transform:translateY(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateY(-50%) scale(1.05)}}
 #ehpf.fill{transition:width 1.1s cubic-bezier(.3,.8,.3,1)!important}
+
+/* ---- 적 특성 ---- */
+#etr{display:flex;justify-content:center;gap:3px;margin-bottom:2px;min-height:15px}
+.trb{display:inline-flex;align-items:center;gap:2px;font-size:9.5px;font-weight:900;color:#fff;padding:1px 6px 1px 3px;border-radius:8px;
+  background:rgba(10,14,22,.78);border:1px solid var(--tc);box-shadow:0 0 6px var(--tc)}
+.trb .ico{width:13px;height:13px}
+#etank.tr-shield{filter:drop-shadow(0 0 5px #74c0fc)}#etank.tr-archer{filter:drop-shadow(0 0 5px #8ce99a)}
+#etank.tr-brute{filter:drop-shadow(0 0 6px #ffa94d)}#etank.tr-healer{filter:drop-shadow(0 0 6px #69db7c)}
+#etank.tr-swift{filter:drop-shadow(0 0 5px #66d9e8)}#etank.tr-berserk{filter:drop-shadow(0 0 6px #ff6b6b)}
+.rtr .ico{width:13px;height:13px;vertical-align:-2px}
+/* ---- 문명 특성 ---- */
+#pkbar{position:absolute;right:6px;top:6px;z-index:7;display:none;gap:2px;align-items:center;background:rgba(10,14,22,.72);
+  border:1px solid #4d5a7a;border-radius:10px;padding:3px 5px;cursor:pointer;max-width:150px;flex-wrap:wrap;justify-content:flex-end}
+#pkbar .ico{width:17px;height:17px}
+#pkbar b{font-size:9px;color:#ffd166;margin-left:1px}
+.pkc{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:linear-gradient(#232b40,#181e2d);border:1.5px solid #3d4a68;
+  border-radius:12px;padding:11px 12px;margin-top:8px;color:#e8edf5;position:relative;animation:pkin .35s ease-out backwards}
+.pkc:nth-child(2){animation-delay:.08s}.pkc:nth-child(3){animation-delay:.16s}
+@keyframes pkin{from{opacity:0;transform:translateY(12px) scale(.96)}}
+.pkc:active{transform:scale(.97)}
+.pkc .pi{width:44px;height:44px;border-radius:11px;background:radial-gradient(circle at 50% 40%,#3a4766,#1a2030);display:flex;align-items:center;justify-content:center;flex:none;border:1px solid #4d5a7a}
+.pkc .pi .ico{width:32px;height:32px}
+.pkc .pn{font-size:14px;font-weight:900}.pkc .pd{font-size:11.5px;color:#c6cfe0;margin-top:2px;line-height:1.35}
+.pkc .po{position:absolute;right:9px;top:7px;font-size:9.5px;font-weight:900;color:#ffd166}
+.pkc.hot{border-color:#ffd166;box-shadow:0 0 12px rgba(255,209,102,.35)}
+.pkc .ph{font-size:9.5px;color:#8ff09a;font-weight:800;margin-top:3px}
+#pkRoll{width:100%;margin-top:10px;padding:10px;font-size:12.5px;background:#2b3348}
+#pkRoll:disabled{opacity:.45}
+.pkl{display:flex;align-items:center;gap:9px;padding:7px 4px;border-bottom:1px solid #2c344a;font-size:12px}
+.pkl .ico{width:26px;height:26px}.pkl b{font-size:12.5px}.pkl small{display:block;color:#aab4c8;font-size:10.5px}
+.pkl em{margin-left:auto;font-style:normal;font-weight:900;color:#ffd166}
+
+/* ---- 고대 유물 ---- */
+.rtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:10px}
+.rtab{padding:8px 0;font-size:12.5px;background:#1b2130;border:1px solid #2c344a;border-radius:9px;color:#aab4c8}
+.rtab.on{background:#34405c;border-color:#ffd166;color:#fff}
+.rsite{position:relative;height:118px;border-radius:12px;overflow:hidden;margin-bottom:9px;background:linear-gradient(#2b1f3f,#6b4a2b 62%,#8a6a3e)}
+.rsite svg{position:absolute;inset:0;width:100%;height:100%}
+.rsite .glow{animation:rglow 2.2s ease-in-out infinite}
+@keyframes rglow{50%{opacity:.35}}
+.rcur{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#10141d;border:1px solid #2c344a;border-radius:10px;padding:7px 10px;margin-bottom:8px}
+.rcur b{font-size:17px}.rcur .ico{width:22px;height:22px}
+.rcur button{padding:6px 9px;font-size:11px;background:#34405c}
+.rpity{font-size:10.5px;color:#aab4c8;margin:0 2px 3px;display:flex;justify-content:space-between}
+.rpbar{height:7px;border-radius:4px;background:#0b0e14;overflow:hidden;margin-bottom:9px}
+.rpbar i{display:block;height:100%;background:linear-gradient(90deg,#ffd43b,#ff922b)}
+.rbtns{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.rbtns button{padding:12px 4px;font-size:13.5px;line-height:1.25}
+.rbtns button small{display:block;font-size:10.5px;font-weight:700;opacity:.85}
+#rOne{background:linear-gradient(#5ab5f8,#1c7ed6);box-shadow:0 3px 0 #10538f}
+#rTen{background:linear-gradient(#b197fc,#7048e8);box-shadow:0 3px 0 #4526a8}
+#rFree{grid-column:1/3;background:linear-gradient(#8ce99a,#2f9e44);box-shadow:0 3px 0 #1e6b2e;display:none}
+.rbtns button:disabled{background:#333c52;box-shadow:none;color:#78839a}
+.rrate{font-size:10px;color:#8b96ae;text-align:center;margin-top:8px}
+.rsum{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.rsum span{font-size:10.5px;background:#1b2130;border:1px solid #2c344a;border-radius:7px;padding:3px 6px;color:#dfe6f0}
+.rsum span b{color:#8ff09a}
+.rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.rcell{position:relative;background:radial-gradient(circle at 50% 35%,#252e45,#12161f);border:1.5px solid var(--rc);border-radius:10px;padding:6px 2px 5px;text-align:center}
+.rcell .ico{width:30px;height:30px}
+.rcell .rn{font-size:9.5px;font-weight:800;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rcell .rl{font-size:9.5px;font-weight:900;color:var(--rc)}
+.rcell .rb{height:3px;border-radius:2px;background:#0b0e14;margin:3px 5px 0;overflow:hidden}.rcell .rb i{display:block;height:100%;background:var(--rc)}
+.rcell.no{border-color:#2c344a}.rcell.no .ico{filter:grayscale(1) brightness(.25)}.rcell.no .rn,.rcell.no .rl{color:#4f5a70}
+.rdet{background:#10141d;border:1px solid var(--rc);border-radius:10px;padding:9px 11px;margin-top:9px;font-size:11.5px;line-height:1.5}
+.rdet b.t{font-size:13.5px}
+#rres{position:fixed;inset:0;z-index:55;display:none;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 45%,#2a2140,#05070b 75%);padding:16px}
+#rres.on{display:flex}
+#rres .rt{font-size:15px;font-weight:900;color:#ffe3a3;letter-spacing:3px;margin-bottom:14px}
+.rcards{display:grid;gap:8px;justify-content:center}
+.rcard{width:min(62px,16.5vw);aspect-ratio:62/88;perspective:500px}
+.rcard.big{width:120px}
+.rcard .in{position:relative;width:100%;height:100%;transition:transform .45s cubic-bezier(.3,1.4,.5,1);transform-style:preserve-3d}
+.rcard.flip .in{transform:rotateY(180deg)}
+.rcard .f,.rcard .b{position:absolute;inset:0;border-radius:9px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.rcard .b{background:linear-gradient(#6f7883,#4c5561);border:2px solid #9aa3ad;box-shadow:inset 0 0 0 3px #3a4250}
+.rcard .b:after{content:"?";font-size:26px;font-weight:900;color:#c6cfe0;opacity:.6}
+.rcard .f{transform:rotateY(180deg);background:radial-gradient(circle at 50% 35%,#2d3754,#10141d);border:2px solid var(--rc);box-shadow:0 0 14px var(--rc)}
+.rcard .f .ico{width:34px;height:34px}.rcard.big .f .ico{width:64px;height:64px}
+.rcard .f .n{font-size:9px;font-weight:900;margin-top:3px;text-align:center;line-height:1.15;padding:0 2px}.rcard.big .f .n{font-size:14px}
+.rcard .f .l{font-size:8.5px;font-weight:900;color:var(--rc);margin-top:2px}.rcard.big .f .l{font-size:12px}
+.rcard .f .new{position:absolute;top:-6px;right:-6px;background:#e03131;color:#fff;font-size:8.5px;font-weight:900;border-radius:6px;padding:1px 4px}
+.rcard.r3 .f{animation:leg 1.2s ease-in-out infinite}
+@keyframes leg{50%{box-shadow:0 0 26px 6px #ffd43b}}
+#rres .rbt{display:flex;gap:8px;margin-top:18px;width:100%;max-width:360px;opacity:0;transition:opacity .3s}
+#rres.done .rbt{opacity:1}
+#rres .rbt button{flex:1;padding:12px 4px;font-size:13px}
+#rres .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#rres .flash.go{animation:cutflash .8s ease-out}
 #uClose{width:100%;padding:12px;font-size:14px;background:linear-gradient(#5ab5f8,#1c7ed6);box-shadow:0 3px 0 #10538f}
 </style>
 </head>
@@ -608,8 +699,9 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
       <button class="sib" id="bAtt"><span class="sic"><i data-ic="calendar"></i></span><span class="slb">출석</span></button>
       <button class="sib" id="bMis"><span class="sic"><i data-ic="scroll"></i></span><span class="slb">임무</span></button>
       <button class="sib" id="bGuide"><span class="sic"><i data-ic="book"></i></span><span class="slb">안내</span></button>
-      <button class="sib" id="bCol"><span class="sic"><i data-ic="urn"></i></span><span class="slb">도감</span></button>
+      <button class="sib" id="bCol"><span class="sic"><i data-ic="urn"></i></span><span class="slb">유물</span></button>
     </div>
+    <div id="pkbar"></div>
     <div id="fchips"><div id="boostChip"></div><div id="lzChip">💡 패배 분석</div></div>
     <div class="unit" id="pu">
       <div class="cycstars" id="pcyc"></div>
@@ -618,6 +710,7 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
       <div class="tank" id="ptank"></div>
     </div>
     <div class="unit" id="eu">
+      <div id="etr"></div>
       <div class="hptxt" id="ehptxt"></div>
       <div class="hpwrap"><div class="hpf" id="ehpf" style="width:100%"></div></div>
       <div class="tank" id="etank"></div>
@@ -750,7 +843,7 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   <button class="pclose" data-close="lzmask">닫기</button>
 </div></div>
 <div id="cmask" class="pmask"><div class="pmodal">
-  <div class="ptt"><i data-ic="urn"></i> 유물 도감</div>
+  <div class="ptt"><i data-ic="urn"></i> 부품 도감</div>
   <div class="psub">제작한 부품은 자동으로 등록돼요 · 등급이 오를수록 영구 보너스</div>
   <div class="csum"><div class="cb"><div class="cbl"><span>수집 점수</span><span id="cPts"></span></div><div class="cbar"><i id="cBar"></i></div></div>
     <div class="cbon" id="cBon"></div></div>
@@ -764,6 +857,21 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   <div class="stage"><div class="u uo" id="cutOld"></div><div class="u un" id="cutNew"></div></div>
   <div class="ttl"><div class="t1" id="cutT1"></div><div class="t2" id="cutT2"></div><div class="t3" id="cutT3"></div></div>
   <div class="tap">화면을 눌러 계속</div></div>
+<div id="pkmask" class="pmask"><div class="pmodal">
+  <div class="ptt" id="pkT"></div><div class="psub" id="pkS"></div>
+  <div id="pkBody"></div>
+  <button id="pkRoll"></button>
+  <button class="pclose" id="pkClose" data-close="pkmask">닫기</button>
+</div></div>
+<div id="rmask" class="pmask"><div class="pmodal">
+  <div class="ptt"><i data-ic="urn"></i> 고대 유물</div>
+  <div class="psub">발굴한 유물은 <b>회귀해도 영원히</b> 남아요</div>
+  <div class="rtabs"><button class="rtab" data-t="dig">발굴</button><button class="rtab" data-t="list">보유 유물</button><button class="rtab" data-t="col">부품 도감</button></div>
+  <div id="rBody"></div>
+  <button class="pclose" data-close="rmask">닫기</button>
+</div></div>
+<div id="rres"><div class="flash"></div><div class="rt" id="rrT">발굴 결과</div><div class="rcards" id="rCards"></div>
+  <div class="rbt"><button id="rrAgain" style="background:linear-gradient(#b197fc,#7048e8)"></button><button id="rrOk" style="background:#34405c">확인</button></div></div>
 <div id="umask" class="pmask"><div class="pmodal">
   <div class="ptt">🆕 업데이트 내용</div>
   <div class="psub">새로운 기능이 추가되었어요</div>
@@ -892,7 +1000,7 @@ function lvMul(){return lvMulOf(S.lv)}
 function minGrade(){return Math.min(3,S.cycle||0)}   // 회차마다 하위 등급이 사라짐
 function rollGrade(minG){
   // 공방 레벨이 높을수록, 회차가 깊을수록 상위 등급 확률이 올라감
-  const t=S.tier, c=S.cycle||0, mg=Math.max(minGrade(),minG||0);
+  const t=S.tier+6*pk('luck')+rv('luck'), c=S.cycle||0, mg=Math.max(minGrade(),minG||0);
   const w=GRADES.map((g,i)=>i<mg?0:g.w*(1+i*(t*0.035+c*0.6)));
   const sum=w.reduce((a,b)=>a+b,0);let r=Math.random()*sum;
   for(let i=0;i<w.length;i++){r-=w[i];if(r<=0)return i}return mg;
@@ -923,8 +1031,11 @@ function calcStats(gear,lv){
     s.crit+=it.crit||0;s.spd+=it.spd||0;s.eva+=it.eva||0}
   s.atk=Math.round(s.atk*L*LG);s.hp=Math.round(s.hp*L*LG);
   s.def=Math.round(s.def*L*LG);s.agl=Math.round(s.agl*L*LG);
+  {const A=1+rv('all');s.atk=Math.round(s.atk*(1+rv('atk'))*A);s.hp=Math.round(s.hp*(1+rv('hp'))*A);s.def=Math.round(s.def*(1+rv('def'))*A);s.crit+=rv('crit');s.eva+=rv('eva')}
+  if(S.perks&&S.perks.length){s.atk=Math.round(s.atk*(1+.25*pk('atk')));s.hp=Math.round(s.hp*(1+.35*pk('hp')));
+    s.def=Math.round(s.def*(1+.45*pk('def')));s.crit+=8*pk('crit');s.eva+=7*pk('eva')}
   s.crit=Math.min(CAP.crit,s.crit);s.spd=Math.min(CAP.spd,s.spd);s.eva=Math.min(CAP.eva,s.eva);
-  s.interval=1/(0.85*(1+s.spd/100)*(1+s.agl/(s.agl+700*eraMul())));
+  s.interval=1/(0.85*(1+s.spd/100)*(1+s.agl/(s.agl+700*eraMul()))*(1+.15*pk('spd'))*(1+rv('aspd')));
   return s;
 }
 /* 전투력 = 처치 속도 × 생존력 (실제 전투 공식 기반, 적과 무관한 표시용 수치)
@@ -935,13 +1046,11 @@ function statPower(s){
   const H=s.hp*(1+s.def/(0.5*s.atk+0.1*s.hp))/(1-s.eva/100);
   return Math.round(10*Math.sqrt(O*H))}
 /* 실전 효율 = 지금 스테이지의 일반 적을 상대로 (버티는 시간 ÷ 처치 시간) — 자동 제작·장착 판단 기준 */
-function refEnemy(){return enemyAt(S.stage,8,false)}
-function realScore(s,en){
-  const pd=s.atk*s.atk/(s.atk+en.def)*(1+s.crit/100)/s.interval;
-  const ed=en.atk*en.atk/(en.atk+s.def)*(1+(en.crit||10)/100)*(1-s.eva/100)/en.interval;
-  return pd*s.hp/ed}
-function realGain(k,it){const g2=Object.assign({},S.gear);g2[k]=it;const en=refEnemy();
-  return realScore(calcStats(g2),en)/realScore(calcStats(S.gear),en)-1}
+function refEnemies(){const th=stageTraits(S.stage);return th.length?th.map(k=>enemyAt(S.stage,8,false,[k])):[enemyAt(S.stage,8,false,[])]}
+function refEnemy(){return refEnemies()[0]}
+function realScore(s,en){return pdOf(s,en)*s.hp/edOf(s,en)}
+function realGain(k,it){const g2=Object.assign({},S.gear);g2[k]=it;const a=calcStats(g2),b=calcStats(S.gear),L=refEnemies();
+  return L.reduce((t,en)=>t+realScore(a,en)/realScore(b,en),0)/L.length-1}
 function recalc(){const s=calcStats(S.gear);P.s=s;
   if(P.hp===undefined||P.hp>s.hp)P.hp=s.hp;return s}
 function power(){return statPower(P.s)}
@@ -949,7 +1058,14 @@ function power(){return statPower(P.s)}
 function itemCP(k,it){
   it=it===undefined?S.gear[k]:it;if(!it)return 0;
   const a=Object.assign({},S.gear),b=Object.assign({},S.gear);a[k]=it;delete b[k];
-  return Math.max(0,statPower(calcStats(a))-statPower(calcStats(b)))}
+  const sa=calcStats(a),sb=calcStats(b),pa=statPower(sa),pb=statPower(sb),d=pa-pb;
+  if(d>pa*1e-9)return Math.max(0,d);
+  // 전체에 비해 너무 작아 뺄셈이 0이 되는 경우: 능력치 증가분 비율로 근사 (자릿수 한계 회피)
+  const m=lvMulOf(S.lv)*legacyMul()*colMul(),da=it.atk*m*(1+.25*pk('atk')),dh=it.hp*m*(1+.35*pk('hp')),dd=it.def*m*(1+.45*pk('def'));
+  const q=.5*sb.atk+.1*sb.hp,f=1+sb.def/q;
+  return Math.max(0,pb*.5*(da/sb.atk+dh/sb.hp+(dd/q)/f))}
+/* 전체 전투력 대비 너무 작은 부품 = 교체 필요 */
+function itemOld(k){const it=S.gear[k];return !!it&&itemCP(k)<power()*.001}
 function gainOf(k,it){const g2=Object.assign({},S.gear);g2[k]=it;
   return statPower(calcStats(g2))-statPower(calcStats(S.gear))}
 function isUpgrade(k,it){
@@ -968,19 +1084,21 @@ function enemyAt(stage,round,boss){
   const bm=boss?(first&&stage<=BOSS_EARLY.length?BOSS_EARLY[stage-1]:2.1):1;
   const k=Math.pow(D.g,n-1)*bm*enemyCycleMul()*ramp;
   const mx=Math.round(110*k*D.hp);
-  return {atk:Math.round(20*k*D.atk),def:Math.round(5*k),max:mx,hp:mx,interval:boss?1.09:0.95,crit:D.crit}}
+  return applyTraits({atk:Math.round(20*k*D.atk),def:Math.round(5*k),max:mx,hp:mx,interval:boss?1.09:0.95,crit:D.crit,boss:boss},
+    arguments.length>3?arguments[3]:roundTraits(stage,round))}
 function makeEnemy(){
   const boss=(S.round===15),ee=enemyEra();
   E=Object.assign(enemyAt(S.stage,S.round,boss),{cd:0.9,boss:boss,era:ee,type:boss?3:((S.round+S.stage)%3)});
   E.uid=++ENEMY_UID;
+  if(pk('first'))E.hp=Math.round(E.max*(1-Math.min(.4,.08*pk('first'))));
 }
-function roundReward(){return Math.round(16*Math.pow(1.115,totalRound()-1)*(S.round===15?4:1)*goldMul()*(boostOn()?2:1))}
+function roundReward(){return Math.round(16*Math.pow(1.115,totalRound()-1)*(S.round===15?4:1)*goldMul()*(boostOn()?2:1)*(1+.4*pk('loot'))*(1+rv('scrap')+rv('reward')))}
 // 초반 난이도 곡선 (1회차 한정): 첫 두 전투는 적이 서서히 강해지고, 초반 보스 배율도 낮음
 let EARLY_N=30,EARLY_R0=.35,BOSS_EARLY=[1.4,1.7];
 let XP_ERA=[1.6,2.2,2.8,3.4,4,4.6];     // 시대가 오를수록 레벨업에 필요한 경험치 증가
-function xpReward(){return S.round===15?30:10}
+function xpReward(){return Math.round((S.round===15?30:10)*(1+.35*pk('xp'))*(1+rv('xp')+rv('reward')))}
 function xpNeed(){return Math.round((10+S.lv)*XP_ERA[Math.min(S.era,XP_ERA.length-1)])}
-function forgeCost(){return Math.round(28*Math.pow(1.28,S.tier-1))}
+function forgeCost(){return Math.round(28*Math.pow(1.28,S.tier-1)*Math.pow(.75,pk('forge'))*Math.max(.5,1-rv('forge')))}
 function slotForgeCost(){return Math.round(forgeCost()*1.9)}
 function upgCost(){
   // 최종 시대 진입 전까지는 1.33, 이후는 1.26으로 완만해져 무한 성장이 가능
@@ -1881,14 +1999,16 @@ function scene(){
 =========================================================== */
 function fmt(n){
   n=Math.round(n);const neg=n<0;n=Math.abs(n);
-  if(n>=1e36){const e=Math.floor(Math.log10(n));
-    return (neg?'-':'')+(n/Math.pow(10,e)).toFixed(1)+'e'+e}
-  const U=[[1e33,'Dc'],[1e30,'No'],[1e27,'Oc'],[1e24,'Sp'],[1e21,'Sx'],
-           [1e18,'Qi'],[1e15,'Qa'],[1e12,'T'],[1e9,'B'],[1e6,'M'],[1e3,'K']];
+  // K·M·B·T 까지는 단위, 그 이상은 지수 표기 (자릿수를 한눈에 비교할 수 있게)
+  if(n>=1e15){let e=Math.floor(Math.log10(n)),m=n/Math.pow(10,e);if(m>=9.95){m=1;e++}
+    return (neg?'-':'')+m.toFixed(1)+'e'+e}
+  const U=[[1e12,'T'],[1e9,'B'],[1e6,'M'],[1e3,'K']];
   for(const[v,s]of U){if(n>=v){const x=n/v;return (neg?'-':'')+(x<10?x.toFixed(1):Math.round(x))+s}}
   return (neg?'-':'')+n;
 }
-function renderSlotCP(){document.querySelectorAll('#grid .scp').forEach(e=>{const t='⚔'+fmt(itemCP(e.dataset.k));if(e.textContent!==t)e.textContent=t})}
+function renderSlotCP(){document.querySelectorAll('#grid .scp').forEach(e=>{const t='⚔'+fmt(itemCP(e.dataset.k));if(e.textContent!==t)e.textContent=t;
+  const cell=e.parentElement,o=cell.querySelector('.old'),need=itemOld(e.dataset.k);
+  if(need&&!o){const d=document.createElement('div');d.className='old';d.textContent='교체';cell.appendChild(d)}else if(!need&&o)o.remove()})}
 function renderTop(){
   $('scrap').textContent=fmt(S.scrap);renderSlotCP();
   $('cp').textContent='전투력 '+fmt(power());
@@ -1897,7 +2017,8 @@ function renderTop(){
   const ee=enemyEra(), behind=ee>S.era;
   $('stagetitle').innerHTML='전투 '+S.stage+' - '+Math.ceil(S.round/5)+
     ((S.cycle||0)>0?` <span style="color:${cycColor(S.cycle)};font-size:11px">★${S.cycle}</span>`:'');
-  $('roundtxt').innerHTML='라운드 '+S.round+' / 15'+(S.round===15?' ⚔ 보스':'')+
+  const th=stageTraits(S.stage);
+  $('roundtxt').innerHTML='라운드 '+S.round+' / 15'+(S.round===15?' ⚔ 보스':'')+(th.length?' <span class="rtr">· '+th.map(k=>ico(TRAITS[k].ic)).join('')+'</span>':'')+
     ' &nbsp;|&nbsp; '+ERAS[S.era].unit+' vs '+
     (behind?`<span id="warn">${ERAS[ee].s} 문명</span>`:ERAS[ee].s+' 문명');
   $('pbarf').style.width=(S.round/15*100)+'%';
@@ -1930,7 +2051,7 @@ function renderGrid(){
     d.className='slot'+(it?' on':'');
     if(it){d.style.borderColor=GRADES[it.g].c;d.style.setProperty('--gc',GRADES[it.g].c)}
     d.innerHTML=`<div class="ic">${slotIcon(i)}</div><div class="nm">${slotName(i)}</div>`+
-      (it?`<div class="gr" style="color:${GRADES[it.g].c}">${GRADES[it.g].n}</div><div class="scp" data-k="${sl.k}">⚔${fmt(itemCP(sl.k))}</div>`
+      (it?`<div class="gr" style="color:${GRADES[it.g].c}">${GRADES[it.g].n}</div><div class="scp" data-k="${sl.k}">⚔${fmt(itemCP(sl.k))}</div>${itemOld(sl.k)?'<div class="old">교체</div>':''}`
          :`<div class="gr" style="color:#4f5a70">비어있음</div>`);
     d.onclick=()=>openSlot(sl.k);
     g.appendChild(d);
@@ -2066,21 +2187,27 @@ function shoot(fromPlayer){
    7. 전투
 =========================================================== */
 let pcd=.6,dead=false,deadT=0,resolving=false;
-function damage(atk,def,crit){
-  let d=atk*atk/(atk+def)*rnd(.92,1.08);
-  const c=Math.random()*100<crit;
-  return {d:Math.max(1,d*(c?2:1)),c:c};
+function damage(atk,def,crit,pl){
+  const c=Math.random()*100<crit,df=c&&pl?def*.5:def;   // 내 치명타는 방어력 절반 무시
+  let d=atk*atk/(atk+df)*rnd(.92,1.08);
+  return {d:Math.max(1,d*(c?(pl?critMul():2):1)),c:c};
 }
 function tick(dt){
   skTick(dt);
   if(resolving)return;
   if(dead){deadT-=dt;
-    if(deadT<=0){dead=false;S.round=1;makeEnemy();scene();drawUnits();
+    if(deadT<=0){dead=false;S.round=1;makeEnemy();scene();drawUnits();onNewEnemy();
       $('ptank').classList.remove('wrecked');P.hp=P.s.hp;renderTop();renderHP()}
     return}
   pcd-=dt;E.cd-=dt;
+  {const rg=.012*pk('regen')+rv('regen');if(rg&&P.hp<P.s.hp)P.hp=Math.min(P.s.hp,P.hp+P.s.hp*rg*dt)}
+  if(E.regen&&E.hp<E.max){E.hp=Math.min(E.max,E.hp+E.max*E.regen*dt);E.rgT=(E.rgT||0)+dt;
+    if(E.rgT>1){E.rgT=0;const c=centerOf($('etank'));const d=fxAt('dmg',c.x+4,40,900);d.textContent='+'+fmt(E.max*E.regen);d.style.color='#69db7c';renderHP()}}
   if(pcd<=0){pcd=P.s.interval*(SK.rageT>0?.5:1);
-    const r=damage(P.s.atk,E.def,P.s.crit);E.hp-=r.d;
+    if(E.eva&&Math.random()*100<E.eva){const ft=shoot(true);SFX.shoot(S.era,true);
+      setTimeout(()=>{dmgText(centerOf($('etank')).x-4,'빗나감','#aab4c8');SFX.evade()},ft);return}
+    const r=damage(P.s.atk,E.def,P.s.crit,true);r.d*=vsMul(E);E.hp-=r.d;
+    if(pk('leech'))P.hp=Math.min(P.s.hp,P.hp+r.d*.04*pk('leech'));
     $('ptank').classList.add('recoil');setTimeout(()=>$('ptank').classList.remove('recoil'),160);
     const ft=shoot(true);SFX.shoot(S.era,true);
     setTimeout(()=>{dmgText(centerOf($('etank')).x-4,(r.c?'치명! ':'')+fmt(r.d),r.c?'#ffd43b':'#fff',r.c);boom(true);SFX.hit(S.era);
@@ -2091,7 +2218,7 @@ function tick(dt){
   if(E.cd<=0){E.cd=E.interval;
     if(Math.random()*100<P.s.eva){const ft=shoot(false);SFX.shoot(E.era,false);
       setTimeout(()=>{dmgText(centerOf($('ptank')).x-6,'회피!','#74c0fc');SFX.evade()},ft)}
-    else{const r=damage(E.atk,P.s.def,E.crit||10);if(SK.shieldT>0)r.d*=.4;P.hp-=r.d;
+    else{const r=damage(E.atk*(E.rage?1+(1-Math.max(0,E.hp)/E.max):1),P.s.def,E.crit||10);if(SK.shieldT>0)r.d*=.4;r.d*=Math.max(.3,1-rv('taken'));P.hp-=r.d;
       const ft=shoot(false);SFX.shoot(E.era,false);
       $('etank').classList.add('recoil');setTimeout(()=>$('etank').classList.remove('recoil'),160);
       setTimeout(()=>{dmgText(centerOf($('ptank')).x-6,fmt(r.d),'#ff8787');boom(false);SFX.hit(E.era);hitFlash($('ptank'),'hitr',110);
@@ -2112,12 +2239,14 @@ function winRound(){
   while(S.xp>=xpNeed()){S.xp-=xpNeed();S.lv++;leveled=true}
   if(leveled){recalc();P.hp=Math.min(P.s.hp,P.hp*1.1)}
   const cleared=S.round>=15;
-  if(cleared){S.stage++;S.round=1;P.hp=P.s.hp;clearLoseOnWin();if(S.stage===2&&!S.firstWin)setTimeout(firstWin,900)}
+  if(cleared){S.stage++;S.round=1;P.hp=P.s.hp;clearLoseOnWin();if(S.stage===2&&!S.firstWin)setTimeout(firstWin,900);
+    if(S.stage===2&&S.perkCyc!==(S.cycle||0)){S.perkCyc=S.cycle||0;owePerk(3600)}
+    {const g=(S.stage-1)%5===0?3:1;S.pick=(S.pick||0)+g;S.pickGot=g;updateColDot()}}
   else S.round++;
   P.hp=Math.min(P.s.hp,P.hp+P.s.hp*0.10);
   if(cleared&&enemyEra()>oldEra)
     toast('적 문명이 <b style="color:#ff8787">'+ERAS[enemyEra()].n+'</b>로 진입했습니다');
-  else if(cleared)toast('전투 '+(S.stage-1)+' 클리어!');
+  else if(cleared)toast('전투 '+(S.stage-1)+' 클리어! · '+ico('pick')+' 곡괭이 +'+(S.pickGot||1));
   else if(leveled)toast('레벨 업! Lv.'+S.lv+(canAdvance()?' — 시대 진출 가능!':''));
   if(cleared)setTimeout(()=>SFX.clear(),380);else if(leveled)setTimeout(()=>SFX.level(),260);
   if(cleared)SKILL.forEach((k,i)=>{if(S.stage===k.unlock&&!(S.cycle||0)&&S.era===0)
@@ -2126,7 +2255,7 @@ function winRound(){
   setTimeout(()=>{
     $('etank').classList.remove('wrecked');
     makeEnemy();if(cleared)scene();
-    drawUnits();renderTop();renderHP();
+    drawUnits();renderTop();renderHP();onNewEnemy();
     pcd=.5;E.cd=.9;resolving=false;
     if(E.boss){bossIntro();setTimeout(()=>hint('boss','#eu','<b>보스</b>가 나타났네! 체력과 공격력이 훨씬 강하니<br>장비를 든든히 갖추게.'),2000)}
     else checkHints();
@@ -2225,7 +2354,7 @@ function doAdvance(){
   recalc();P.hp=P.s.hp;
   makeEnemy();scene();drawUnits();
   renderTop();renderGrid();renderHP();save();
-  $('emask').classList.remove('show');S.maxEra=Math.max(S.maxEra||0,to);save();
+  $('emask').classList.remove('show');S.maxEra=Math.max(S.maxEra||0,to);owePerk(0);save();
   playCut({oldSvg,newSvg:unitSVG(playerCfg(false)),bg:ERAS[to].pal.b,hi:'#ffd166',
     t1:'새로운 문명',t2:ERAS[to].n,t3:`주력 유닛 <b>${ERAS[to].unit}</b><br>장비 개조 완료 · 부품 수치 <b>×${ERA_M}</b>`,
     after:()=>toast('<b style="color:#8ce99a">'+ERAS[to].n+'</b> 진입! '+ERAS[to].unit+' 배치 완료')});
@@ -2269,6 +2398,7 @@ function doRebirth(){
   SFX.rebirth();buzz([100,80,300]);
   const nc=(S.cycle||0)+1;
   S.cycle=nc;S.era=0;S.lv=1;S.xp=0;S.tier=1;S.stage=1;S.round=1;
+  S.perks=[];S.perkOwed=0;S.pkOffer=null;S.pkRolled=0;renderPerkBar();S.pick=(S.pick||0)+5*nc;
   S.scrap=Math.round(120*goldMul());
   SLOTS.forEach(s=>S.gear[s.k]=null);
   recalc();P.hp=P.s.hp;
@@ -2609,7 +2739,7 @@ function tutAvatar(){
   return `<svg viewBox="-13 -55 26 36" width="100%" height="100%">${ugDefs('tav',DPAL[0][0])}
     ${soldier('tav',0,0,1,{helm,cloth:cl,dark:'#3a2a1a',wpn:'none',wa:1.1})}</svg>`;
 }
-function anyModal(){return ['mask','emask','smask','dmask','amask','gmask','umask','omask','bkmask','lzmask','cmask'].some(id=>$(id).classList.contains('show'))}
+function anyModal(){return ['mask','emask','smask','dmask','amask','gmask','umask','omask','bkmask','lzmask','cmask','pkmask','rmask'].some(id=>$(id).classList.contains('show'))}
 function tutEl(d){if(!d||!d.target)return null;
   const el=typeof d.target==='function'?d.target():document.querySelector(d.target);
   return el&&el.getClientRects().length?el:null}
@@ -2695,7 +2825,7 @@ function tutEvent(name){
 }
 /* 상황별 도움말 — 처음 한 번만 */
 function hint(key,target,txt){
-  if(TUT.on||S.tut!=='done'||anyModal())return false;
+  if(TUT.on||S.tut!=='done'||anyModal()||(typeof CUT!=='undefined'&&CUT))return false;
   S.hints=S.hints||{};if(S.hints[key])return false;
   if(target&&!tutEl({target}))return false;
   S.hints[key]=1;save();TUT.hint=true;
@@ -2704,6 +2834,7 @@ function hint(key,target,txt){
 }
 function checkHints(){
   if(TUT.on)return;
+  if(S.stage>=2&&(S.pick||0)>0&&hint('relic','#bCol','<b>곡괭이</b>를 모았군! <b>유물</b>에서 고대 유물을 발굴해 보게.<br>유물은 <b>회귀해도 영원히</b> 남는다네.'))return;
   if(hint('skills','#skbar','<b>스킬</b>을 쓸 수 있다네! 필살기·회복·광폭 세 가지야.<br>오른쪽 <b>AUTO</b>를 켜면 알아서 써 주지.'))return;
   if(canRebirth()&&hint('reb','#reb','미래 문명의 정점에 섰군! <b>회귀</b>하면 처음부터 다시 시작하지만<br><b>영원한 유산</b>이 남아 점점 강해진다네.'))return;
   if(canAdvance()&&hint('adv','#adv','<b>레벨 30</b> 달성! 이제 <b>다음 시대</b>로 진출할 수 있다네.<br>레벨은 1로 돌아가지만, 장비가 개조되어 더 강해지지.'))return;
@@ -2719,12 +2850,13 @@ function rewardUnit(){return Math.round(16*Math.pow(1.115,totalRound()-1)*goldMu
 function boostOn(){return (S.boostUntil||0)>Date.now()}
 function addBoost(min){S.boostUntil=Math.max(Date.now(),S.boostUntil||0)+min*60000}
 function rwText(r,sep){const p=[];
-  if(r.s)p.push(ico('nut')+fmt(rewardUnit()*r.s));if(r.k)p.push(ico('ticket')+r.k);if(r.b)p.push(ico('bolt')+(r.b*30)+'분');
+  if(r.s)p.push(ico('nut')+fmt(rewardUnit()*r.s));if(r.k)p.push(ico('ticket')+r.k);if(r.p)p.push(ico('pick')+r.p);if(r.b)p.push(ico('bolt')+(r.b*30)+'분');
   if(sep)return p.join(sep);
   return p.join(' ')}
 function grant(r){const p=[];
   if(r.s){const v=rewardUnit()*r.s;S.scrap+=v;p.push(ico('nut')+fmt(v))}
   if(r.k){S.tix=(S.tix||0)+r.k;p.push(ico('ticket')+' 제작권 '+r.k)}
+  if(r.p){S.pick=(S.pick||0)+r.p;p.push(ico('pick')+' 곡괭이 '+r.p);updateColDot()}
   if(r.b){addBoost(r.b*30);p.push(ico('bolt')+' 부스트 '+(r.b*30)+'분')}
   renderTop();save();return p.join(' · ')}
 
@@ -2738,9 +2870,10 @@ const MIS_POOL=[
  {id:'equip',ic:'🛡️',t:n=>`장비 ${n}회 교체`,        n:[5,8], r:{s:20}},
  {id:'good', ic:'✨',t:n=>`명품 이상 ${n}회 제작`,   n:[1,2], r:{k:1}},
  {id:'slot', ic:'🎯',t:n=>`부위 지정 제작 ${n}회`,   n:[8],   r:{s:25}},
+ {id:'dig',  ic:'⛏️',t:n=>`유물 ${n}회 발굴`,        n:[1,2], r:{p:1}},
  {id:'skill',ic:'💫',t:n=>`스킬 ${n}회 사용`,          n:[10,20],r:{s:25}},
 ];
-const MS_REWARD={3:{k:1},5:{k:2,b:1}};
+const MS_REWARD={3:{k:1,p:2},5:{k:2,b:1,p:3}};
 function newDaily(){
   const day=todayStr(),seed=+day.replace(/-/g,'');
   let r=seed%2147483647;const rnd2=()=>(r=r*16807%2147483647)/2147483647;
@@ -2789,7 +2922,7 @@ function renderMissions(){
 function openMissions(){renderMissions();$('dmask').classList.add('show')}
 
 /* ---------- 출석 보상 (7일 누적, 빠진 날이 있어도 이어짐) ---------- */
-const ATT=[{s:30},{k:1},{s:60},{b:1},{s:100},{k:2},{k:3,b:1,s:200}];
+const ATT=[{s:30,p:1},{k:1},{s:60,p:1},{b:1},{s:100,p:2},{k:2},{k:3,b:1,p:5}];
 function attReady(){return !S.att||S.att.last!==todayStr()}
 function renderAttendance(){
   const A=S.att||{day:0,last:'',total:0},ready=attReady();
@@ -2798,7 +2931,7 @@ function renderAttendance(){
     const claimed=i<A.day, today=ready&&i===A.day, big=i===6;
     return `<div class="acell${claimed?' got':''}${today?' now':''}${big?' big':''}">
       <div class="aday">${i+1}일차</div>
-      <div class="aic">${r.k&&r.b?'🎁':ico(r.k?'ticket':r.b?'bolt':'nut')}</div>
+      <div class="aic">${(r.k&&r.b)||(r.p>=5)?'🎁':ico(r.k?'ticket':r.b?'bolt':r.p?'pick':'nut')}</div>
       <div class="arw">${rwText(r,'<br>')}</div>
       ${claimed?'<div class="astamp">✓</div>':''}</div>`}).join('');
   $('aBtn').disabled=!ready;
@@ -2853,7 +2986,7 @@ const SLOT_INFO={
 };
 /* 등급별 확률 (공방 레벨·회차 반영, 무작위 없이 계산) */
 function gradeProbs(tier,cycle,minG){
-  const c=cycle||0,mg=Math.max(Math.min(3,c),minG||0);
+  tier+=6*pk('luck')+rv('luck');const c=cycle||0,mg=Math.max(Math.min(3,c),minG||0);
   const w=GRADES.map((g,i)=>i<mg?0:g.w*(1+i*(tier*0.035+c*0.6)));
   const s=w.reduce((a,b)=>a+b,0);return w.map(x=>x/s*100);
 }
@@ -2942,7 +3075,7 @@ function skClear(){
 }
 function castSkill(i,auto){
   if(!canCast(i))return;
-  SK.cd[i]=SKILL[i].cd;
+  SK.cd[i]=SKILL[i].cd*Math.pow(.75,pk('skill'))*Math.max(.5,1-rv('skill'));
   const era=S.era;
   if(i===0){
     const uid=E.uid,base=P.s.atk*P.s.atk/(P.s.atk+E.def),dmg=base*8*(Math.random()*100<P.s.crit?2:1);
@@ -3049,8 +3182,8 @@ SFX.skRage=function(){if(!sOn())return;
    17. 버전 · 업데이트 알림 · 업데이트 내역
    ─ 새 버전을 올릴 때: 아래 BUILD 숫자와 version.json 의 build 숫자를 같이 올린다
 =========================================================== */
-const BUILD=7, BUILD_NAME='1.3.0';
-const CHANGELOG=[{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
+const BUILD=10, BUILD_NAME='1.5.0';
+const CHANGELOG=[{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
  {b:1,v:'1.0.0',d:'2026-09-28',items:[
   '석기시대 → 미래시대 6개 문명 진화 · 회귀(회차) 시스템',
   '시대별 유닛 24종 · 움직이는 배경 · 시대별 탄환과 폭발 연출',
@@ -3104,7 +3237,7 @@ function colRecord(it,quiet){
 }
 function colSetState(e,t){const row=S.col[e],ok=row.every(g=>g>=COL_SET[t].min&&g>=0);return {ok,got:!!S.colClaim[e+'-'+t]}}
 function colClaimable(){colInit();for(let e=0;e<ERAS.length;e++)for(let t=0;t<COL_SET.length;t++){const x=colSetState(e,t);if(x.ok&&!x.got)return true}return false}
-function updateColDot(){const b=$('bCol');if(b)b.classList.toggle('red',colClaimable())}
+function updateColDot(){const b=$('bCol');if(b)b.classList.toggle('red',colClaimable()||relDot())}
 let CTAB=0;
 function renderCol(){
   colInit();const pts=colPoints();
@@ -3307,6 +3440,54 @@ qSensor:()=>`<circle cx="16" cy="20" r="4" fill="${C.purple}"/><path d="M9 14 Q1
   <path d="M16 24 V29.5 M11 29.5 H21" stroke="#5f6f96" stroke-width="2.2"/><circle cx="16" cy="20" r="1.4" fill="${C.white}" stroke="none"/>`,
 plasma:()=>`<circle cx="16" cy="16" r="11" fill="${C.pink}" opacity=".35" stroke="none"/><circle cx="16" cy="16" r="8" fill="${C.pink}"/>
   <path d="M11 13 Q14 17 12 21 M17 9 Q15 14 20 16 Q22 19 19 23" fill="none" stroke="${C.white}" stroke-width="1.3" opacity=".9"/><circle cx="16" cy="16" r="2.4" fill="${C.white}" stroke="none"/>`,
+/* ---------- 특성 ---------- */
+heart:()=>`<path d="M16 28 Q3 19 3.5 11 Q4 5 10 4.5 Q14 4.5 16 8.5 Q18 4.5 22 4.5 Q28 5 28.5 11 Q29 19 16 28Z" fill="${C.red}"/>${hl(10,10,2.6,1.6,.45)}`,
+wind:()=>`<path d="M3 11 H19 Q24 11 24 7 Q24 3.5 20.5 3.5 Q17.5 3.5 17 6.5 M3 17 H25 Q29.5 17 29.5 21 Q29.5 25 25.5 25 Q22 25 21.5 21.5 M3 23 H14" fill="none" stroke="${C.cyan}" stroke-width="2.6"/>`,
+skull:()=>`<path d="M16 3.5 Q27 3.5 27 14 Q27 19 23 21 V26 Q16 29 9 26 V21 Q5 19 5 14 Q5 3.5 16 3.5Z" fill="${C.cream}"/>
+  <circle cx="11.5" cy="14" r="3.2" fill="${C.redD}"/><circle cx="20.5" cy="14" r="3.2" fill="${C.redD}"/><path d="M16 17.5 L14.2 21 H17.8Z" fill="${ICK}"/>
+  <path d="M12.5 24 V27 M16 24 V28 M19.5 24 V27" stroke="${C.stoneD}" stroke-width="1.2"/>`,
+anvil:()=>`<path d="M3 9 H22 Q29 9 29.5 14 Q24 14 22 16 L20 19 H12 L10 16 Q5 16 3 12Z" fill="${C.ironD}"/><path d="M10 19 H22 L24 26 H8Z" fill="${C.iron}"/>
+  <path d="M6 28 H26" stroke="${C.woodD}" stroke-width="3"/>${hl(12,11,6,1,.35)}<path d="M26 3 L22 7 M29 5 L25.5 8" stroke="${C.orange}" stroke-width="1.8"/>`,
+clover:()=>`${[[11,11],[21,11],[11,21],[21,21]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5.8" fill="${C.green}"/>`).join('')}
+  <circle cx="16" cy="16" r="3" fill="${C.greenD}"/><path d="M18 20 Q22 27 27 29" fill="none" stroke="${C.greenD}" stroke-width="2"/>`,
+crown:()=>`<path d="M4 11 L10 17 L16 6 L22 17 L28 11 L26 25 H6Z" fill="${C.gold}"/><rect x="6" y="24" width="20" height="4" rx="1" fill="${C.bronze}"/>
+  <circle cx="16" cy="19" r="2" fill="${C.red}"/><circle cx="10.5" cy="21" r="1.4" fill="${C.blue}"/><circle cx="21.5" cy="21" r="1.4" fill="${C.blue}"/>`,
+drop:()=>`<path d="M16 3 Q25 14 25 20 Q25 28.5 16 28.5 Q7 28.5 7 20 Q7 14 16 3Z" fill="${C.redD}"/><path d="M12 20 Q12 24 15.5 25" fill="none" stroke="#fff" stroke-width="1.6" opacity=".6"/>`,
+hourglass:()=>`<path d="M7 3.5 H25 M7 28.5 H25" stroke="${C.woodD}" stroke-width="3"/><path d="M9 5 H23 Q23 12 16 16 Q23 20 23 27 H9 Q9 20 16 16 Q9 12 9 5Z" fill="${C.cream}"/>
+  <path d="M11.5 25.5 Q16 20 20.5 25.5Z M12.5 9 H19.5 Q18 12.5 16 13.5 Q14 12.5 12.5 9Z" fill="${C.sand}" stroke-width="1"/>`,
+bag:()=>`<path d="M12 8 L9 4 H23 L20 8" fill="${C.leather}"/><path d="M12 8 H20 Q29 14 28 22 Q27 29 16 29 Q5 29 4 22 Q3 14 12 8Z" fill="${C.leather}"/>
+  <path d="M11 8.5 H21" stroke="${C.woodD}" stroke-width="2.4"/><circle cx="16" cy="19.5" r="4.4" fill="${C.gold}"/><path d="M16 17 V22" stroke="${C.bronzeD}" stroke-width="1.4"/>`,
+target:()=>`<circle cx="16" cy="16" r="12.5" fill="${C.white}"/><circle cx="16" cy="16" r="9" fill="${C.red}"/><circle cx="16" cy="16" r="5.5" fill="${C.white}"/><circle cx="16" cy="16" r="2.2" fill="${C.red}"/>
+  <path d="M16 16 L29 3 M25 3 H29 V7" fill="none" stroke="${C.woodD}" stroke-width="2"/>`,
+sun:()=>`${[0,45,90,135,180,225,270,315].map(a=>`<path d="M16 16 L${(16+14*Math.cos(a*Math.PI/180)).toFixed(1)} ${(16+14*Math.sin(a*Math.PI/180)).toFixed(1)}" stroke="${C.orange}" stroke-width="2.6"/>`).join('')}<circle cx="16" cy="16" r="7.5" fill="${C.yellow}"/>`,
+/* ---------- 고대 유물 ---------- */
+pick:()=>`<path d="M9 29 L11.5 31 L23 13 L20.5 11Z" fill="${C.wood}"/><path d="M4 11 Q14 1 29 8 Q26 10 22 10 Q14 7 6.5 13Z" fill="${C.steel}"/>
+  <path d="M17 9.5 L22.5 14" stroke="${C.ironD}" stroke-width="2.6"/>${hl(14,6.5,4,1,.45)}`,
+necklace:()=>`<path d="M5 5 Q16 26 27 5" fill="none" stroke="${C.woodD}" stroke-width="1.6"/>
+  ${[[8,11],[11,16.5],[21,16.5],[24,11]].map(p=>`<path d="M${p[0]} ${p[1]} l1.6 4.5 l-3.2 0Z" fill="${C.cream}" stroke-width="1"/>`).join('')}
+  <path d="M16 19 L19.5 27 Q16 30 12.5 27Z" fill="${C.cream}"/><circle cx="16" cy="24" r="1.6" fill="${C.red}"/>`,
+painting:()=>`<rect x="3" y="5" width="26" height="22" rx="3" fill="${C.sand}"/>
+  <path d="M7 21 Q9 15 13 16 L17 13 L18 16 Q22 16 22 20 L20 21 M11 21 L11.5 24 M18 21 L18.5 24" fill="none" stroke="${C.redD}" stroke-width="1.8"/>
+  <circle cx="23" cy="10" r="2.5" fill="${C.orange}"/><path d="M6 9 L8 11 M26 22 L24 24" stroke="${C.woodD}" stroke-width="1.2"/>`,
+shell:()=>`<path d="M16 28 L4 15 Q4 5 16 4 Q28 5 28 15Z" fill="${C.cream}"/><path d="M16 28 L9 7 M16 28 L16 4.5 M16 28 L23 7 M16 28 L5 12 M16 28 L27 12" stroke="${C.sand}" stroke-width="1.3"/>
+  <circle cx="16" cy="27" r="2.4" fill="${C.pink}" opacity=".8"/>`,
+mirror:()=>`<circle cx="16" cy="13" r="10.5" fill="${C.bronze}"/><circle cx="16" cy="13" r="7.5" fill="#1b1f25"/>
+  <path d="M11 9.5 Q14 6.5 18 7.5" fill="none" stroke="${C.purple}" stroke-width="1.8" opacity=".9"/><path d="M13.5 23 L12 30 H20 L18.5 23" fill="${C.bronzeD}"/>`,
+abacus:()=>`<rect x="3.5" y="5" width="25" height="22" rx="2" fill="none" stroke="${ICK}" stroke-width="4"/><rect x="3.5" y="5" width="25" height="22" rx="2" fill="none" stroke="${C.wood}" stroke-width="2.2"/>
+  <path d="M5 11 H27 M5 16 H27 M5 21 H27" stroke="${C.woodD}" stroke-width="1"/>
+  ${[[9,11],[12,11],[20,11],[8,16],[17,16],[20,16],[23,16],[11,21],[14,21],[22,21]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="1.8" fill="${C.red}" stroke-width=".9"/>`).join('')}`,
+tablet:()=>`<path d="M6 7 Q6 3 10 3 H22 Q26 3 26 7 V29 H6Z" fill="${C.stoneD}"/>
+  <path d="M9 8 H23 M9 11.5 H21 M9 15 H23 M9 18.5 H20 M9 22 H23 M9 25.5 H18" stroke="${C.stone}" stroke-width="1.3" stroke-dasharray="1.6 1.2"/>${hl(11,5.5,3,.8,.35)}`,
+gear:()=>`${[0,45,90,135,180,225,270,315].map(a=>`<rect x="14" y="2" width="4" height="6" rx="1" fill="${C.bronze}" transform="rotate(${a} 16 16)"/>`).join('')}
+  <circle cx="16" cy="16" r="10" fill="${C.bronze}"/><circle cx="16" cy="16" r="6" fill="${C.bronzeD}"/><circle cx="16" cy="16" r="2.4" fill="${C.cream}"/>
+  <path d="M16 10 V13 M16 19 V22 M10 16 H13 M19 16 H22" stroke="${C.cream}" stroke-width="1"/>`,
+blade:()=>`<path d="M26 3 L29 6 L13 22 L10 19Z" fill="${C.steel}"/><path d="M14.5 17.5 L19 13 M18 14 L22.5 9.5" stroke="${C.iron}" stroke-width=".9" opacity=".8"/>
+  <path d="M6.5 16 L16 25.5 L14 27.5 L4.5 18Z" fill="${C.gold}"/><path d="M9.5 22.5 L4 28" stroke="${C.woodD}" stroke-width="3.4"/><circle cx="3.6" cy="28.4" r="1.8" fill="${C.gold}"/>`,
+gem:()=>`<path d="M9 4 H23 L29 12 L16 29 L3 12Z" fill="${C.cyan}"/><path d="M3 12 H29 M9 4 L13 12 L16 29 L19 12 L23 4 M13 12 L16 4 L19 12" fill="none" stroke="${C.blueD}" stroke-width="1" opacity=".75"/>
+  ${hl(11,8,2.4,1.2,.7)}`,
+sundial:()=>`<ellipse cx="16" cy="21" rx="13" ry="6.5" fill="${C.stone}"/><ellipse cx="16" cy="19" rx="13" ry="6.5" fill="${C.cream}"/>
+  <path d="M16 19 L16 6 L22 19Z" fill="${C.bronze}"/><path d="M16 19 L6 22.5" stroke="${ICK}" stroke-width="1.6" opacity=".45"/>
+  <path d="M5 19 H7 M25 19 H27 M16 24.5 V26" stroke="${C.woodD}" stroke-width="1.2"/>`,
 /* ---------- UI ---------- */
 calendar:()=>`<rect x="4" y="6" width="24" height="23" rx="3" fill="${C.cream}"/><path d="M4 9 Q4 6 7 6 H25 Q28 6 28 9 V13 H4Z" fill="${C.red}"/>
   <path d="M10 3.5 V9 M22 3.5 V9" stroke="${C.ironD}" stroke-width="2.4"/>
@@ -3438,6 +3619,258 @@ function bossIntro(){
   SFX.boss();buzz([50,40,50,40,120]);quake(.6,500);
 }
 
+
+/* ===========================================================
+   22. 적 특성 — 전투마다 싸우는 방식이 달라짐
+=========================================================== */
+const TRAITS={
+ shield:{n:'방패병',ic:'shield',c:'#74c0fc',m:{def:2.6,hp:.8},unlock:3,ctr:'치명타',slot:'scope',
+   tip:'방어력이 매우 높아요.<br><b>치명타</b>는 방어력을 절반 무시해요!'},
+ archer:{n:'궁수대',ic:'arrows',c:'#8ce99a',m:{interval:.55,atk:.6},unlock:3,ctr:'방어력',slot:'armor',
+   tip:'약한 공격을 빠르게 퍼부어요.<br><b>방어력</b>이 높을수록 거의 막아낼 수 있어요!'},
+ brute:{n:'돌격대',ic:'stoneHammer',c:'#ffa94d',m:{atk:1.7,interval:1.75},unlock:5,ctr:'회피',slot:'radar',
+   tip:'느리지만 한 방이 무거워요.<br><b>회피</b>로 피하거나 <b>체력</b>으로 버티세요!'},
+ healer:{n:'치유사',ic:'leafHeal',c:'#69db7c',m:{hp:.82,atk:.9},regen:.02,unlock:7,ctr:'공격력',slot:'cannon',
+   tip:'매초 체력을 회복해요.<br><b>공격력</b>과 <b>필살기</b>로 빨리 끝내세요!'},
+ swift:{n:'기동대',ic:'wind',c:'#66d9e8',m:{hp:1},eva:20,unlock:9,ctr:'공격 속도',slot:'engine',
+   tip:'공격의 20%를 피해요.<br><b>공격 속도</b>로 더 많이 때리세요!'},
+ berserk:{n:'광전사',ic:'skull',c:'#ff6b6b',m:{atk:.78},rage:1,unlock:11,ctr:'공격력',slot:'ammo',
+   tip:'체력이 줄수록 공격력이 최대 2배로 올라요.<br><b>빨리 처치</b>하는 게 핵심이에요!'},
+};
+function srand(seed){let x=Math.abs(Math.floor(seed))%2147483647||1;return()=>(x=x*16807%2147483647)/2147483647}
+function stageTraits(stage){
+  const cyc=S.cycle||0;if(!cyc&&stage<3)return [];
+  const keys=Object.keys(TRAITS),pool=keys.filter(k=>cyc>0||stage>=TRAITS[k].unlock);
+  const r=srand(stage*7919+cyc*104729+13);
+  let a=pool[Math.floor(r()*pool.length)];
+  const fresh=!cyc&&keys.find(k=>TRAITS[k].unlock===stage);if(fresh)a=fresh;   // 새로 해금된 특성은 그 전투의 주력
+  const rest=pool.filter(k=>k!==a);
+  return rest.length?[a,rest[Math.floor(r()*rest.length)]]:[a];
+}
+function roundTraits(stage,round){
+  const th=stageTraits(stage);if(!th.length)return [];
+  if(round===15)return th.slice(0,2);
+  if(round%4===0)return [];
+  return [th[round%th.length]];
+}
+function applyTraits(en,tr){
+  en.tr=tr||[];en.eva=0;en.regen=0;en.rage=0;
+  en.tr.forEach(k=>{const T=TRAITS[k];
+    for(const f in T.m){if(f==='hp'){en.max=Math.round(en.max*T.m.hp);en.hp=en.max}
+      else if(f==='interval')en.interval*=T.m.interval;else en[f]=Math.round(en[f]*T.m[f])}
+    if(T.eva)en.eva+=T.eva;if(T.regen)en.regen+=T.regen;if(T.rage)en.rage=1});
+  return en;
+}
+function hasTr(en,k){return !!(en&&en.tr&&en.tr.includes(k))}
+/* 공격 한 번의 기대 피해 · 초당 피해 (특성·문명 특성 반영) */
+function critMul(){return 2+.3*pk('crit')+rv('critd')}
+function vsMul(en){let m=1;if(en.boss)m*=(1+.4*pk('boss'))*(1+rv('boss'));if(hasTr(en,'shield')||hasTr(en,'swift'))m*=1+.5*pk('breaker');return m}
+function pdOf(s,en){const c=s.crit/100,h=d=>s.atk*s.atk/(s.atk+d);
+  const pd=((1-c)*h(en.def)+c*critMul()*h(en.def*.5))/s.interval*(1-(en.eva||0)/100)*vsMul(en);
+  return Math.max(en.max*.002,pd-(en.regen||0)*en.max)}
+function edOf(s,en){const a=en.atk*(en.rage?1.3:1);
+  return a*a/(a+s.def)*(1+(en.crit||10)/100)*(1-s.eva/100)/en.interval*Math.max(.3,1-rv('taken'))}
+function trBadges(){
+  const box=$('etr');if(!box||!E)return;
+  box.innerHTML=(E.tr||[]).map(k=>{const T=TRAITS[k];return `<span class="trb" style="--tc:${T.c}">${ico(T.ic)}${T.n}</span>`}).join('');
+  const et=$('etank');[...et.classList].filter(c=>c.startsWith('tr-')).forEach(c=>et.classList.remove(c));
+  if(E.tr&&E.tr[0])et.classList.add('tr-'+E.tr[0]);
+}
+function onNewEnemy(){
+  trBadges();
+  if(E.tr)for(const k of E.tr){if(!(S.hints&&S.hints['tr_'+k])){
+    setTimeout(()=>hint('tr_'+k,'#eu',`새로운 적 <b style="color:${TRAITS[k].c}">${TRAITS[k].n}</b> 등장!<br>${TRAITS[k].tip}`),E.boss?2100:500);break}}
+}
+
+/* ===========================================================
+   23. 문명 특성 — 시대마다 3개 중 1개를 골라 성장 방향을 정함
+=========================================================== */
+const PERKS={
+ atk:{n:'전사의 혈통',ic:'swords',d:'공격력 +25%'},
+ hp:{n:'강인한 체질',ic:'heart',d:'체력 +35%'},
+ def:{n:'성벽 건축',ic:'shield',d:'방어력 +45%'},
+ spd:{n:'기동 전술',ic:'wind',d:'공격 속도 +15%'},
+ crit:{n:'급소 사냥',ic:'target',d:'치명타 확률 +8%p · 치명타 피해 +30%'},
+ eva:{n:'그림자 발걸음',ic:'hawkEye',d:'회피 +7%p'},
+ forge:{n:'대장장이 길드',ic:'anvil',d:'제작 비용 -25%'},
+ loot:{n:'약탈 문화',ic:'bag',d:'적 처치 고철 +40%'},
+ boss:{n:'거인 사냥꾼',ic:'crown',d:'보스에게 주는 피해 +40%'},
+ breaker:{n:'공성 기술',ic:'bombard',d:'방패병·기동대에게 주는 피해 +50%'},
+ leech:{n:'피의 의식',ic:'drop',d:'준 피해의 4%만큼 체력 회복'},
+ regen:{n:'치유 전통',ic:'leafHeal',d:'매초 최대 체력의 1.2% 회복'},
+ skill:{n:'전술 교본',ic:'hourglass',d:'스킬 재사용 대기 -25%'},
+ xp:{n:'현자의 가르침',ic:'book',d:'경험치 +35%'},
+ luck:{n:'행운의 부적',ic:'clover',d:'상위 등급 제작 확률 증가 (공방 +6레벨 효과)'},
+ first:{n:'선제 공격',ic:'sun',d:'라운드 시작 시 적 체력 8% 즉시 감소'},
+};
+function pk(id){if(!S.perks)return 0;let n=0;for(const x of S.perks)if(x===id)n++;return n}
+function perkOffer(){const ids=Object.keys(PERKS),out=[];while(out.length<3){const k=ids[Math.floor(Math.random()*ids.length)];if(!out.includes(k))out.push(k)}return out}
+/* 지금 편성된 적에게 유리한 특성은 표시 */
+function perkHot(id){const th=stageTraits(S.stage+1).concat(stageTraits(S.stage));
+  return (id==='breaker'&&(th.includes('shield')||th.includes('swift')))||(id==='crit'&&th.includes('shield'))||
+    (id==='def'&&th.includes('archer'))||(id==='eva'&&th.includes('brute'))||(id==='atk'&&(th.includes('healer')||th.includes('berserk')))||(id==='spd'&&th.includes('swift'))}
+function renderPerkBar(){
+  const b=$('pkbar');const P0=S.perks||[];if(!P0.length){b.style.display='none';return}
+  const cnt={};P0.forEach(k=>cnt[k]=(cnt[k]||0)+1);
+  b.style.display='flex';b.innerHTML=Object.keys(cnt).map(k=>ico(PERKS[k].ic)+(cnt[k]>1?`<b>×${cnt[k]}</b>`:'')).join('');
+}
+function openPerk(view){
+  const M0=$('pkmask');
+  if(view){
+    $('pkT').innerHTML=ico('crown')+' 보유 문명 특성';$('pkS').textContent='이번 회차 동안 유지돼요 · 회귀하면 새로 고릅니다';
+    const cnt={};(S.perks||[]).forEach(k=>cnt[k]=(cnt[k]||0)+1);
+    $('pkBody').innerHTML=Object.keys(cnt).map(k=>`<div class="pkl">${ico(PERKS[k].ic)}<div><b>${PERKS[k].n}</b><small>${PERKS[k].d}</small></div><em>×${cnt[k]}</em></div>`).join('')||'<div class="psub">아직 없어요</div>';
+    $('pkRoll').style.display='none';$('pkClose').style.display='block';M0.classList.add('show');return;
+  }
+  if(!(S.perkOwed>0))return;
+  if(!S.pkOffer||S.pkOffer.length!==3)S.pkOffer=perkOffer();save();
+  $('pkT').innerHTML=ico('crown')+' 문명 특성 선택';
+  $('pkS').innerHTML=`<b>${ERAS[S.era].n}</b>의 방향을 정하세요 · 3개 중 1개`+(S.perkOwed>1?` (남은 선택 ${S.perkOwed})`:'');
+  $('pkBody').innerHTML=S.pkOffer.map(k=>{const P1=PERKS[k],n=pk(k),hot=perkHot(k);
+    return `<button class="pkc${hot?' hot':''}" data-k="${k}"><div class="pi">${ico(P1.ic)}</div><div><div class="pn">${P1.n}</div><div class="pd">${P1.d}</div>
+      ${hot?'<div class="ph">▲ 다가올 적에게 효과적</div>':''}</div>${n?`<span class="po">보유 ×${n}</span>`:''}</button>`}).join('');
+  $('pkBody').querySelectorAll('.pkc').forEach(b=>b.onclick=()=>pickPerk(b.dataset.k));
+  const r=$('pkRoll');r.style.display='block';r.disabled=!!S.pkRolled;r.innerHTML=S.pkRolled?'다시 뽑기 사용함':'🎲 다시 뽑기 (1회)';
+  r.onclick=()=>{if(S.pkRolled)return;S.pkRolled=1;S.pkOffer=perkOffer();SFX.click();openPerk()};
+  $('pkClose').style.display='none';
+  if(!M0.classList.contains('show')){M0.classList.add('show');SFX.level()}
+}
+function pickPerk(k){
+  if(!(S.perkOwed>0)||!PERKS[k])return;
+  S.perks=S.perks||[];S.perks.push(k);S.perkOwed--;S.pkOffer=null;S.pkRolled=0;
+  recalc();P.hp=Math.min(P.s.hp,P.hp);renderTop();renderHP();renderPerkBar();save();
+  SFX.equip();buzz(30);toast(ico(PERKS[k].ic)+' <b>'+PERKS[k].n+'</b> 획득 · '+PERKS[k].d);
+  if(S.perkOwed>0)openPerk();else $('pkmask').classList.remove('show');
+}
+function owePerk(delay){S.perkOwed=(S.perkOwed||0)+1;S.perkAt=Date.now()+(delay||0);save()}
+function checkPerk(){
+  if(!(S.perkOwed>0)||Date.now()<(S.perkAt||0))return;
+  if(anyModal()||TUT.on||(typeof CUT!=='undefined'&&CUT))return;
+  openPerk();
+}
+
+
+/* ===========================================================
+   24. 고대 유물 발굴 — 뽑기로 모으는 영구 성장
+=========================================================== */
+const RAR=[{n:'일반',c:'#c6cfe0',w:70},{n:'희귀',c:'#4dabf7',w:22},{n:'영웅',c:'#b197fc',w:7},{n:'전설',c:'#ffd43b',w:1}];
+const RELICS=[
+ {id:'axe',n:'돌도끼',r:0,ic:'stoneHammer',k:'atk',v:.03,f:'공격력 +{p}'},
+ {id:'neck',n:'뼈 목걸이',r:0,ic:'necklace',k:'hp',v:.04,f:'체력 +{p}'},
+ {id:'hide',n:'가죽 방패',r:0,ic:'shield',k:'def',v:.05,f:'방어력 +{p}'},
+ {id:'flint',n:'부싯돌',r:0,ic:'flint',k:'crit',v:.6,f:'치명타 확률 +{a}%p'},
+ {id:'cave',n:'동굴 벽화',r:0,ic:'painting',k:'xp',v:.05,f:'경험치 +{p}'},
+ {id:'shell',n:'조개 화폐',r:0,ic:'shell',k:'scrap',v:.05,f:'적 처치 고철 +{p}'},
+ {id:'pot',n:'토기 항아리',r:0,ic:'urn',k:'off',v:.08,f:'방치 보상 +{p}'},
+ {id:'obs',n:'흑요석 거울',r:0,ic:'mirror',k:'eva',v:.5,f:'회피 +{a}%p'},
+ {id:'horn',n:'전쟁 뿔나팔',r:1,ic:'horn',k:'boss',v:.06,f:'보스에게 주는 피해 +{p}'},
+ {id:'abacus',n:'고대 주판',r:1,ic:'abacus',k:'forge',v:.025,f:'제작 비용 -{p}'},
+ {id:'papyrus',n:'파피루스 병법서',r:1,ic:'scroll',k:'skill',v:.025,f:'스킬 재사용 대기 -{p}'},
+ {id:'helm',n:'황금 투구',r:1,ic:'helm',k:'taken',v:.02,f:'받는 피해 -{p}'},
+ {id:'eagle',n:'군단 독수리기',r:1,ic:'standard',k:'aspd',v:.02,f:'공격 속도 +{p}'},
+ {id:'sundial',n:'해시계',r:1,ic:'sundial',k:'offcap',v:1800,f:'방치 보상 최대 시간 +{m}분'},
+ {id:'rosetta',n:'로제타석',r:2,ic:'tablet',k:'all',v:.04,f:'모든 능력치 +{p}'},
+ {id:'antiky',n:'안티키테라 기계',r:2,ic:'gear',k:'luck',v:1,f:'상위 등급 확률 (공방 +{a}레벨 효과)'},
+ {id:'grail',n:'성배',r:2,ic:'chalice',k:'regen',v:.0025,f:'매초 체력 {p} 회복'},
+ {id:'damas',n:'다마스쿠스 검',r:2,ic:'blade',k:'critd',v:.1,f:'치명타 피해 +{p}'},
+ {id:'ori',n:'오리할콘 핵',r:3,ic:'gem',k:'all',v:.12,f:'모든 능력치 +{p}'},
+ {id:'sand',n:'시간의 모래시계',r:3,ic:'hourglass',k:'reward',v:.12,f:'고철·경험치 +{p}'},
+];
+const RL_NEED=[1,2,4,7,11,16,22,30,40,52];   // 레벨별 누적 필요 개수 (Lv.1 ~ Lv.10)
+const RMAP={};RELICS.forEach(r=>RMAP[r.id]=r);
+function relLv(id){const c=(S.rel&&S.rel[id])||0;let l=0;while(l<10&&c>=RL_NEED[l])l++;return l}
+let RV=null;
+function rv(k){if(!RV){RV={};RELICS.forEach(r=>{const l=relLv(r.id);if(l)RV[r.k]=(RV[r.k]||0)+r.v*l})}return RV[k]||0}
+function relTxt(r,l){const x=r.v*Math.max(1,l);
+  return r.f.replace('{p}',(r.k==='regen'?(x*100).toFixed(2):Math.round(x*1000)/10)+'%').replace('{a}',Math.round(x*10)/10).replace('{m}',Math.round(x/60))}
+function offCap(){return OFF_CAP+rv('offcap')}
+function pickTxt(n){return ico('pick')+(n||0)}
+function drawOne(guar){
+  S.pity=(S.pity||0)+1;let r;
+  if(S.pity>=50)r=3;else{const x=Math.random()*100;r=x<1?3:x<8?2:x<30?1:0}   // 전설 1 · 영웅 7 · 희귀 22 · 일반 70
+  if(guar&&r<1)r=1;
+  if(r===3)S.pity=0;
+  const pool=RELICS.filter(x=>x.r===r),rel=pool[Math.floor(Math.random()*pool.length)];
+  const before=relLv(rel.id);S.rel[rel.id]=(S.rel[rel.id]||0)+1;RV=null;
+  return {id:rel.id,r,before,after:relLv(rel.id),isNew:before===0};
+}
+function doDig(n,free){
+  S.rel=S.rel||{};
+  if(free){if(S.freeDig===todayStr())return;S.freeDig=todayStr()}
+  else{if((S.pick||0)<n)return;S.pick-=n}
+  const res=[];for(let i=0;i<n;i++)res.push(drawOne(false));
+  if(n>=10&&!res.some(x=>x.r>=1)){const i=res.length-1,old=res[i];S.rel[old.id]--;RV=null;S.pity--;res[i]=drawOne(true)}
+  recalc();P.hp=Math.min(P.hp,P.s.hp);renderTop();renderHP();save();updateColDot();
+  daily('dig',n);showDig(res,n);
+}
+function showDig(res,n){
+  const box=$('rCards'),o=$('rres');o.classList.remove('done');
+  box.style.gridTemplateColumns=n>1?'repeat(5,auto)':'120px';
+  box.innerHTML=res.map(x=>{const r=RMAP[x.id],R=RAR[x.r];
+    return `<div class="rcard r${x.r}${n>1?'':' big'}" style="--rc:${R.c}"><div class="in"><div class="b"></div>
+      <div class="f">${x.isNew?'<span class="new">NEW</span>':''}${ico(r.ic)}<div class="n">${r.n}</div>
+      <div class="l">${x.isNew?R.n:(x.after>x.before?'Lv.'+x.before+'→'+x.after:'Lv.'+x.after)}</div></div></div></div>`}).join('');
+  $('rrT').textContent=n>1?'10회 발굴 결과':'발굴 결과';
+  o.classList.add('on');SFX.anvil();
+  const cards=[...box.children];let i=0,best=Math.max(...res.map(x=>x.r));
+  const next=()=>{if(i>=cards.length){o.classList.add('done');return}
+    const c=cards[i],x=res[i];i++;c.classList.add('flip');
+    if(x.r===3){const f=o.querySelector('.flash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go');SFX.clear();buzz([60,40,160]);quake(.8,500)}
+    else if(x.r===2){SFX.level();buzz(40)}else SFX.forge(x.r?3:1);
+    DIG.t=setTimeout(next,x.r>=2?520:170)};
+  DIG.t=setTimeout(next,350);
+  const again=$('rrAgain');again.innerHTML=`${n>1?'10회':'1회'} 더 (${pickTxt(n)})`;again.disabled=(S.pick||0)<n;
+  again.onclick=()=>{if((S.pick||0)<n)return;clearTimeout(DIG.t);doDig(n)};
+  $('rrOk').onclick=()=>{clearTimeout(DIG.t);o.classList.remove('on','done');renderRel()};
+  o.onclick=e=>{if(e.target.closest('button'))return;if(!o.classList.contains('done')){clearTimeout(DIG.t);cards.forEach(c=>c.classList.add('flip'));o.classList.add('done')}};
+  if(best>=3)toast('<b style="color:#ffd43b">전설 유물</b> 발굴!');
+}
+const DIG={t:0};
+let RTAB='dig',RSEL=null;
+const SITE_SVG=`<svg viewBox="0 0 360 118" preserveAspectRatio="xMidYMax slice"><circle cx="300" cy="26" r="14" fill="#ffe8a3" opacity=".8"/>
+  <path d="M0 78 Q60 58 120 72 T240 66 T360 74 V118 H0Z" fill="#a8804a"/><path d="M0 92 Q90 80 180 90 T360 88 V118 H0Z" fill="#8a6a3e"/>
+  <ellipse cx="180" cy="92" rx="62" ry="12" fill="#5a4026"/>
+  <path d="M158 92 L162 48 Q180 40 198 48 L202 92Z" fill="#6f7883" stroke="#1d2230" stroke-width="2"/>
+  <path d="M168 58 H192 M168 66 H190 M168 74 H192" stroke="#9aa3ad" stroke-width="2" stroke-dasharray="3 2"/>
+  <ellipse class="glow" cx="180" cy="66" rx="34" ry="30" fill="#ffd43b" opacity=".18"/>
+  <path d="M60 100 L84 70" stroke="#6e4424" stroke-width="4" stroke-linecap="round"/><path d="M72 66 Q84 58 98 66 L90 70 Q84 66 78 70Z" fill="#b9c5d2" stroke="#1d2230" stroke-width="1.5"/>
+  <path d="M280 98 l8 -14 l8 14Z M292 102 l6 -9 l6 9Z" fill="#c9b27a" stroke="#1d2230" stroke-width="1.2"/></svg>`;
+function renderRel(){
+  document.querySelectorAll('.rtab').forEach(t=>t.classList.toggle('on',t.dataset.t===RTAB));
+  const B=$('rBody');S.rel=S.rel||{};
+  if(RTAB==='dig'){
+    const free=S.freeDig!==todayStr(),p=S.pick||0,pity=S.pity||0;
+    B.innerHTML=`<div class="rsite">${SITE_SVG}</div>
+      <div class="rcur"><span>${ico('pick')} 곡괭이 <b>${p}</b></span><button id="rEx">${ico('ticket')}2 → ${ico('pick')}1 교환</button></div>
+      <div class="rpity"><span>전설 확정까지</span><span><b>${50-pity}</b>회</span></div><div class="rpbar"><i style="width:${pity/50*100}%"></i></div>
+      <div class="rbtns"><button id="rFree" style="display:${free?'block':'none'}">🎁 오늘의 무료 발굴</button>
+        <button id="rOne" ${p<1?'disabled':''}>1회 발굴<small>${pickTxt(1)}</small></button>
+        <button id="rTen" ${p<10?'disabled':''}>10회 발굴<small>${pickTxt(10)} · 희귀 이상 1개 확정</small></button></div>
+      <div class="rrate">일반 70% · 희귀 22% · 영웅 7% · 전설 1% · 50회 안에 전설 확정<br>곡괭이: 전투 클리어 · 일일 임무 · 출석 · 회귀 보상</div>`;
+    $('rOne').onclick=()=>doDig(1);$('rTen').onclick=()=>doDig(10);$('rFree').onclick=()=>doDig(1,true);
+    $('rEx').onclick=()=>{if((S.tix||0)<2){toast('제작권이 2장 필요해요');return}S.tix-=2;S.pick=(S.pick||0)+1;updateDots();save();SFX.click();renderRel()};
+  }else if(RTAB==='list'){
+    const own=RELICS.filter(r=>relLv(r.id)>0).length;
+    const keys=[['all','모든 능력치'],['atk','공격력'],['hp','체력'],['def','방어력'],['crit','치명타','p'],['critd','치명타 피해'],['eva','회피','p'],['aspd','공격 속도'],['boss','보스 피해'],['taken','받는 피해 감소'],
+      ['scrap','고철'],['reward','고철·경험치'],['xp','경험치'],['forge','제작 비용 감소'],['skill','스킬 대기 감소'],['off','방치 보상'],['luck','등급 확률','t'],['regen','초당 회복'],['offcap','방치 최대','m']];
+    const sum=keys.filter(k=>rv(k[0])).map(k=>{const v=rv(k[0]);return `<span>${k[1]} <b>+${k[2]==='p'?v.toFixed(1)+'%p':k[2]==='t'?Math.round(v)+'레벨':k[2]==='m'?Math.round(v/60)+'분':(k[0]==='regen'?(v*100).toFixed(2):Math.round(v*1000)/10)+'%'}</b></span>`}).join('');
+    B.innerHTML=`<div class="rpity"><span>보유 ${own} / ${RELICS.length}종</span><span>중복이 나오면 레벨업 (최대 Lv.10)</span></div>
+      <div class="rsum">${sum||'<span>아직 유물이 없어요 — 발굴해 보세요!</span>'}</div>
+      <div class="rgrid">${RELICS.map(r=>{const l=relLv(r.id),c=(S.rel[r.id]||0),R=RAR[r.r],nx=l<10?RL_NEED[l]:c,pv=l<10?RL_NEED[l-1]||0:0;
+        return `<div class="rcell${l?'':' no'}" data-id="${r.id}" style="--rc:${R.c}">${ico(r.ic)}<div class="rn">${l?r.n:'???'}</div>
+          <div class="rl">${l?(l>=10?'MAX':'Lv.'+l):R.n}</div><div class="rb"><i style="width:${l>=10?100:l?(c-pv)/(nx-pv)*100:0}%"></i></div></div>`}).join('')}</div>
+      <div id="rDet"></div>`;
+    B.querySelectorAll('.rcell').forEach(c=>c.onclick=()=>{RSEL=c.dataset.id;showRelDet()});
+    if(RSEL)showRelDet();
+  }
+}
+function showRelDet(){const r=RMAP[RSEL],l=relLv(r.id),c=(S.rel&&S.rel[r.id])||0,R=RAR[r.r],d=$('rDet');if(!d)return;
+  d.innerHTML=`<div class="rdet" style="--rc:${R.c}"><b class="t" style="color:${R.c}">${l?r.n:'???'}</b> · ${R.n}<br>
+    ${l?`현재 <b>Lv.${l}</b>: ${relTxt(r,l)}<br>`:'아직 발굴하지 못했어요<br>'}
+    ${l<10?`Lv.${l+1}: ${relTxt(r,l+1)} <span style="color:#8b96ae">(${c}/${RL_NEED[l]}개)</span>`:'<b style="color:#8ff09a">최대 레벨</b>'}</div>`}
+function openRel(tab){if(tab)RTAB=tab;if(RTAB==='col'){openCol();return}renderRel();$('rmask').classList.add('show')}
+function relDot(){return S.freeDig!==todayStr()||(S.pick||0)>=10}
+
 /* ===========================================================
    11. 초기화 / 루프
 =========================================================== */
@@ -3452,17 +3885,17 @@ function durTxt(sec){sec=Math.floor(sec);const h=Math.floor(sec/3600),m=Math.flo
 function addOffline(sec){
   if(sec<OFF_MIN)return false;
   const P0=S.offPend||{sec:0,gain:0,kills:0};
-  const add=Math.min(sec,OFF_CAP-P0.sec);if(add<=0){S.offPend=P0;return true}
+  const add=Math.min(sec,offCap()-P0.sec);if(add<=0){S.offPend=P0;return true}
   const kills=Math.floor(add/9);            // 접속 중보다 약간 느린 속도(약 70%)로 계산
-  P0.sec+=add;P0.kills+=kills;P0.gain+=Math.round(rewardUnit()*1.05*kills);
+  P0.sec+=add;P0.kills+=kills;P0.gain+=Math.round(rewardUnit()*1.05*kills*(1+rv('off')));
   S.offPend=P0;save();return true;
 }
 function offDblReady(){return S.offDbl!==todayStr()}
 function openOffline(next){
   const O=S.offPend;if(!O||O.gain<=0){S.offPend=null;next&&next();return}
   $('oTime').textContent=durTxt(O.sec);
-  $('oBar').style.width=Math.min(100,O.sec/OFF_CAP*100)+'%';
-  $('oCap').textContent=O.sec>=OFF_CAP?'최대치 도달 · 8시간':'최대 8시간';
+  const cap=offCap(),ch=Math.round(cap/360)/10;$('oBar').style.width=Math.min(100,O.sec/cap*100)+'%';
+  $('oCap').textContent=O.sec>=cap?'최대치 도달 · '+ch+'시간':'최대 '+ch+'시간';
   $('oKill').textContent='적 약 '+O.kills.toLocaleString()+'명 격파';
   const dbl=offDblReady();$('oDbl').disabled=!dbl;
   $('oNote').textContent=dbl?'2배 받기는 하루 1번 무료예요':'오늘 2배 받기를 이미 사용했어요 · 내일 다시!';
@@ -3555,17 +3988,15 @@ $('sBackup').onclick=openBackup;
 /* ---------- 패배 분석 ---------- */
 let LZ=null;
 function fightTimes(scale,en){
-  const a=P.s.atk*scale,h=P.s.hp*scale,d=P.s.def*scale;
-  const pd=a*a/(a+en.def)*(1+P.s.crit/100)/P.s.interval;
-  const ed=en.atk*en.atk/(en.atk+d)*(1+(en.crit||10)/100)*(1-P.s.eva/100)/en.interval;
-  return {kill:en.max/pd,live:h/ed};
+  const s=Object.assign({},P.s,{atk:P.s.atk*scale,hp:P.s.hp*scale,def:P.s.def*scale});
+  return {kill:en.max/pdOf(s,en),live:s.hp/edOf(s,en)};
 }
 function needScale(en){
   let lo=1,hi=1;while(fightTimes(hi,en).live<fightTimes(hi,en).kill*1.15&&hi<1e6)hi*=1.5;
   for(let i=0;i<40;i++){const m=(lo+hi)/2,t=fightTimes(m,en);if(t.live<t.kill*1.15)lo=m;else hi=m}
   return hi;
 }
-function enemyPower(en){return statPower({atk:en.atk,hp:en.max,def:en.def,crit:en.crit||10,eva:0,interval:en.interval})}
+function enemyPower(en){return statPower({atk:en.atk*(en.rage?1.3:1),hp:en.max*(1+(en.regen||0)*8),def:en.def,crit:en.crit||10,eva:en.eva||0,interval:en.interval})}
 function affordableUpg(){
   let sc=S.scrap,t=S.tier,n=0;const cap=tierCap();
   while(t<cap&&n<200){const c=Math.round(260*Math.pow(1.33,Math.min(t-1,101))*Math.pow(upgGrowth(),Math.max(0,t-1-Math.min(t-1,101))));
@@ -3577,12 +4008,16 @@ function nudge(el){if(!el)return;$('lzmask').classList.remove('show');
   el.classList.remove('nudge');void el.offsetWidth;el.classList.add('nudge');setTimeout(()=>el.classList.remove('nudge'),3100)}
 function loseTips(){
   const T=[];
+  if(LZ&&LZ.en.tr&&LZ.en.tr.length){const k=LZ.en.tr[0],t=TRAITS[k],i=slotIdx(t.slot);
+    T.push({i:ico(t.ic),t:`<b style="color:${t.c}">${t.n}</b> 상대에는 <b>${t.ctr}</b>이 효과적`,s:`${slotName(i)} 부위를 강화해 보세요`,b:'제작',f:()=>{$('lzmask').classList.remove('show');openSlot(t.slot)}})}
   if(canAdvance())T.push({i:'🚀',t:'<b>다음 시대로 진출</b>할 수 있어요',s:'기본 능력치가 크게 올라요 (×3.2)',b:'진출',f:()=>{$('lzmask').classList.remove('show');openAdvance()}});
   const empty=SLOTS.filter(s=>!S.gear[s.k]);
   if(empty.length)T.push({i:'🕳️',t:`<b>빈 부위 ${empty.length}곳</b>`,s:'장비가 없는 부위부터 채우세요',b:'제작',f:()=>{$('lzmask').classList.remove('show');openSlot(empty[0].k)}});
   const nu=affordableUpg();
   if(nu>0)T.push({i:'🏛️',t:`<b>공방 강화 ${nu}회</b> 가능`,s:'누르고 있으면 연속 강화돼요',b:'강화',f:()=>nudge($('upg'))});
   else if(tierCap()!==Infinity&&S.tier>=tierCap()&&!canAdvance())T.push({i:'⛔',t:'공방이 <b>시대 한계</b>에 닿았어요',s:'레벨 30을 채워 다음 시대로 진출하세요',b:'확인',f:()=>nudge($('lvrow'))});
+  const worn=SLOTS.filter(s=>itemOld(s.k));
+  if(worn.length)T.push({i:ico('anvil'),t:`<b>낡은 부품 ${worn.length}개</b> — 전투력 기여가 거의 없어요`,s:'공방 레벨이 낮을 때 만든 부품이에요. 새로 제작하세요',b:'제작',f:()=>{$('lzmask').classList.remove('show');openSlot(worn[0].k)}});
   const relic=SLOTS.filter(s=>S.gear[s.k]&&S.gear[s.k].era!==undefined&&S.gear[s.k].era<S.era);
   if(relic.length)T.push({i:ico('urn'),t:`<b>옛 시대 부품 ${relic.length}개</b> 사용 중`,s:'지금 시대 부품이 훨씬 강해요',b:'교체',f:()=>{$('lzmask').classList.remove('show');openSlot(relic[0].k)}});
   if(S.scrap>=forgeCost()*6)T.push({i:ico('nut'),t:`고철 <b>${fmt(S.scrap)}</b> 보유`,s:'무작위 제작으로 더 좋은 부품을 노려 보세요',b:'제작',f:()=>nudge($('forge'))});
@@ -3596,7 +4031,7 @@ function loseTips(){
   return T.slice(0,3);
 }
 function recordLoss(){
-  const en={atk:E.atk,def:E.def,max:E.max,interval:E.interval,crit:E.crit,boss:E.boss};
+  const en={atk:E.atk,def:E.def,max:E.max,interval:E.interval,crit:E.crit,boss:E.boss,tr:(E.tr||[]).slice(),eva:E.eva,regen:E.regen,rage:E.rage};
   const key=S.stage+'-'+S.round;
   const st=(S.lzAt===S.stage)?(S.lzN||0)+1:1;S.lzAt=S.stage;S.lzN=st;
   LZ={en,stage:S.stage,round:S.round,boss:E.boss,streak:st,key};
@@ -3629,15 +4064,18 @@ function init(){
   fillIcons();
   const had=load();
   SLOTS.forEach(s=>{if(!(s.k in S.gear))S.gear[s.k]=null});
+  if(!Array.isArray(S.perks)){S.perks=[];S.perkOwed=(had&&(S.stage>=2||S.era>0||(S.cycle||0)>0))?1+S.era:0;S.perkCyc=S.cycle||0;S.perkAt=Date.now()+4000}
+  if(!S.rel){S.rel={};S.pick=(S.pick||0)+10;S.pity=0}
   colInit();SLOTS.forEach(s=>{const it=S.gear[s.k];if(it)colRecord(it,true)});S.maxEra=Math.max(S.maxEra||0,S.era);
   recalc();P.hp=P.s.hp;
   makeEnemy();scene();drawUnits();
-  if(had&&S.last)addOffline(Math.min(OFF_CAP,(Date.now()-S.last)/1000));
+  S.offAt=Date.now()+6000;
+  if(had&&S.last)addOffline(Math.min(offCap(),(Date.now()-S.last)/1000));
   $('quick').checked=!!S.quick;
   timeScale=S.speed||1;$('spd').textContent='속도 x'+timeScale;
   $('diffbtn').textContent='난이도 '+diff().n;
   $('diffbtn').style.color=['#c6cfe0','#ffc078','#ff8787'][S.diff||0];
-  renderTop();renderGrid();renderHP();
+  renderTop();renderGrid();renderHP();renderPerkBar();trBadges();
   // 튜토리얼: 새로 시작한 경우만 자동, 기존 진행이 있으면 완료 처리
   if(S.tut===undefined)S.tut=(had&&(S.stage>1||S.era>0||(S.cycle||0)>0||S.tier>1))?'done':0;
   ensureDaily();updateDots();tickBoost();renderSkills();
@@ -3695,10 +4133,14 @@ setInterval(()=>{
   if(!document.hidden&&S.daily){S.daily.sec=(S.daily.sec||0)+1;
     const mm=S.daily.list.find(m=>m.id==='min');
     if(mm&&!mm.got){const v=Math.min(mm.n,Math.floor(S.daily.sec/60));if(v!==mm.c){mm.c=v;updateDots()}}}
-  tickBoost();
+  tickBoost();checkPerk();
+  // 다른 창 때문에 미뤄진 방치 보상은 화면이 비면 바로 보여줌
+  if(S.offPend&&S.offPend.gain>0&&Date.now()>(S.offAt||0)&&!anyModal()&&!TUT.on&&!(typeof CUT!=='undefined'&&CUT))openOffline();
 },1000);
 $('bGuide').onclick=()=>openGuide();
-$('bCol').onclick=openCol;updateColDot();
+$('bCol').onclick=()=>openRel();updateColDot();
+document.querySelectorAll('.rtab').forEach(t=>t.onclick=()=>{SFX.click();if(t.dataset.t==='col'){$('rmask').classList.remove('show');openCol();return}RTAB=t.dataset.t;renderRel()});
+$('pkbar').onclick=()=>openPerk(true);
 $('minfo').onclick=()=>openGuide('slot',M.slot);
 document.querySelectorAll('.gtab').forEach(t=>t.onclick=()=>{GTAB=t.dataset.t;renderGuide()});
 $('gmask').onclick=e=>{if(e.target.id==='gmask')$('gmask').classList.remove('show')};
