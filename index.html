@@ -436,6 +436,117 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 .uhd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .uhd b{font-size:14px;color:#ffd166}.uhd span{font-size:11px;color:#8b96ae}
 .ublk ul{margin:0;padding-left:18px}.ublk li{font-size:12.5px;line-height:1.65;color:#dfe6f0}
+
+/* ---- 방치 보상 ---- */
+#oTime{text-align:center;font-size:24px;font-weight:900;color:#dfe6f0;margin:2px 0 6px}
+.obar{height:9px;border-radius:5px;background:#0b0e14;border:1px solid #39435c;overflow:hidden}
+.obar i{display:block;height:100%;background:linear-gradient(90deg,#74c0fc,#b197fc)}
+.ocap{display:flex;justify-content:space-between;font-size:10px;color:#8b96ae;margin:3px 1px 12px}
+.ogain{text-align:center;background:radial-gradient(circle at 50% 40%,rgba(255,209,102,.18),transparent 70%);padding:10px 0 8px;border-radius:12px}
+.ogain .ov{font-size:34px;font-weight:900;color:#ffd166;text-shadow:0 2px 12px rgba(255,180,50,.45)}
+.ogain .ok{font-size:11.5px;color:#aab4c8;margin-top:2px}
+#oBtns{display:flex;gap:8px;margin-top:12px}
+#oBtns button{flex:1;padding:12px 6px;font-size:13.5px}
+#oTake{background:#34405c}
+#oDbl{background:linear-gradient(#ffd166,#f59f00);color:#241400;box-shadow:0 3px 0 #a86a00}
+#oDbl:disabled{background:#333c52;color:#78839a;box-shadow:none}
+.onote{text-align:center;font-size:10.5px;color:#78839a;margin-top:8px}
+/* ---- 백업 ---- */
+.bksum{font-size:11.5px;color:#c6cfe0;background:#10141d;border:1px solid #2c344a;border-radius:8px;padding:8px 10px;margin-bottom:8px;line-height:1.5}
+.bkta{width:100%;height:74px;resize:none;background:#0b0e14;color:#9fd3ff;border:1px solid #39435c;border-radius:8px;
+  font:10.5px/1.35 ui-monospace,Menlo,monospace;padding:7px;word-break:break-all;user-select:text;-webkit-user-select:text}
+.bkh{font-size:12.5px;font-weight:800;margin:12px 0 6px}
+.bkbtn{width:100%;padding:11px;font-size:13.5px;margin-top:7px;background:linear-gradient(#5ab5f8,#1c7ed6);box-shadow:0 3px 0 #10538f}
+.bkbtn.warn{background:linear-gradient(#ff8787,#e03131);box-shadow:0 3px 0 #8f1d1d}
+.bkmsg{font-size:11px;min-height:15px;margin-top:6px;text-align:center}
+#sBackup{width:100%;padding:10px;font-size:13px;background:#2e4a5a;margin-bottom:8px}
+/* ---- 패배 분석 ---- */
+#lzChip{display:none;background:linear-gradient(#ff8787,#e03131);color:#fff;font-size:10.5px;font-weight:900;
+  padding:4px 8px;border-radius:9px;box-shadow:0 2px 6px rgba(0,0,0,.4);white-space:nowrap;animation:dotp 1.4s infinite}
+.lzvs{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;margin:4px 0 10px}
+.lzbox{background:#10141d;border:1px solid #2c344a;border-radius:9px;padding:7px 4px;text-align:center}
+.lzbox b{display:block;font-size:17px;font-weight:900}
+.lzbox span{font-size:9.5px;color:#8b96ae}
+.lzvs em{font-style:normal;font-size:11px;font-weight:900;color:#8b96ae}
+.lzrow{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;margin:4px 0}
+.lzbar{height:8px;border-radius:4px;background:#0b0e14;overflow:hidden;margin:2px 0 8px}
+.lzbar i{display:block;height:100%}
+.lzneed{text-align:center;font-size:12px;background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.3);
+  border-radius:8px;padding:7px;margin:6px 0 10px;color:#ffe3a3}
+.lztip{display:flex;align-items:center;gap:8px;background:#161c2a;border:1px solid #2c344a;border-radius:10px;padding:8px 9px;margin-top:6px}
+.lztip .ti{font-size:20px;width:26px;text-align:center}
+.lztip .tt{flex:1;font-size:11.5px;line-height:1.35}
+.lztip .tt small{display:block;color:#8b96ae;font-size:10px}
+.lztip button{padding:7px 10px;font-size:11.5px;background:linear-gradient(#5fd975,#2f9e44);box-shadow:0 2px 0 #1e6b2e;white-space:nowrap}
+.nudge{animation:nudge .6s ease-in-out 5 !important}
+@keyframes nudge{50%{box-shadow:0 0 0 3px #ffd166,0 0 22px 6px rgba(255,209,102,.8);transform:scale(1.04)}}
+
+/* ---- 사이드 버튼: 화면이 짧으면 두 줄로 ---- */
+#side{max-height:calc(100% - 12px);flex-wrap:wrap;align-content:flex-start}
+@media (max-height:760px){.sib{width:41px;height:41px;border-radius:10px}.sib .sic{font-size:17px;line-height:19px}.sib .slb{font-size:8.5px}#side{gap:4px}}
+#fchips{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);z-index:7;display:flex;gap:6px}
+/* ---- 유물 도감 ---- */
+.csum{display:flex;align-items:center;gap:10px;background:#10141d;border:1px solid #2c344a;border-radius:10px;padding:8px 10px;margin-bottom:10px}
+.csum .cb{flex:1}
+.csum .cbl{display:flex;justify-content:space-between;font-size:11px;color:#aab4c8;margin-bottom:4px}
+.csum .cbar{height:8px;border-radius:4px;background:#0b0e14;overflow:hidden}
+.csum .cbar i{display:block;height:100%;background:linear-gradient(90deg,#ffd166,#ff922b)}
+.csum .cbon{font-size:17px;font-weight:900;color:#ffd166;text-align:right;line-height:1.1}
+.csum .cbon small{display:block;font-size:9.5px;color:#8b96ae;font-weight:600}
+.ctabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:8px}
+.ctab{padding:5px 0 4px;font-size:10px;background:#1b2130;border:1px solid #2c344a;border-radius:8px;color:#aab4c8;line-height:1.2}
+.ctab b{display:block;font-size:10.5px}
+.ctab.on{background:#34405c;border-color:#ffd166;color:#fff}
+.ctab.lock{opacity:.45}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.ccell{background:linear-gradient(#161c2a,#0e121a);border:1.5px solid #2c344a;border-radius:10px;padding:6px 2px 5px;text-align:center;position:relative}
+.ccell .ci{font-size:22px;line-height:26px}
+.ccell .cn{font-size:9.5px;font-weight:700;color:#dfe6f0;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ccell .cg{font-size:9.5px;font-weight:900;margin-top:1px}
+.ccell .cp{display:flex;justify-content:center;gap:1.5px;margin-top:3px}
+.ccell .cp i{width:5px;height:5px;border-radius:50%;background:#2c344a}
+.ccell.no .ci{filter:grayscale(1) brightness(.35)}
+.ccell.no .cn,.ccell.no .cg{color:#56607a}
+.cset{display:flex;align-items:center;gap:8px;background:#161c2a;border:1px solid #2c344a;border-radius:10px;padding:7px 9px;margin-top:6px;font-size:11.5px}
+.cset .st{flex:1}.cset .st small{display:block;color:#8b96ae;font-size:10px}
+.cset button{padding:7px 11px;font-size:11.5px;background:linear-gradient(#ffd166,#f59f00);color:#241400;box-shadow:0 2px 0 #a86a00}
+.cset button:disabled{background:#2b3348;color:#78839a;box-shadow:none}
+.cset.got button{background:#2b3348;color:#8ff09a;box-shadow:none}
+.cnote{font-size:10.5px;color:#8b96ae;text-align:center;margin-top:8px;line-height:1.45}
+/* ---- 시대 진출 컷신 ---- */
+#cut{position:fixed;inset:0;z-index:60;display:none;overflow:hidden;align-items:center;justify-content:center;flex-direction:column;
+  background:radial-gradient(circle at 50% 45%,var(--cc1,#2a3550),#05070b 72%)}
+#cut.on{display:flex}
+#cut .rays{position:absolute;left:50%;top:44%;width:900px;height:900px;margin:-450px 0 0 -450px;opacity:0;
+  background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.13) 0 8deg,transparent 8deg 20deg);
+  animation:cutspin 9s linear infinite;transition:opacity .8s}
+#cut.lit .rays{opacity:1}
+@keyframes cutspin{to{transform:rotate(360deg)}}
+#cut .stage{position:relative;width:250px;height:190px;margin-top:-30px}
+#cut .u{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
+#cut .u svg{width:230px;height:auto;overflow:visible}
+#cut .uo{animation:cutold 1.5s ease-in forwards}
+@keyframes cutold{0%{filter:brightness(1)}55%{transform:translateX(0)}60%{transform:translateX(-4px)}65%{transform:translateX(4px)}70%{transform:translateX(-5px)}
+  75%{transform:translateX(5px)}100%{filter:brightness(7) saturate(0);transform:scale(1.08)}}
+#cut .un{opacity:0}
+#cut.swap .uo{display:none}
+#cut.swap .un{animation:cutnew .9s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes cutnew{0%{opacity:1;transform:scale(.4);filter:brightness(6)}60%{filter:brightness(1.4)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
+#cut .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#cut.swap .flash{animation:cutflash .7s ease-out}
+@keyframes cutflash{0%{opacity:.95}100%{opacity:0}}
+#cut .ttl{position:relative;margin-top:18px;text-align:center;opacity:0;padding:0 18px;word-break:keep-all}
+#cut.swap .ttl{animation:cutttl .9s .25s ease-out forwards}
+#cut.swap .t2{animation:cutls 1s .25s ease-out both}
+@keyframes cutttl{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes cutls{from{letter-spacing:14px}to{letter-spacing:2px}}
+#cut .t1{font-size:12px;font-weight:800;color:#aab4c8;letter-spacing:3px}
+#cut .t2{font-size:34px;font-weight:900;color:#fff;text-shadow:0 0 18px var(--cc2,#ffd166),0 3px 0 rgba(0,0,0,.5);margin:2px 0 6px}
+#cut .t3{font-size:13px;color:#e8edf5;line-height:1.6}
+#cut .t3 b{color:var(--cc2,#ffd166)}
+#cut .tap{position:absolute;bottom:9%;font-size:12px;color:#8b96ae;opacity:0;transition:opacity .5s}
+#cut.done .tap{opacity:1;animation:dotp 1.4s infinite}
+#cut .sp{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--cc2,#ffd166);box-shadow:0 0 8px var(--cc2,#ffd166);pointer-events:none}
 #uClose{width:100%;padding:12px;font-size:14px;background:linear-gradient(#5ab5f8,#1c7ed6);box-shadow:0 3px 0 #10538f}
 </style>
 </head>
@@ -467,8 +578,9 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
       <button class="sib" id="bAtt"><span class="sic">📅</span><span class="slb">출석</span></button>
       <button class="sib" id="bMis"><span class="sic">📜</span><span class="slb">임무</span></button>
       <button class="sib" id="bGuide"><span class="sic">📖</span><span class="slb">안내</span></button>
-      <div id="boostChip"></div>
+      <button class="sib" id="bCol"><span class="sic">🏺</span><span class="slb">도감</span></button>
     </div>
+    <div id="fchips"><div id="boostChip"></div><div id="lzChip">💡 패배 분석</div></div>
     <div class="unit" id="pu">
       <div class="cycstars" id="pcyc"></div>
       <div class="hptxt" id="phptxt"></div>
@@ -541,6 +653,7 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   <div class="srow sl"><input type="range" id="volBgm" min="0" max="100"></div>
   <div class="srow"><span>📳 진동</span><button class="sw" id="swVib"></button></div>
   <div class="snote">배경음악은 시대마다 바뀌고, 보스전에서는 박자가 빨라집니다<br><span id="verTxt"></span></div>
+  <button id="sBackup">💾 데이터 백업 · 불러오기</button>
   <button id="sTut">📖 튜토리얼 다시 보기</button>
   <button id="sReset">진행 초기화</button>
   <button id="sClose">닫기</button>
@@ -568,6 +681,59 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   <button class="pclose" data-close="gmask">닫기</button>
 </div></div>
 
+<div id="omask" class="pmask"><div class="pmodal">
+  <div class="ptt">💤 방치 보상</div>
+  <div class="psub">자리를 비운 동안에도 부족이 싸웠어요</div>
+  <div id="oTime"></div>
+  <div class="obar"><i id="oBar"></i></div>
+  <div class="ocap"><span>0</span><span id="oCap">최대 8시간</span></div>
+  <div class="ogain"><div class="ov" id="oGain">0</div><div class="ok" id="oKill"></div></div>
+  <div id="oBtns"><button id="oTake">받기</button><button id="oDbl">⚡ 2배 받기</button></div>
+  <div class="onote" id="oNote"></div>
+</div></div>
+<div id="bkmask" class="pmask"><div class="pmodal">
+  <div class="ptt">💾 데이터 백업</div>
+  <div class="psub">기기를 바꾸거나 브라우저 기록을 지우기 전에 코드를 저장해 두세요</div>
+  <div class="bksum" id="bkSum"></div>
+  <div class="bkh">① 내 백업 코드</div>
+  <textarea class="bkta" id="bkOut" readonly></textarea>
+  <button class="bkbtn" id="bkCopy">📋 코드 복사</button>
+  <div class="bkmsg" id="bkMsg1"></div>
+  <div class="bkh">② 코드로 불러오기</div>
+  <textarea class="bkta" id="bkIn" placeholder="여기에 백업 코드를 붙여넣으세요"></textarea>
+  <button class="bkbtn warn" id="bkLoad">불러오기</button>
+  <div class="bkmsg" id="bkMsg2"></div>
+  <button class="pclose" data-close="bkmask">닫기</button>
+</div></div>
+<div id="lzmask" class="pmask"><div class="pmodal">
+  <div class="ptt" id="lzTitle">💥 패배 분석</div>
+  <div class="psub" id="lzSub"></div>
+  <div class="lzvs"><div class="lzbox"><b id="lzMe"></b><span>내 전투력</span></div><em>VS</em>
+    <div class="lzbox"><b id="lzEn" style="color:#ff8787"></b><span id="lzEnL">적 전투력</span></div></div>
+  <div class="lzrow"><span>⚔ 내가 적을 쓰러뜨리는 시간</span><b id="lzT1"></b></div>
+  <div class="lzbar"><i id="lzB1" style="background:#ff8787"></i></div>
+  <div class="lzrow"><span>🛡 내가 버틸 수 있는 시간</span><b id="lzT2"></b></div>
+  <div class="lzbar"><i id="lzB2" style="background:#74c0fc"></i></div>
+  <div class="lzneed" id="lzNeed"></div>
+  <div class="bkh" style="margin-top:4px">이렇게 해 보세요</div>
+  <div id="lzTips"></div>
+  <button class="pclose" data-close="lzmask">닫기</button>
+</div></div>
+<div id="cmask" class="pmask"><div class="pmodal">
+  <div class="ptt">🏺 유물 도감</div>
+  <div class="psub">제작한 부품은 자동으로 등록돼요 · 등급이 오를수록 영구 보너스</div>
+  <div class="csum"><div class="cb"><div class="cbl"><span>수집 점수</span><span id="cPts"></span></div><div class="cbar"><i id="cBar"></i></div></div>
+    <div class="cbon" id="cBon"></div></div>
+  <div class="ctabs" id="cTabs"></div>
+  <div class="cgrid" id="cGrid"></div>
+  <div id="cSets"></div>
+  <div class="cnote">부품 1종의 등급이 한 단계 오를 때마다 <b>모든 능력치 +0.25%</b><br>도감은 회귀해도 사라지지 않아요</div>
+  <button class="pclose" data-close="cmask">닫기</button>
+</div></div>
+<div id="cut"><div class="rays"></div><div class="flash"></div>
+  <div class="stage"><div class="u uo" id="cutOld"></div><div class="u un" id="cutNew"></div></div>
+  <div class="ttl"><div class="t1" id="cutT1"></div><div class="t2" id="cutT2"></div><div class="t3" id="cutT3"></div></div>
+  <div class="tap">화면을 눌러 계속</div></div>
 <div id="umask" class="pmask"><div class="pmodal">
   <div class="ptt">🆕 업데이트 내용</div>
   <div class="psub">새로운 기능이 추가되었어요</div>
@@ -684,7 +850,7 @@ let P={},E={},timeScale=1,EM='era';
 const $=id=>document.getElementById(id);
 const rnd=(a,b)=>a+Math.random()*(b-a);
 let uid=0;
-function save(){try{S.last=Date.now();localStorage.setItem('civwar_kr',JSON.stringify(S))}catch(e){}}
+function save(){if(window.__noSave)return;try{S.last=Date.now();localStorage.setItem('civwar_kr',JSON.stringify(S))}catch(e){}}
 function load(){try{const r=localStorage.getItem('civwar_kr');if(!r)return false;
   Object.assign(S,JSON.parse(r));return true}catch(e){return false}}
 
@@ -715,11 +881,12 @@ function makeItem(slotKey,minG){
   it.atk+=Math.round(base*rnd(.15,.40));
   it.hp +=Math.round(base*rnd(.80,2.20));
   it.def+=Math.round(base*rnd(.12,.34));
+  if(!window.__noCol)colRecord(it);
   return it;
 }
 function scrapValue(it){return Math.round(2.2*Math.pow(1.28,S.tier-1)*GRADES[it.g].m)}
 function calcStats(gear,lv){
-  const L=lvMulOf(lv===undefined?S.lv:lv), em=eraMul(), LG=legacyMul();
+  const L=lvMulOf(lv===undefined?S.lv:lv), em=eraMul(), LG=legacyMul()*colMul();
   const s={atk:20*em,hp:110*em,def:6*em,agl:(4+S.lv*1.1)*em,crit:5,spd:0,eva:0};
   for(const k in gear){const it=gear[k];if(!it)continue;
     s.atk+=it.atk;s.hp+=it.hp;s.def+=it.def;s.agl+=it.agl;
@@ -730,7 +897,21 @@ function calcStats(gear,lv){
   s.interval=1/(0.85*(1+s.spd/100)*(1+s.agl/(s.agl+700*eraMul())));
   return s;
 }
-function statPower(s){return Math.round(s.atk*12+s.hp*1.1+s.def*9+s.agl*4+s.crit*90+s.spd*40+s.eva*80)}
+/* 전투력 = 처치 속도 × 생존력 (실제 전투 공식 기반, 적과 무관한 표시용 수치)
+   - 처치 속도: 공격력 × 치명타 기대값 ÷ 공격 간격
+   - 생존력:   체력 × 방어 효과 ÷ (1 - 회피) */
+function statPower(s){
+  const O=0.8*s.atk*(1+s.crit/100)/s.interval;
+  const H=s.hp*(1+s.def/(0.5*s.atk+0.1*s.hp))/(1-s.eva/100);
+  return Math.round(10*Math.sqrt(O*H))}
+/* 실전 효율 = 지금 스테이지의 일반 적을 상대로 (버티는 시간 ÷ 처치 시간) — 자동 제작·장착 판단 기준 */
+function refEnemy(){return enemyAt(S.stage,8,false)}
+function realScore(s,en){
+  const pd=s.atk*s.atk/(s.atk+en.def)*(1+s.crit/100)/s.interval;
+  const ed=en.atk*en.atk/(en.atk+s.def)*(1+(en.crit||10)/100)*(1-s.eva/100)/en.interval;
+  return pd*s.hp/ed}
+function realGain(k,it){const g2=Object.assign({},S.gear);g2[k]=it;const en=refEnemy();
+  return realScore(calcStats(g2),en)/realScore(calcStats(S.gear),en)-1}
 function recalc(){const s=calcStats(S.gear);P.s=s;
   if(P.hp===undefined||P.hp>s.hp)P.hp=s.hp;return s}
 function power(){return statPower(P.s)}
@@ -743,23 +924,22 @@ function gainOf(k,it){const g2=Object.assign({},S.gear);g2[k]=it;
   return statPower(calcStats(g2))-statPower(calcStats(S.gear))}
 function isUpgrade(k,it){
   const cur=S.gear[k];if(!cur)return true;
-  const m=SLOTS.find(s=>s.k===k).main;
-  if((it[m]||0)<(cur[m]||0))return false;
-  return gainOf(k,it)>0;
+  // 지금 싸우는 적을 상대로 실제로 더 유리해지는지로 판단
+  return realGain(k,it)>1e-9;
 }
 function diff(){return DIFFS[Math.min(DIFFS.length-1,S.diff||0)]}
 function totalRound(){return (S.stage-1)*15+S.round}
 function enemyEra(){return Math.min(5,Math.floor((S.stage-1)/5))}
-function makeEnemy(){
-  const n=totalRound(),boss=(S.round===15),D=diff();
+function enemyAt(stage,round,boss){
+  const n=(stage-1)*15+round,D=diff();
   // 첫 전투는 약하게 시작해 15라운드(보스)에서 원래 세기가 됨 — 신규 플레이어 첫인상 보호
   const ramp=n<15?.45+.55*(n-1)/14:1;
   const k=Math.pow(D.g,n-1)*(boss?2.1:1)*enemyCycleMul()*ramp;
-  const ee=enemyEra();
-  E={atk:Math.round(20*k*D.atk),hp:Math.round(110*k*D.hp),def:Math.round(5*k),
-     max:Math.round(110*k*D.hp),interval:boss?1.09:0.95,cd:0.9,boss:boss,
-     era:ee,type:boss?3:((S.round+S.stage)%3),crit:D.crit};
-  E.hp=E.max;
+  const mx=Math.round(110*k*D.hp);
+  return {atk:Math.round(20*k*D.atk),def:Math.round(5*k),max:mx,hp:mx,interval:boss?1.09:0.95,crit:D.crit}}
+function makeEnemy(){
+  const boss=(S.round===15),ee=enemyEra();
+  E=Object.assign(enemyAt(S.stage,S.round,boss),{cd:0.9,boss:boss,era:ee,type:boss?3:((S.round+S.stage)%3)});
   E.uid=++ENEMY_UID;
 }
 function roundReward(){return Math.round(16*Math.pow(1.115,totalRound()-1)*(S.round===15?4:1)*goldMul()*(boostOn()?2:1))}
@@ -1896,7 +2076,7 @@ function winRound(){
   while(S.xp>=xpNeed()){S.xp-=xpNeed();S.lv++;leveled=true}
   if(leveled){recalc();P.hp=Math.min(P.s.hp,P.hp*1.1)}
   const cleared=S.round>=15;
-  if(cleared){S.stage++;S.round=1;P.hp=P.s.hp}
+  if(cleared){S.stage++;S.round=1;P.hp=P.s.hp;clearLoseOnWin()}
   else S.round++;
   P.hp=Math.min(P.s.hp,P.hp+P.s.hp*0.10);
   if(cleared&&enemyEra()>oldEra)
@@ -1926,7 +2106,7 @@ function lose(){
   $('phpf').style.width='0%';$('phptxt').textContent='0 / '+fmt(P.s.hp);
   const sal=Math.max(5,Math.round(roundReward()*.6));S.scrap+=sal;
   toast('격파당함 — 잔해 회수 🔩'+fmt(sal));
-  setTimeout(()=>hint('lose',null,'이런, 당했군… 걱정 말게.<br><b>잔해에서 고철</b>을 회수했으니 장비를 강화해 다시 도전하세!'),1100);
+  recordLoss();
   renderTop();save();
 }
 
@@ -1998,6 +2178,7 @@ function openAdvance(){
 }
 function doAdvance(){
   SFX.advance();buzz([80,60,160]);
+  const oldSvg=unitSVG(playerCfg(false));
   const to=S.era+1;
   S.era=to;S.lv=1;S.xp=0;
   // 기존 장비를 새 시대 규격으로 개조 — 같은 등급이라도 상위 시대는 수치가 높아짐
@@ -2008,8 +2189,10 @@ function doAdvance(){
   recalc();P.hp=P.s.hp;
   makeEnemy();scene();drawUnits();
   renderTop();renderGrid();renderHP();save();
-  $('emask').classList.remove('show');
-  toast('<b style="color:#8ce99a">'+ERAS[to].n+'</b> 진입! '+ERAS[to].unit+' 배치 완료');
+  $('emask').classList.remove('show');S.maxEra=Math.max(S.maxEra||0,to);save();
+  playCut({oldSvg,newSvg:unitSVG(playerCfg(false)),bg:ERAS[to].pal.b,hi:'#ffd166',
+    t1:'새로운 문명',t2:ERAS[to].n,t3:`주력 유닛 <b>${ERAS[to].unit}</b><br>장비 개조 완료 · 부품 수치 <b>×${ERA_M}</b>`,
+    after:()=>toast('<b style="color:#8ce99a">'+ERAS[to].n+'</b> 진입! '+ERAS[to].unit+' 배치 완료')});
 }
 
 /* ---- 회귀(回歸) ---- */
@@ -2046,6 +2229,7 @@ function openRebirth(){
 }
 function doRebirth(){
   SK.cd=[0,0,0];skClear();
+  const oldSvg=unitSVG(playerCfg(false));
   SFX.rebirth();buzz([100,80,300]);
   const nc=(S.cycle||0)+1;
   S.cycle=nc;S.era=0;S.lv=1;S.xp=0;S.tier=1;S.stage=1;S.round=1;
@@ -2055,7 +2239,9 @@ function doRebirth(){
   makeEnemy();scene();drawUnits();
   renderTop();renderGrid();renderHP();save();
   $('emask').classList.remove('show');
-  toast(`<b style="color:${cycColor(nc)}">★${nc}회차</b> 개막 — 모든 스탯 ×${fmt(legacyMul())} 유산 계승`);
+  playCut({oldSvg,newSvg:unitSVG(playerCfg(false)),bg:'#2a1f45',hi:cycColor(nc),
+    t1:'문명의 순환',t2:'★'+nc+'회차',t3:`석기시대부터 다시 — 유산 계승 <b>모든 능력치 ×${fmt(legacyMul())}</b><br>유물 도감은 그대로 남아요`,
+    after:()=>toast(`<b style="color:${cycColor(nc)}">★${nc}회차</b> 개막 — 모든 스탯 ×${fmt(legacyMul())} 유산 계승`)});
 }
 
 /* ===========================================================
@@ -2096,7 +2282,9 @@ function openModal(){
   $('mbtns').style.display=has?'flex':'none';
   if(has){
     const gain=gainOf(M.slot,M.roll),up=isUpgrade(M.slot,M.roll);
-    $('bEq').textContent='장착  전투력 '+(gain>0?'+':'')+fmt(gain);
+    const rg=S.gear[M.slot]?realGain(M.slot,M.roll)*100:null;
+    $('bEq').innerHTML='장착  전투력 '+(gain>0?'+':'')+fmt(gain)+
+      (rg===null?'':`<small style="display:block;font-size:10.5px;opacity:.9">실전 효율 ${rg>=0?'+':''}${Math.abs(rg)<0.05?rg.toFixed(2):rg.toFixed(1)}%</small>`);
     $('bEq').style.background=up?'linear-gradient(#5fd975,#2f9e44)':'linear-gradient(#8a6a6a,#6b4a4a)';
     $('bSc').textContent='분해 (+🔩'+fmt(scrapValue(M.roll))+')';
     $('bEq').onclick=()=>{equip(M.slot,M.roll);M.roll=null;autoMsg='';openModal()};
@@ -2385,7 +2573,7 @@ function tutAvatar(){
   return `<svg viewBox="-13 -55 26 36" width="100%" height="100%">${ugDefs('tav',DPAL[0][0])}
     ${soldier('tav',0,0,1,{helm,cloth:cl,dark:'#3a2a1a',wpn:'none',wa:1.1})}</svg>`;
 }
-function anyModal(){return ['mask','emask','smask','dmask','amask','gmask','umask'].some(id=>$(id).classList.contains('show'))}
+function anyModal(){return ['mask','emask','smask','dmask','amask','gmask','umask','omask','bkmask','lzmask','cmask'].some(id=>$(id).classList.contains('show'))}
 function tutEl(d){if(!d||!d.target)return null;
   const el=typeof d.target==='function'?d.target():document.querySelector(d.target);
   return el&&el.getClientRects().length?el:null}
@@ -2824,8 +3012,8 @@ SFX.skRage=function(){if(!sOn())return;
    17. 버전 · 업데이트 알림 · 업데이트 내역
    ─ 새 버전을 올릴 때: 아래 BUILD 숫자와 version.json 의 build 숫자를 같이 올린다
 =========================================================== */
-const BUILD=3, BUILD_NAME='1.0.2';
-const CHANGELOG=[{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
+const BUILD=6, BUILD_NAME='1.2.0';
+const CHANGELOG=[{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
  {b:1,v:'1.0.0',d:'2026-09-28',items:[
   '석기시대 → 미래시대 6개 문명 진화 · 회귀(회차) 시스템',
   '시대별 유닛 24종 · 움직이는 배경 · 시대별 탄환과 폭발 연출',
@@ -2858,21 +3046,270 @@ async function checkUpdate(){
 }
 function applyUpdate(){if(!UPD)return;save();location.replace(location.pathname+'?v='+UPD.build)}
 
+
+/* ===========================================================
+   19. 유물 도감
+=========================================================== */
+const COL_PER=0.0025, COL_MAX=6*8*8;
+const COL_SET=[{min:0,t:'8종 모두 발견',r:{k:2}},{min:3,t:'8종 모두 명품 이상',r:{k:3}},{min:5,t:'8종 모두 신화 이상',r:{k:5,b:1}}];
+function colInit(){if(!Array.isArray(S.col))S.col=ERAS.map(()=>SLOTS.map(()=>-1));S.colClaim=S.colClaim||{}}
+function colPoints(){colInit();let p=0;S.col.forEach(r=>r.forEach(g=>{if(g>=0)p+=g+1}));return p}
+function colMul(){return 1+COL_PER*colPoints()}
+let colPtsCache=null;
+function colRecord(it,quiet){
+  colInit();const e=it.era===undefined?S.era:it.era,i=slotIdx(it.slot);if(i<0||!S.col[e])return;
+  const prev=S.col[e][i];if(it.g<=prev)return;
+  S.col[e][i]=it.g;colPtsCache=null;
+  if(quiet)return;
+  recalc();
+  if(prev<0||it.g>=3)toast(`🏺 도감 ${prev<0?'등록':'갱신'}: <b style="color:${GRADES[it.g].c}">${ERAS[e].parts[i]} ${GRADES[it.g].n}</b> · +${((it.g-prev)*COL_PER*100).toFixed(2)}%`);
+  updateColDot();
+}
+function colSetState(e,t){const row=S.col[e],ok=row.every(g=>g>=COL_SET[t].min&&g>=0);return {ok,got:!!S.colClaim[e+'-'+t]}}
+function colClaimable(){colInit();for(let e=0;e<ERAS.length;e++)for(let t=0;t<COL_SET.length;t++){const x=colSetState(e,t);if(x.ok&&!x.got)return true}return false}
+function updateColDot(){const b=$('bCol');if(b)b.classList.toggle('red',colClaimable())}
+let CTAB=0;
+function renderCol(){
+  colInit();const pts=colPoints();
+  $('cPts').textContent=pts+' / '+COL_MAX;$('cBar').style.width=(pts/COL_MAX*100)+'%';
+  $('cBon').innerHTML='+'+(pts*COL_PER*100).toFixed(1)+'%<small>모든 능력치</small>';
+  const reached=Math.max(S.era,S.maxEra||0);
+  $('cTabs').innerHTML=ERAS.map((er,e)=>{const n=S.col[e].filter(g=>g>=0).length;
+    return `<button class="ctab${e===CTAB?' on':''}${e>reached&&n===0?' lock':''}" data-e="${e}"><b>${er.s}</b>${n}/8</button>`}).join('');
+  $('cTabs').querySelectorAll('.ctab').forEach(b=>b.onclick=()=>{CTAB=+b.dataset.e;SFX.click();renderCol()});
+  const row=S.col[CTAB],er=ERAS[CTAB];
+  $('cGrid').innerHTML=SLOTS.map((sl,i)=>{const g=row[i],G=g>=0?GRADES[g]:null;
+    return `<div class="ccell${g<0?' no':''}" style="${G?'border-color:'+G.c+';box-shadow:inset 0 0 12px '+G.c+'44':''}">
+      <div class="ci">${er.icons[i]}</div><div class="cn">${g<0&&CTAB>reached?'???':er.parts[i]}</div>
+      <div class="cg" style="${G?'color:'+G.c:''}">${G?G.n:'미발견'}</div>
+      <div class="cp">${GRADES.map((x,j)=>`<i style="${j<=g?'background:'+x.c:''}"></i>`).join('')}</div></div>`}).join('');
+  $('cSets').innerHTML=COL_SET.map((c,t)=>{const x=colSetState(CTAB,t);
+    return `<div class="cset${x.got?' got':''}"><div class="st">${er.s} ${c.t}<small>보상 ${rwText(c.r)}</small></div>
+      <button data-t="${t}" ${x.ok&&!x.got?'':'disabled'}>${x.got?'완료':x.ok?'받기':'진행 중'}</button></div>`}).join('');
+  $('cSets').querySelectorAll('button').forEach(b=>b.onclick=()=>{const t=+b.dataset.t,x=colSetState(CTAB,t);if(!x.ok||x.got)return;
+    S.colClaim[CTAB+'-'+t]=1;const txt=grant(COL_SET[t].r);SFX.clear();buzz([30,30,60]);toast('도감 보상: '+txt);renderCol();updateColDot()});
+}
+function openCol(){CTAB=S.era;renderCol();$('cmask').classList.add('show')}
+
+/* ===========================================================
+   20. 시대 진출 · 회귀 연출
+=========================================================== */
+let CUT=null;
+function playCut(o){
+  const c=$('cut');clearTimeout(CUT&&CUT.t1);clearTimeout(CUT&&CUT.t2);clearTimeout(CUT&&CUT.t3);
+  c.className='';c.style.setProperty('--cc1',o.bg);c.style.setProperty('--cc2',o.hi);
+  $('cutOld').innerHTML=o.oldSvg;$('cutNew').innerHTML=o.newSvg;
+  $('cutT1').textContent=o.t1;$('cutT2').textContent=o.t2;$('cutT3').innerHTML=o.t3;
+  c.querySelectorAll('.sp').forEach(e=>e.remove());
+  void c.offsetWidth;c.classList.add('on');
+  requestAnimationFrame(()=>c.classList.add('lit'));
+  CUT={t1:setTimeout(()=>{c.classList.add('swap');SFX.clear();buzz([40,30,90]);
+      for(let k=0;k<26;k++){const p=document.createElement('div');p.className='sp';
+        const a=Math.random()*Math.PI*2,r=90+Math.random()*170;p.style.left='50%';p.style.top='42%';c.appendChild(p);
+        p.animate([{transform:'translate(-50%,-50%) scale(1.4)',opacity:1},{transform:`translate(${Math.cos(a)*r}px,${Math.sin(a)*r}px) scale(.2)`,opacity:0}],
+          {duration:900+Math.random()*700,easing:'cubic-bezier(.1,.7,.3,1)',fill:'forwards'})}},1500),
+       t2:setTimeout(()=>c.classList.add('done'),2600),
+       t3:setTimeout(endCut,6500),start:Date.now(),after:o.after};
+}
+function endCut(){const c=$('cut');if(!c.classList.contains('on'))return;
+  clearTimeout(CUT.t1);clearTimeout(CUT.t2);clearTimeout(CUT.t3);c.className='';const f=CUT.after;CUT=null;f&&f()}
+$('cut').onclick=()=>{if(!CUT)return;
+  if(!$('cut').classList.contains('swap')){if(Date.now()-CUT.start>500){clearTimeout(CUT.t1);$('cut').classList.add('swap','done');SFX.clear()}return}
+  if(Date.now()-CUT.start>1900)endCut()};
+
 /* ===========================================================
    11. 초기화 / 루프
 =========================================================== */
-function offlineReward(){
-  const sec=Math.min(8*3600,(Date.now()-(S.last||Date.now()))/1000);
-  if(sec<60)return;
-  const gain=Math.round(roundReward()*(sec/7));
-  if(gain>0){S.scrap+=gain;setTimeout(()=>toast('오프라인 보상 🔩'+fmt(gain)),800)}
+
+/* ===========================================================
+   18. 방치 보상 · 데이터 백업 · 패배 분석
+=========================================================== */
+const OFF_CAP=8*3600, OFF_MIN=180;
+function durTxt(sec){sec=Math.floor(sec);const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60);
+  return h?h+'시간 '+m+'분':m?m+'분':sec+'초'}
+/* 자리를 비운 시간만큼 보상을 쌓아 둠 (앱을 닫았다 다시 열어도 받기 전까지 유지) */
+function addOffline(sec){
+  if(sec<OFF_MIN)return false;
+  const P0=S.offPend||{sec:0,gain:0,kills:0};
+  const add=Math.min(sec,OFF_CAP-P0.sec);if(add<=0){S.offPend=P0;return true}
+  const kills=Math.floor(add/9);            // 접속 중보다 약간 느린 속도(약 70%)로 계산
+  P0.sec+=add;P0.kills+=kills;P0.gain+=Math.round(rewardUnit()*1.05*kills);
+  S.offPend=P0;save();return true;
 }
+function offDblReady(){return S.offDbl!==todayStr()}
+function openOffline(next){
+  const O=S.offPend;if(!O||O.gain<=0){S.offPend=null;next&&next();return}
+  $('oTime').textContent=durTxt(O.sec);
+  $('oBar').style.width=Math.min(100,O.sec/OFF_CAP*100)+'%';
+  $('oCap').textContent=O.sec>=OFF_CAP?'최대치 도달 · 8시간':'최대 8시간';
+  $('oKill').textContent='적 약 '+O.kills.toLocaleString()+'명 격파';
+  const dbl=offDblReady();$('oDbl').disabled=!dbl;
+  $('oNote').textContent=dbl?'2배 받기는 하루 1번 무료예요':'오늘 2배 받기를 이미 사용했어요 · 내일 다시!';
+  // 숫자가 올라가는 연출
+  const el=$('oGain'),t0=performance.now(),D=900;
+  (function up(t){const k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);
+    el.textContent='🔩 '+fmt(Math.round(O.gain*e));if(k<1)requestAnimationFrame(up)})(t0);
+  $('omask').classList.add('show');
+  const take=m=>{if(!S.offPend)return;const g=S.offPend.gain*m;S.scrap+=g;S.offPend=null;
+    if(m>1)S.offDbl=todayStr();
+    $('omask').classList.remove('show');renderTop();save();
+    SFX.clear();buzz(m>1?[30,30,70]:30);toast('방치 보상 🔩'+fmt(g)+(m>1?' <b style="color:#ffd166">×2</b>':''));
+    next&&setTimeout(next,300)};
+  $('oTake').onclick=()=>take(1);
+  $('oDbl').onclick=()=>{if(offDblReady())take(2)};
+}
+let hiddenAt=0;
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){hiddenAt=Date.now();save();return}
+  if(!hiddenAt)return;const sec=(Date.now()-hiddenAt)/1000;hiddenAt=0;
+  if(addOffline(sec)&&!anyModal()&&!TUT.on)setTimeout(()=>openOffline(),400);
+});
+
+/* ---------- 백업 코드 ---------- */
+function crc(str){let h=0x811c9dc5;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}
+  return (h>>>0).toString(36)}
+function b64enc(bytes){let s='';for(let i=0;i<bytes.length;i+=0x8000)s+=String.fromCharCode.apply(null,bytes.subarray(i,i+0x8000));return btoa(s)}
+function b64dec(t){const s=atob(t),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u}
+async function zip(bytes,mode){
+  const cs=mode==='c'?new CompressionStream('deflate-raw'):new DecompressionStream('deflate-raw');
+  const r=new Blob([bytes]).stream().pipeThrough(cs);return new Uint8Array(await new Response(r).arrayBuffer())}
+async function makeBackup(){
+  save();const json=JSON.stringify(S),raw=new TextEncoder().encode(json);
+  let body,ver='0';
+  if(typeof CompressionStream!=='undefined'){try{body=b64enc(await zip(raw,'c'));ver='1'}catch(e){}}
+  if(!body)body=b64enc(raw);
+  return 'CW'+ver+'-'+crc(json)+'-'+body;
+}
+async function readBackup(code){
+  code=(code||'').replace(/\s+/g,'');
+  const m=code.match(/^CW([01])-([0-9a-z]+)-([A-Za-z0-9+/=]+)$/);
+  if(!m)throw new Error('코드 형식이 올바르지 않아요');
+  if(m[1]==='1'&&typeof DecompressionStream==='undefined')throw new Error('이 브라우저에서는 불러올 수 없어요');
+  let json;
+  try{let bytes=b64dec(m[3]);if(m[1]==='1')bytes=await zip(bytes,'d');json=new TextDecoder().decode(bytes)}
+  catch(e){throw new Error('코드가 잘렸거나 손상되었어요 — 처음부터 끝까지 다시 복사해 주세요')}
+  if(crc(json)!==m[2])throw new Error('코드가 잘렸거나 손상되었어요 — 처음부터 끝까지 다시 복사해 주세요');
+  const d=JSON.parse(json);
+  if(typeof d!=='object'||d.stage===undefined||d.era===undefined||!d.gear)throw new Error('문명전쟁 저장 데이터가 아니에요');
+  return d;
+}
+function saveSummary(d){
+  const t=d.last?new Date(d.last):null;
+  return `<b>${ERAS[d.era]?ERAS[d.era].n:''}</b>${d.cycle?` · ★${d.cycle}회차`:''} · 전투 ${d.stage} · Lv.${d.lv} · 공방 Lv.${d.tier}`+
+    (t?`<br><span style="color:#8b96ae">저장 시각 ${t.getMonth()+1}/${t.getDate()} ${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}</span>`:'');
+}
+let bkArm=false;
+async function openBackup(){
+  $('smask').classList.remove('show');
+  $('bkSum').innerHTML='지금 진행: '+saveSummary(S);
+  $('bkOut').value='코드 만드는 중…';$('bkIn').value='';$('bkMsg1').textContent='';$('bkMsg2').textContent='';
+  bkArm=false;$('bkLoad').textContent='불러오기';
+  $('bkmask').classList.add('show');
+  $('bkOut').value=await makeBackup();
+}
+async function copyText(t){
+  try{await navigator.clipboard.writeText(t);return true}catch(e){}
+  const ta=$('bkOut');ta.focus();ta.select();ta.setSelectionRange(0,t.length);
+  try{return document.execCommand('copy')}catch(e){return false}
+}
+$('bkCopy').onclick=async()=>{
+  const ok=await copyText($('bkOut').value);
+  $('bkMsg1').style.color=ok?'#8ff09a':'#ffc078';
+  $('bkMsg1').textContent=ok?'복사했어요! 카톡 나에게 보내기나 메모장에 붙여넣어 보관하세요':'자동 복사가 안 돼요 — 코드를 길게 눌러 직접 복사해 주세요';
+  SFX.click();
+};
+$('bkLoad').onclick=async()=>{
+  const msg=$('bkMsg2');msg.style.color='#ff8787';
+  let d;try{d=await readBackup($('bkIn').value)}catch(e){msg.textContent=e.message;bkArm=false;$('bkLoad').textContent='불러오기';return}
+  if(!bkArm){bkArm=true;msg.style.color='#ffc078';
+    msg.innerHTML='불러올 데이터: '+saveSummary(d)+'<br>지금 진행은 <b>덮어써져요</b>. 맞으면 한 번 더 누르세요';
+    $('bkLoad').textContent='⚠ 덮어쓰고 불러오기';return}
+  try{localStorage.setItem('civwar_kr',JSON.stringify(d))}catch(e){msg.textContent='저장 공간에 쓸 수 없어요';return}
+  msg.style.color='#8ff09a';msg.textContent='불러왔어요! 다시 시작합니다…';
+  window.__noSave=true;setTimeout(()=>location.reload(),600);
+};
+$('bkIn').oninput=()=>{bkArm=false;$('bkLoad').textContent='불러오기';$('bkMsg2').textContent=''};
+$('sBackup').onclick=openBackup;
+
+/* ---------- 패배 분석 ---------- */
+let LZ=null;
+function fightTimes(scale,en){
+  const a=P.s.atk*scale,h=P.s.hp*scale,d=P.s.def*scale;
+  const pd=a*a/(a+en.def)*(1+P.s.crit/100)/P.s.interval;
+  const ed=en.atk*en.atk/(en.atk+d)*(1+(en.crit||10)/100)*(1-P.s.eva/100)/en.interval;
+  return {kill:en.max/pd,live:h/ed};
+}
+function needScale(en){
+  let lo=1,hi=1;while(fightTimes(hi,en).live<fightTimes(hi,en).kill*1.15&&hi<1e6)hi*=1.5;
+  for(let i=0;i<40;i++){const m=(lo+hi)/2,t=fightTimes(m,en);if(t.live<t.kill*1.15)lo=m;else hi=m}
+  return hi;
+}
+function enemyPower(en){return statPower({atk:en.atk,hp:en.max,def:en.def,crit:en.crit||10,eva:0,interval:en.interval})}
+function affordableUpg(){
+  let sc=S.scrap,t=S.tier,n=0;const cap=tierCap();
+  while(t<cap&&n<200){const c=Math.round(260*Math.pow(1.33,Math.min(t-1,101))*Math.pow(upgGrowth(),Math.max(0,t-1-Math.min(t-1,101))));
+    if(sc<c)break;sc-=c;t++;n++}
+  return n}
+function nudge(el){if(!el)return;$('lzmask').classList.remove('show');
+  const pn=$('panel');if(pn.contains(el)){const r=el.getBoundingClientRect(),pr=pn.getBoundingClientRect();
+    if(r.top<pr.top||r.bottom>pr.bottom)pn.scrollTop+=r.top-pr.top-40}
+  el.classList.remove('nudge');void el.offsetWidth;el.classList.add('nudge');setTimeout(()=>el.classList.remove('nudge'),3100)}
+function loseTips(){
+  const T=[];
+  if(canAdvance())T.push({i:'🚀',t:'<b>다음 시대로 진출</b>할 수 있어요',s:'기본 능력치가 크게 올라요 (×3.2)',b:'진출',f:()=>{$('lzmask').classList.remove('show');openAdvance()}});
+  const empty=SLOTS.filter(s=>!S.gear[s.k]);
+  if(empty.length)T.push({i:'🕳️',t:`<b>빈 부위 ${empty.length}곳</b>`,s:'장비가 없는 부위부터 채우세요',b:'제작',f:()=>{$('lzmask').classList.remove('show');openSlot(empty[0].k)}});
+  const nu=affordableUpg();
+  if(nu>0)T.push({i:'🏛️',t:`<b>공방 강화 ${nu}회</b> 가능`,s:'누르고 있으면 연속 강화돼요',b:'강화',f:()=>nudge($('upg'))});
+  else if(tierCap()!==Infinity&&S.tier>=tierCap()&&!canAdvance())T.push({i:'⛔',t:'공방이 <b>시대 한계</b>에 닿았어요',s:'레벨 30을 채워 다음 시대로 진출하세요',b:'확인',f:()=>nudge($('lvrow'))});
+  const relic=SLOTS.filter(s=>S.gear[s.k]&&S.gear[s.k].era!==undefined&&S.gear[s.k].era<S.era);
+  if(relic.length)T.push({i:'🏺',t:`<b>옛 시대 부품 ${relic.length}개</b> 사용 중`,s:'지금 시대 부품이 훨씬 강해요',b:'교체',f:()=>{$('lzmask').classList.remove('show');openSlot(relic[0].k)}});
+  if(S.scrap>=forgeCost()*6)T.push({i:'🔨',t:`고철 <b>🔩${fmt(S.scrap)}</b> 보유`,s:'무작위 제작으로 더 좋은 부품을 노려 보세요',b:'제작',f:()=>nudge($('forge'))});
+  const eq=SLOTS.filter(s=>S.gear[s.k]);
+  if(eq.length>=4&&!relic.length){const w=eq.reduce((a,b)=>itemCP(b.k)<itemCP(a.k)?b:a),i=slotIdx(w.k);
+    T.push({i:slotIcon(i),t:`가장 약한 부위: <b>${slotName(i)}</b>`,s:`${GRADES[S.gear[w.k].g].n} · ⚔${fmt(itemCP(w.k))}`,b:'제작',f:()=>{$('lzmask').classList.remove('show');openSlot(w.k)}})}
+  if(!S.autoSkill&&skUnlocked(0))T.push({i:'✨',t:'스킬 <b>AUTO</b>가 꺼져 있어요',s:'켜 두면 필살기·회복을 알아서 써요',b:'켜기',f:()=>{S.autoSkill=true;save();renderSkills();nudge($('skauto'))}});
+  if((S.diff||0)>0&&LZ&&LZ.streak>=3)T.push({i:'🎚️',t:`같은 곳에서 <b>${LZ.streak}번</b> 졌어요`,s:'난이도를 낮추면 더 수월해요 (보상은 그대로)',b:'낮추기',
+    f:()=>{S.diff=Math.max(0,(S.diff||0)-1);$('diffbtn').textContent='난이도 '+diff().n;$('diffbtn').style.color=['#c6cfe0','#ffc078','#ff8787'][S.diff];makeEnemy();drawUnits();renderTop();renderHP();save();$('lzmask').classList.remove('show');toast('난이도 '+diff().n)}});
+  if(!T.length)T.push({i:'💤',t:'<b>방치해서 고철 모으기</b>',s:'1라운드부터 다시 싸우며 고철이 쌓여요',b:'확인',f:()=>$('lzmask').classList.remove('show')});
+  return T.slice(0,3);
+}
+function recordLoss(){
+  const en={atk:E.atk,def:E.def,max:E.max,interval:E.interval,crit:E.crit,boss:E.boss};
+  const key=S.stage+'-'+S.round;
+  const st=(S.lzAt===S.stage)?(S.lzN||0)+1:1;S.lzAt=S.stage;S.lzN=st;
+  LZ={en,stage:S.stage,round:S.round,boss:E.boss,streak:st,key};
+  $('lzChip').style.display='block';
+  // 이 전투에서 처음 졌을 때와 3번째에는 바로 보여주고, 그 외에는 버튼만 깜빡임
+  if((st===1||st===3)&&!anyModal()&&!TUT.on)setTimeout(()=>{if(!anyModal()&&!TUT.on)openLose()},1300);
+}
+function openLose(){
+  if(!LZ)return;const en=LZ.en,t=fightTimes(1,en),k=needScale(en);
+  $('lzTitle').textContent=LZ.boss?'👑 보스에게 패배':'💥 패배 분석';
+  $('lzSub').textContent='전투 '+LZ.stage+' · 라운드 '+LZ.round+(LZ.streak>1?' · 연속 '+LZ.streak+'패':'');
+  $('lzMe').textContent=fmt(power());$('lzEn').textContent=fmt(enemyPower(en));
+  $('lzEnL').textContent=LZ.boss?'보스 전투력':'적 전투력';
+  const mx=Math.max(t.kill,t.live);
+  const sT=x=>x<1?'1초 미만':x>999?'999초+':x.toFixed(1)+'초';
+  $('lzT1').textContent=sT(t.kill);$('lzT2').textContent=sT(t.live);
+  $('lzB1').style.width=(t.kill/mx*100)+'%';$('lzB2').style.width=(t.live/mx*100)+'%';
+  const need=Math.round(power()*k);
+  $('lzNeed').innerHTML=k<=1.02?'거의 이길 뻔했어요! 스킬을 잘 쓰면 이길 수 있어요'
+    :`이기려면 전투력 약 <b>${fmt(need)}</b> 필요 <span style="color:#8b96ae">(지금의 ${k<10?k.toFixed(1):Math.round(k)}배)</span>`;
+  $('lzTips').innerHTML=loseTips().map((x,i)=>`<div class="lztip"><div class="ti">${x.i}</div><div class="tt">${x.t}<small>${x.s}</small></div><button data-i="${i}">${x.b}</button></div>`).join('');
+  const tips=loseTips();$('lzTips').querySelectorAll('button').forEach(b=>b.onclick=()=>{SFX.click();tips[+b.dataset.i].f()});
+  $('lzmask').classList.add('show');
+}
+$('lzChip').onclick=()=>{$('lzChip').style.display='none';openLose()};
+function clearLoseOnWin(){if(S.lzAt!==undefined&&S.stage>S.lzAt){S.lzAt=undefined;S.lzN=0;LZ=null;$('lzChip').style.display='none'}}
+
 function init(){
   const had=load();
   SLOTS.forEach(s=>{if(!(s.k in S.gear))S.gear[s.k]=null});
+  colInit();SLOTS.forEach(s=>{const it=S.gear[s.k];if(it)colRecord(it,true)});S.maxEra=Math.max(S.maxEra||0,S.era);
   recalc();P.hp=P.s.hp;
   makeEnemy();scene();drawUnits();
-  if(had)offlineReward();
+  if(had&&S.last)addOffline(Math.min(OFF_CAP,(Date.now()-S.last)/1000));
   $('quick').checked=!!S.quick;
   timeScale=S.speed||1;$('spd').textContent='속도 x'+timeScale;
   $('diffbtn').textContent='난이도 '+diff().n;
@@ -2883,9 +3320,15 @@ function init(){
   ensureDaily();updateDots();tickBoost();renderSkills();
   if(S.lastBuild===undefined)S.lastBuild=(S.tut==='done'&&had)?0:BUILD;   // 기존 플레이어는 첫 업데이트 내역을 보게
   if(new URLSearchParams(location.search).has('v'))history.replaceState(null,'',location.pathname);
-  if(S.tut!=='done')setTimeout(()=>tutStart(+S.tut||0),700);
-  else if(S.lastBuild<BUILD)setTimeout(()=>showChangelog(S.lastBuild,()=>{if(attReady())setTimeout(openAttendance,300)}),900);
-  else if(attReady())setTimeout(openAttendance,900);
+  if(S.tut!=='done'){S.offPend=null;setTimeout(()=>tutStart(+S.tut||0),700)}
+  else{ // 팝업 순서: 업데이트 내용 → 방치 보상 → 출석
+    const Q=[];
+    if(S.lastBuild<BUILD)Q.push(n=>showChangelog(S.lastBuild,n));
+    if(S.offPend&&S.offPend.gain>0)Q.push(n=>openOffline(n));
+    if(attReady())Q.push(()=>openAttendance());
+    const run=()=>{const f=Q.shift();if(f)setTimeout(()=>f(run),300)};
+    setTimeout(run,600);
+  }
   setTimeout(checkUpdate,4000);setInterval(checkUpdate,5*60*1000);
 }
 $('forge').onclick=doForge;
@@ -2932,6 +3375,7 @@ setInterval(()=>{
   tickBoost();
 },1000);
 $('bGuide').onclick=()=>openGuide();
+$('bCol').onclick=openCol;updateColDot();
 $('minfo').onclick=()=>openGuide('slot',M.slot);
 document.querySelectorAll('.gtab').forEach(t=>t.onclick=()=>{GTAB=t.dataset.t;renderGuide()});
 $('gmask').onclick=e=>{if(e.target.id==='gmask')$('gmask').classList.remove('show')};
