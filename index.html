@@ -189,7 +189,7 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 .cardhead .g{font-size:10px;font-weight:800}
 .line{display:flex;justify-content:space-between;font-size:11px;padding:1.5px 0;color:#c6cfe0}
 .up{color:#8ff09a}.dn{color:#ff9b9b}
-#cmp{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-items:stretch}
+#cmp{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-items:stretch;min-height:196px}
 #cmp h4{font-size:10px;color:#8b96ae;text-align:center;margin-bottom:5px;font-weight:700}
 #mbtns{display:flex;gap:8px;margin-top:12px}
 #mbtns button{flex:1;padding:11px;font-size:13px}
@@ -197,6 +197,9 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   background:linear-gradient(#ffb25d,#f76707);box-shadow:0 3px 0 #a14603}
 #mroll:active{transform:translateY(2px);box-shadow:0 1px 0 #a14603}
 #mroll:disabled{background:#333c52;box-shadow:0 3px 0 #212838;color:#78839a}
+#mrow2{display:flex;gap:7px;margin-top:9px}
+#mrow2 button{margin-top:0!important;width:auto!important;flex:1;line-height:1.25}
+#mbtns button:disabled{background:#262d3f;box-shadow:none;color:#5d6780}
 #mauto{width:100%;margin-top:7px;padding:12px;font-size:13.5px;
   background:linear-gradient(#a58cf5,#7048e8);box-shadow:0 3px 0 #4a2fa0}
 #mauto:active{transform:translateY(2px);box-shadow:0 1px 0 #4a2fa0}
@@ -699,6 +702,8 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 @keyframes rbw{0%{filter:drop-shadow(0 0 7px #ff6b6b)}25%{filter:drop-shadow(0 0 7px #ffd43b)}50%{filter:drop-shadow(0 0 7px #3bc9db)}75%{filter:drop-shadow(0 0 7px #cc5de8)}100%{filter:drop-shadow(0 0 7px #ff6b6b)}}
 .pkc.leg{border-color:#ffd43b;background:linear-gradient(#3a3020,#1e1a12);box-shadow:0 0 16px rgba(255,212,59,.45)}
 .pkc.leg .pn{color:#ffd43b}
+.nfb{padding:7px 11px;font-size:12px;background:#34405c;border-radius:9px;min-width:132px}
+#cp{cursor:pointer}
 #uClose{width:100%;padding:12px;font-size:14px;background:linear-gradient(#5ab5f8,#1c7ed6);box-shadow:0 3px 0 #10538f}
 </style>
 </head>
@@ -792,8 +797,10 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
     <button class="bSc" id="bSc">분해</button>
   </div>
   <button id="mroll">🔨 이 부위 제작</button>
-  <button id="mauto">🔁 더 좋은 게 나올 때까지 자동 제작</button>
-  <button id="mtix"><i data-ic="ticket"></i> 고급 제작권 사용</button>
+  <div id="mrow2">
+    <button id="mauto">🔁 자동 제작</button>
+    <button id="mtix"><i data-ic="ticket"></i> 고급 제작권</button>
+  </div>
   <div id="rollinfo"></div>
   <button id="mclose">닫기</button>
 </div></div>
@@ -806,6 +813,8 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   <div class="srow"><span>🎵 배경음악</span><button class="sw" id="swBgm"></button></div>
   <div class="srow sl"><input type="range" id="volBgm" min="0" max="100"></div>
   <div class="srow"><span>📳 진동</span><button class="sw" id="swVib"></button></div>
+  <div class="srow"><span>🔢 숫자 표시</span><button id="numFmt" class="nfb"></button></div>
+  <div class="snote" id="numNote" style="margin-top:-2px"></div>
   <div class="snote">배경음악은 시대마다 바뀌고, 보스전에서는 박자가 빨라집니다<br><span id="verTxt"></span></div>
   <button id="sBackup">💾 데이터 백업 · 불러오기</button>
   <button id="sTut">📖 튜토리얼 다시 보기</button>
@@ -2036,7 +2045,19 @@ function scene(){
 /* ===========================================================
    6. 렌더
 =========================================================== */
+const KR_U=[[1e68,'무량'],[1e64,'불가'],[1e60,'나유'],[1e56,'아승'],[1e52,'항하'],[1e48,'극'],[1e44,'재'],[1e40,'정'],[1e36,'간'],
+  [1e32,'구'],[1e28,'양'],[1e24,'자'],[1e20,'해'],[1e16,'경'],[1e12,'조'],[1e8,'억'],[1e4,'만']];
+function sciTxt(n){let e=Math.floor(Math.log10(n)),m=n/Math.pow(10,e);if(m>=9.95){m=1;e++}return m.toFixed(1)+'e'+e}
 function fmt(n){
+  if(!isFinite(n))return '∞';
+  const mode=S.numFmt||'kr';
+  if(mode==='kr'){n=Math.round(n);const neg=n<0?'-':'';n=Math.abs(n);
+    if(n<1e4)return neg+n;
+    if(n>=1e72)return neg+sciTxt(n);
+    for(let i=0;i<KR_U.length;i++){const[v,u]=KR_U[i];if(n>=v*(1-1e-12)){const x=n/v;
+      if(x<9.95)return neg+(Math.round(x*10)/10).toFixed(1).replace(/\.0$/,'')+u;
+      const r=Math.round(x);return neg+(r>=10000&&i>0?'1'+KR_U[i-1][1]:r+u)}}}
+  if(mode==='sci'){n=Math.round(n);const neg=n<0?'-':'';n=Math.abs(n);return neg+(n<1e4?n:sciTxt(n))}
   n=Math.round(n);const neg=n<0;n=Math.abs(n);
   // K·M·B·T 까지는 단위, 그 이상은 지수 표기 (자릿수를 한눈에 비교할 수 있게)
   if(n>=1e15){let e=Math.floor(Math.log10(n)),m=n/Math.pow(10,e);if(m>=9.95){m=1;e++}
@@ -2479,19 +2500,23 @@ function itemCard(k,it,label,cmpTo){
     <div class="cpl"><span>전투력</span><span>⚔ ${fmt(itemCP(k,it))}</span></div>
     ${oldEra}${lines}</div></div>`;
 }
-function openSlot(k){M.slot=k;M.roll=null;M.mode='slot';M.spent=0;M.best=0;
+function openSlot(k){M.slot=k;M.roll=null;M.last=null;M.mode='slot';M.spent=0;M.best=0;
   autoOn=false;clearTimeout(autoTimer);autoMsg='';openModal()}
 function openModal(){
   const i=slotIdx(M.slot),cur=S.gear[M.slot];
   $('mtitle').innerHTML=slotIcon(i)+' '+slotName(i);
-  $('msub').textContent=M.mode==='slot'?'원하는 부품이 나올 때까지 계속 제작할 수 있습니다':'무작위 제작 결과';
+  $('msub').textContent=S.quick?'자동 장착 켜짐 — 더 좋으면 바로 장착, 아니면 자동 분해':(M.mode==='slot'?'원하는 부품이 나올 때까지 계속 제작할 수 있습니다':'무작위 제작 결과');
+  const L=M.last;
   $('cmp').innerHTML=itemCard(M.slot,cur,'장착 중')+
     (M.roll?itemCard(M.slot,M.roll,isUpgrade(M.slot,M.roll)?'새 부품 ▲':'새 부품 ▼',cur)
-           :`<div><h4>새 부품</h4><div class="card" style="display:flex;align-items:center;
+           :`<div><h4>새 부품</h4><div class="card" style="display:flex;align-items:center;flex-direction:column;gap:4px;
              justify-content:center;min-height:118px;font-size:11px;color:#78839a;text-align:center">
-             아래 버튼으로<br>이 부위를 제작하세요</div></div>`);
+             ${L?`<span style="color:${GRADES[L.g].c};font-weight:900;font-size:12.5px">${GRADES[L.g].n}</span>
+               <b style="font-size:13px;color:${L.eq?'#8ff09a':'#aab4c8'}">${L.eq?'▲ 자동 장착됨':'▼ 자동 분해됨'}</b>
+               <span>${L.eq?'전투력 +'+fmt(L.v):'고철 +'+fmt(L.v)}</span>`:'아래 버튼으로<br>이 부위를 제작하세요'}</div></div>`);
   const has=!!M.roll;
-  $('mbtns').style.display=has?'flex':'none';
+  $('mbtns').style.display='flex';$('bEq').disabled=!has;$('bSc').disabled=!has;
+  if(!has){$('bEq').innerHTML='장착';$('bEq').style.background='';$('bSc').innerHTML='분해'}
   if(has){
     const gain=gainOf(M.slot,M.roll),up=isUpgrade(M.slot,M.roll);
     const rg=S.gear[M.slot]?realGain(M.slot,M.roll)*100:null;
@@ -2507,10 +2532,10 @@ function openModal(){
     ' <span style="font-size:11px;font-weight:600">('+ico('nut')+' '+fmt(cost)+')</span>';
   $('mroll').disabled=S.scrap<cost||autoOn;
   $('mauto').className=autoOn?'run':'';
-  $('mauto').innerHTML=autoOn?'■ 자동 제작 중지':'🔁 더 좋은 게 나올 때까지 자동 제작';
+  $('mauto').innerHTML=autoOn?'■ 중지':'🔁 자동 제작<small style="display:block;font-size:10px;opacity:.85">더 좋은 게 나오면 장착</small>';
   $('mauto').disabled=!autoOn&&S.scrap<cost;
   const tx=S.tix||0;$('mtix').style.display=(M.mode==='slot'&&tx>0&&!autoOn)?'block':'none';
-  $('mtix').innerHTML=ico('ticket')+' 고급 제작권 사용 · <b>명품 이상 보장</b> ('+tx+'장)';
+  $('mtix').innerHTML=ico('ticket')+' 제작권 '+tx+'장<small style="display:block;font-size:10px;opacity:.85">명품 이상 보장</small>';
   $('rollinfo').innerHTML=autoMsg?autoMsg
     :(M.spent?('제작 '+M.spent+'회 · 최고 '+
       `<b style="color:${GRADES[M.best].c}">${GRADES[M.best].n}</b>`):'');
@@ -2543,7 +2568,8 @@ function stepAuto(){
   const found=isUpgrade(M.slot,M.roll);SFX.forge(M.roll.g,!found);
   daily('forge');if(M.mode==='slot')daily('slot');if(M.roll.g>=3)daily('good');
   if(found){
-    stopAuto(`<b style="color:#8ff09a">더 좋은 부품 발견!</b> ${autoN}회 · ${ico('nut')}${fmt(autoCost)} 소모`);
+    const g=Math.max(0,gainOf(M.slot,M.roll)),it=M.roll;equip(M.slot,it);M.roll=null;M.last={g:it.g,eq:1,v:g};
+    stopAuto(`<b style="color:#8ff09a">더 좋은 부품 발견 → 자동 장착!</b> ${autoN}회 · ${ico('nut')}${fmt(autoCost)} 소모`);
     return;
   }
   autoMsg=`자동 제작 중… ${autoN}회 · ${ico('nut')}${fmt(autoCost)} 소모 · 최고 `+
@@ -2558,8 +2584,13 @@ function rollAgain(){
   S.scrap-=cost;
   if(M.roll)S.scrap+=scrapValue(M.roll);
   if(M.mode==='random')M.slot=SLOTS[Math.floor(Math.random()*SLOTS.length)].k;
-  M.roll=makeItem(M.slot);M.spent++;M.best=Math.max(M.best,M.roll.g);SFX.forge(M.roll.g);
+  M.roll=makeItem(M.slot);M.spent++;M.best=Math.max(M.best,M.roll.g);
   daily('forge');if(M.mode==='slot')daily('slot');if(M.roll.g>=3)daily('good');
+  if(S.quick&&!TUT.on){const it=M.roll,up=isUpgrade(M.slot,it);
+    if(up){const g=Math.max(0,gainOf(M.slot,it));SFX.forge(it.g);equip(M.slot,it);M.last={g:it.g,eq:1,v:g}}
+    else{const v=scrapValue(it);S.scrap+=v;SFX.forge(it.g,true);M.last={g:it.g,eq:0,v:v}}
+    M.roll=null}
+  else{SFX.forge(M.roll.g);M.last=null}
   renderTop();save();openModal();
 }
 function closeModal(){
@@ -2751,7 +2782,12 @@ function renderSettings(){
   $('volSfx').value=Math.round((S.sfxVol==null?1:S.sfxVol)*100);
   $('volBgm').value=Math.round((S.bgmVol==null?1:S.bgmVol)*100);
   $('volSfx').disabled=S.sfx===false;$('volBgm').disabled=S.bgm===false;
+  const m=S.numFmt||'kr';
+  $('numFmt').textContent={kr:'한국식 (만·억·조)',en:'영문 (K·M·B·T)',sci:'지수 (1.2e15)'}[m];
+  $('numNote').innerHTML=m==='kr'?'만 억 조 경 해 자 양 구 간 정 재 극 항하 아승 나유 불가 무량<br>(1만=10⁴, 한 단계마다 ×1만)':m==='en'?'K=천 · M=백만 · B=십억 · T=조, 그 이상은 지수 표기':'1.2e15 = 1.2 × 10¹⁵';
 }
+function numFmtNext(){const L=['kr','en','sci'];S.numFmt=L[(L.indexOf(S.numFmt||'kr')+1)%3];save();renderSettings();
+  renderTop();renderGrid();renderHP();renderPerkBar&&renderPerkBar()}
 function openSettings(){renderSettings();$('verTxt').textContent='버전 '+BUILD_NAME+' (빌드 '+BUILD+')';$('smask').classList.add('show')}
 
 /* ===========================================================
@@ -3228,8 +3264,8 @@ SFX.skRage=function(){if(!sOn())return;
    17. 버전 · 업데이트 알림 · 업데이트 내역
    ─ 새 버전을 올릴 때: 아래 BUILD 숫자와 version.json 의 build 숫자를 같이 올린다
 =========================================================== */
-const BUILD=11, BUILD_NAME='1.6.0';
-const CHANGELOG=[{b:11,v:'1.6.0',d:'2026-09-30',items:['🏛 <b>문명의 유산</b> — 왼쪽 위 사령관 아이콘을 눌러 열어요','회귀하면 <b>유산 포인트</b>(도달한 전투 × 회차 보너스)를 받아 16가지 영구 연구에 투자','회차마다 새 기능 해금: 자동 시대 진출 · 특성 카드 4장 · 회귀 보급품 · 자동 공방 강화 · 전설 문명 특성 · 황금/무지개 오라','회차에 따라 칭호가 바뀌어요 (족장 → 개척자 → 정복자 → … → 영원한 문명)','이미 회귀한 분들은 지난 회차만큼 유산 포인트를 소급 지급했어요']},{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
+const BUILD=12, BUILD_NAME='1.6.1';
+const CHANGELOG=[{b:12,v:'1.6.1',d:'2026-09-30',items:['🔢 숫자를 <b>한국식 단위</b>로 표시 (만·억·조·경·해…) — 설정에서 영문/지수 표기로 바꿀 수 있어요','전투력을 누르면 정확한 크기를 알려줘요','부위 제작 창 버튼 위치 고정 — 연속으로 눌러도 다른 버튼이 눌리지 않아요','자동 제작이 더 좋은 부품을 찾으면 <b>바로 장착</b>','자동 장착이 켜져 있으면 부위 제작도 더 좋으면 장착 · 아니면 자동 분해']},{b:11,v:'1.6.0',d:'2026-09-30',items:['🏛 <b>문명의 유산</b> — 왼쪽 위 사령관 아이콘을 눌러 열어요','회귀하면 <b>유산 포인트</b>(도달한 전투 × 회차 보너스)를 받아 16가지 영구 연구에 투자','회차마다 새 기능 해금: 자동 시대 진출 · 특성 카드 4장 · 회귀 보급품 · 자동 공방 강화 · 전설 문명 특성 · 황금/무지개 오라','회차에 따라 칭호가 바뀌어요 (족장 → 개척자 → 정복자 → … → 영원한 문명)','이미 회귀한 분들은 지난 회차만큼 유산 포인트를 소급 지급했어요']},{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
  {b:1,v:'1.0.0',d:'2026-09-28',items:[
   '석기시대 → 미래시대 6개 문명 진화 · 회귀(회차) 시스템',
   '시대별 유닛 24종 · 움직이는 배경 · 시대별 탄환과 폭발 연출',
@@ -4322,6 +4358,8 @@ $('sClose').onclick=()=>$('smask').classList.remove('show');
 $('smask').onclick=e=>{if(e.target.id==='smask')$('smask').classList.remove('show')};
 $('swSfx').onclick=()=>{S.sfx=S.sfx===false;auInit();auApplyVol();renderSettings();save();SFX.click()};
 $('swBgm').onclick=()=>{S.bgm=S.bgm===false;auInit();auApplyVol();renderSettings();save()};
+$('numFmt').onclick=()=>{SFX.click();numFmtNext()};
+$('cp').onclick=()=>{const p=power(),e=Math.floor(Math.log10(Math.max(1,p)));toast('전투력 '+fmt(p)+(p>=1e4?` = 약 ${(p/Math.pow(10,e)).toFixed(2)} × 10<sup>${e}</sup>`:''))};
 $('swVib').onclick=()=>{S.vib=S.vib===false;renderSettings();save();buzz(30)};
 $('volSfx').oninput=e=>{S.sfxVol=e.target.value/100;auApplyVol();SFX.click()};
 $('volBgm').oninput=e=>{S.bgmVol=e.target.value/100;auApplyVol()};
