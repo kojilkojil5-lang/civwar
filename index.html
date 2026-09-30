@@ -558,7 +558,7 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 .hitw{filter:brightness(2.3) saturate(.5)!important}
 .hitc{filter:brightness(3.2) saturate(0)!important}
 .hitr{filter:brightness(1.35) sepia(.6) saturate(3) hue-rotate(-25deg)!important}
-.flynut{position:fixed;left:0;top:0;width:18px;height:18px;z-index:40;pointer-events:none;will-change:transform}
+.flynut{position:fixed;left:0;top:0;width:18px;height:18px;z-index:26;pointer-events:none;will-change:transform}
 .flynut .ico{width:18px;height:18px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
 .cur.pop{animation:curpop .28s ease-out}
 @keyframes curpop{40%{transform:scale(1.14);border-color:#ffd166;box-shadow:0 0 12px rgba(255,209,102,.6)}}
@@ -668,6 +668,37 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 #rres .rbt button{flex:1;padding:12px 4px;font-size:13px}
 #rres .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
 #rres .flash.go{animation:cutflash .8s ease-out}
+
+/* ---- 문명의 유산 ---- */
+#avatar{cursor:pointer;position:relative}
+#avatar.red:after{content:"";position:absolute;right:-3px;top:-3px;width:11px;height:11px;border-radius:50%;background:#ff3b3b;border:2px solid #1c2231;animation:dotp 1.2s infinite}
+#ptitle{font-weight:900}
+.chd{display:flex;align-items:center;gap:10px;background:radial-gradient(circle at 20% 30%,#3a2f5a,#161b28);border:1px solid #4d5a7a;border-radius:12px;padding:10px 12px;margin-bottom:9px}
+.chd .ico{width:40px;height:40px}.chd .tt{font-size:17px;font-weight:900}.chd .ts{font-size:11px;color:#aab4c8}
+.chd .lp{margin-left:auto;text-align:right;font-size:10px;color:#aab4c8}.chd .lp b{display:block;font-size:20px;color:#ffd166}
+.rbr{font-size:11.5px;font-weight:900;color:#ffd166;margin:10px 2px 4px;display:flex;align-items:center;gap:5px}.rbr .ico{width:16px;height:16px}
+.rnode{display:flex;align-items:center;gap:9px;background:#161c2a;border:1px solid #2c344a;border-radius:10px;padding:7px 9px;margin-top:5px}
+.rnode .ico{width:26px;height:26px;flex:none}
+.rnode .nm{font-size:12px;font-weight:800}.rnode .ds{font-size:10.5px;color:#aab4c8;line-height:1.35}.rnode .ds b{color:#8ff09a}
+.rnode .lv{font-size:10px;color:#ffd166;font-weight:900}
+.rnode button{margin-left:auto;flex:none;padding:7px 9px;font-size:11.5px;background:linear-gradient(#ffd166,#f59f00);color:#241400;box-shadow:0 2px 0 #a86a00;white-space:nowrap}
+.rnode button:disabled{background:#2b3348;color:#78839a;box-shadow:none}
+.rnode.max button{background:#2b3348;color:#8ff09a;box-shadow:none}
+.mile{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;background:#161c2a;border:1px solid #2c344a;margin-top:6px}
+.mile .mc{width:44px;text-align:center;font-size:12px;font-weight:900;flex:none}
+.mile .mt{font-size:12.5px;font-weight:800}.mile .md{font-size:10.5px;color:#aab4c8;line-height:1.35}
+.mile.ok{border-color:#2f9e44;background:linear-gradient(90deg,rgba(47,158,68,.18),#161c2a)}.mile.ok .mc{color:#8ff09a}
+.mile.next{border-color:#ffd166;box-shadow:0 0 10px rgba(255,209,102,.3)}.mile.next .mc{color:#ffd166}
+.mile.lock{opacity:.55}
+.mile .sw{margin-left:auto;flex:none}
+.recs{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.recs div{background:#161c2a;border:1px solid #2c344a;border-radius:10px;padding:9px;text-align:center;font-size:10.5px;color:#aab4c8}
+.recs b{display:block;font-size:17px;color:#fff;margin-bottom:2px}
+#ptank.gold{filter:drop-shadow(0 0 6px #ffd43b) drop-shadow(0 0 2px #fff3bf)}
+#ptank.rainbow{animation:rbw 3s linear infinite}
+@keyframes rbw{0%{filter:drop-shadow(0 0 7px #ff6b6b)}25%{filter:drop-shadow(0 0 7px #ffd43b)}50%{filter:drop-shadow(0 0 7px #3bc9db)}75%{filter:drop-shadow(0 0 7px #cc5de8)}100%{filter:drop-shadow(0 0 7px #ff6b6b)}}
+.pkc.leg{border-color:#ffd43b;background:linear-gradient(#3a3020,#1e1a12);box-shadow:0 0 16px rgba(255,212,59,.45)}
+.pkc.leg .pn{color:#ffd43b}
 #uClose{width:100%;padding:12px;font-size:14px;background:linear-gradient(#5ab5f8,#1c7ed6);box-shadow:0 3px 0 #10538f}
 </style>
 </head>
@@ -678,7 +709,7 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   <div id="top">
     <div id="avatar"><i data-ic="helmet"></i></div>
     <div id="pinfo">
-      <div id="pname">사령관 · <span id="eraTag">석기시대</span></div>
+      <div id="pname"><span id="ptitle">족장</span> · <span id="eraTag">석기시대</span></div>
       <div id="cp">전투력 0</div>
     </div>
     <div class="cur" id="tixw" style="display:none"><i data-ic="ticket"></i><span id="tix">0</span></div>
@@ -872,6 +903,12 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 </div></div>
 <div id="rres"><div class="flash"></div><div class="rt" id="rrT">발굴 결과</div><div class="rcards" id="rCards"></div>
   <div class="rbt"><button id="rrAgain" style="background:linear-gradient(#b197fc,#7048e8)"></button><button id="rrOk" style="background:#34405c">확인</button></div></div>
+<div id="cmdmask" class="pmask"><div class="pmodal">
+  <div id="cmdHd"></div>
+  <div class="rtabs"><button class="ctabb rtab" data-t="res">유산 연구</button><button class="ctabb rtab" data-t="mile">회차 해금</button><button class="ctabb rtab" data-t="rec">기록</button></div>
+  <div id="cmdBody"></div>
+  <button class="pclose" data-close="cmdmask">닫기</button>
+</div></div>
 <div id="umask" class="pmask"><div class="pmodal">
   <div class="ptt">🆕 업데이트 내용</div>
   <div class="psub">새로운 기능이 추가되었어요</div>
@@ -1000,7 +1037,7 @@ function lvMul(){return lvMulOf(S.lv)}
 function minGrade(){return Math.min(3,S.cycle||0)}   // 회차마다 하위 등급이 사라짐
 function rollGrade(minG){
   // 공방 레벨이 높을수록, 회차가 깊을수록 상위 등급 확률이 올라감
-  const t=S.tier+6*pk('luck')+rv('luck'), c=S.cycle||0, mg=Math.max(minGrade(),minG||0);
+  const t=S.tier+6*pk('luck')+rv('luck')+rs('luck'), c=S.cycle||0, mg=Math.max(minGrade(),minG||0);
   const w=GRADES.map((g,i)=>i<mg?0:g.w*(1+i*(t*0.035+c*0.6)));
   const sum=w.reduce((a,b)=>a+b,0);let r=Math.random()*sum;
   for(let i=0;i<w.length;i++){r-=w[i];if(r<=0)return i}return mg;
@@ -1032,6 +1069,8 @@ function calcStats(gear,lv){
   s.atk=Math.round(s.atk*L*LG);s.hp=Math.round(s.hp*L*LG);
   s.def=Math.round(s.def*L*LG);s.agl=Math.round(s.agl*L*LG);
   {const A=1+rv('all');s.atk=Math.round(s.atk*(1+rv('atk'))*A);s.hp=Math.round(s.hp*(1+rv('hp'))*A);s.def=Math.round(s.def*(1+rv('def'))*A);s.crit+=rv('crit');s.eva+=rv('eva')}
+  if(S.res){s.atk=Math.round(s.atk*(1+rs('atk')));s.hp=Math.round(s.hp*(1+rs('hp')));s.def=Math.round(s.def*(1+rs('def')))}
+  if(pk('apex')){const m=1+.4*pk('apex');s.atk=Math.round(s.atk*m);s.hp=Math.round(s.hp*m);s.def=Math.round(s.def*m)}
   if(S.perks&&S.perks.length){s.atk=Math.round(s.atk*(1+.25*pk('atk')));s.hp=Math.round(s.hp*(1+.35*pk('hp')));
     s.def=Math.round(s.def*(1+.45*pk('def')));s.crit+=8*pk('crit');s.eva+=7*pk('eva')}
   s.crit=Math.min(CAP.crit,s.crit);s.spd=Math.min(CAP.spd,s.spd);s.eva=Math.min(CAP.eva,s.eva);
@@ -1092,13 +1131,13 @@ function makeEnemy(){
   E.uid=++ENEMY_UID;
   if(pk('first'))E.hp=Math.round(E.max*(1-Math.min(.4,.08*pk('first'))));
 }
-function roundReward(){return Math.round(16*Math.pow(1.115,totalRound()-1)*(S.round===15?4:1)*goldMul()*(boostOn()?2:1)*(1+.4*pk('loot'))*(1+rv('scrap')+rv('reward')))}
+function roundReward(){return Math.round(16*Math.pow(1.115,totalRound()-1)*(S.round===15?4:1)*goldMul()*(boostOn()?2:1)*(1+.4*pk('loot'))*(1+rv('scrap')+rv('reward'))*(1+rs('scrap'))*(1+.8*pk('golden')))}
 // 초반 난이도 곡선 (1회차 한정): 첫 두 전투는 적이 서서히 강해지고, 초반 보스 배율도 낮음
 let EARLY_N=30,EARLY_R0=.35,BOSS_EARLY=[1.4,1.7];
 let XP_ERA=[1.6,2.2,2.8,3.4,4,4.6];     // 시대가 오를수록 레벨업에 필요한 경험치 증가
-function xpReward(){return Math.round((S.round===15?30:10)*(1+.35*pk('xp'))*(1+rv('xp')+rv('reward')))}
+function xpReward(){return Math.round((S.round===15?30:10)*(1+.35*pk('xp'))*(1+rv('xp')+rv('reward'))*(1+rs('xp'))*(1+.8*pk('golden')))}
 function xpNeed(){return Math.round((10+S.lv)*XP_ERA[Math.min(S.era,XP_ERA.length-1)])}
-function forgeCost(){return Math.round(28*Math.pow(1.28,S.tier-1)*Math.pow(.75,pk('forge'))*Math.max(.5,1-rv('forge')))}
+function forgeCost(){return Math.round(28*Math.pow(1.28,S.tier-1)*Math.pow(.75,pk('forge'))*Math.max(.5,1-rv('forge'))*(1-rs('forge')))}
 function slotForgeCost(){return Math.round(forgeCost()*1.9)}
 function upgCost(){
   // 최종 시대 진입 전까지는 1.33, 이후는 1.26으로 완만해져 무한 성장이 가능
@@ -1760,7 +1799,7 @@ function enemyCfg(wreck){
     power:E.boss?3:Math.min(3,Math.floor(S.stage/7))};
 }
 function drawUnits(){
-  $('ptank').innerHTML=unitSVG(playerCfg(false));
+  $('ptank').innerHTML=unitSVG(playerCfg(false));applyCosmetic();
   $('etank').innerHTML=unitSVG(enemyCfg(false));
   $('eu').style.width=(E.boss?196:172)+'px';
   const cn=S.cycle||0;
@@ -2012,6 +2051,7 @@ function renderSlotCP(){document.querySelectorAll('#grid .scp').forEach(e=>{cons
 function renderTop(){
   $('scrap').textContent=fmt(S.scrap);renderSlotCP();
   $('cp').textContent='전투력 '+fmt(power());
+  $('ptitle').textContent=titleOf(S.cycle);$('ptitle').style.color=(S.cycle||0)?cycColor(S.cycle):'';
   $('eraTag').innerHTML=ERAS[S.era].n+
     ((S.cycle||0)>0?` <b style="color:${cycColor(S.cycle)};font-size:10.5px">★${S.cycle}회차</b>`:'');
   const ee=enemyEra(), behind=ee>S.era;
@@ -2241,7 +2281,7 @@ function winRound(){
   const cleared=S.round>=15;
   if(cleared){S.stage++;S.round=1;P.hp=P.s.hp;clearLoseOnWin();if(S.stage===2&&!S.firstWin)setTimeout(firstWin,900);
     if(S.stage===2&&S.perkCyc!==(S.cycle||0)){S.perkCyc=S.cycle||0;owePerk(3600)}
-    {const g=(S.stage-1)%5===0?3:1;S.pick=(S.pick||0)+g;S.pickGot=g;updateColDot()}}
+    {const g=((S.stage-1)%5===0?3:1)+(Math.random()<rs('pick')?1:0);S.pick=(S.pick||0)+g;S.pickGot=g;updateColDot()}}
   else S.round++;
   P.hp=Math.min(P.s.hp,P.hp+P.s.hp*0.10);
   if(cleared&&enemyEra()>oldEra)
@@ -2377,6 +2417,9 @@ function openRebirth(){
   $('eGain').innerHTML=`<div class="h" style="color:#8ff09a">영구 유산 (회차마다 누적)</div>
     <div class="r"><span>모든 스탯</span><span class="up">×${fmt(Math.pow(LEGACY_STAT,S.cycle||0))} → ×${fmt(Math.pow(LEGACY_STAT,nc))}</span></div>
     <div class="r"><span>고철 획득</span><span class="up">×${fmt(Math.pow(LEGACY_GOLD,S.cycle||0))} → ×${fmt(Math.pow(LEGACY_GOLD,nc))}</span></div>
+    <div class="r"><span>유산 포인트</span><span class="up">+${lpGain()} <small style="color:#8b96ae">(전투 ${S.stage} × ${(1+.1*(S.cycle||0)).toFixed(1)})</small></span></div>
+    ${MILES.find(m=>m.c===nc)?`<div class="r"><span>새로 해금</span><span class="up">${MILES.find(m=>m.c===nc).t}</span></div>`:''}
+    <div class="r"><span>칭호</span><span class="up">${titleOf(S.cycle)} → ${titleOf(nc)}</span></div>
     <div class="r"><span>회차 표식</span><span class="up">유닛에 ★${nc} 월계관</span></div>
     <div class="r"><span>등급 하한</span><span class="up">${nc>=3?'명품':GRADES[Math.min(3,nc)].n} 이상만 제작됨</span></div>
     <div class="r"><span>6개 시대</span><span class="up">처음부터 다시 진행</span></div>`;
@@ -2396,18 +2439,21 @@ function doRebirth(){
   SK.cd=[0,0,0];skClear();
   const oldSvg=unitSVG(playerCfg(false));
   SFX.rebirth();buzz([100,80,300]);
-  const nc=(S.cycle||0)+1;
-  S.cycle=nc;S.era=0;S.lv=1;S.xp=0;S.tier=1;S.stage=1;S.round=1;
+  const nc=(S.cycle||0)+1,lg=lpGain();
+  S.bestStage=Math.max(S.bestStage||0,S.stage);S.lp=(S.lp||0)+lg;S.lpTotal=(S.lpTotal||0)+lg;
+  S.cycle=nc;S.era=0;S.lv=1;S.xp=0;S.tier=Math.min(tierCap(0)-1,1+rs('tier'));S.stage=1;S.round=1;
   S.perks=[];S.perkOwed=0;S.pkOffer=null;S.pkRolled=0;renderPerkBar();S.pick=(S.pick||0)+5*nc;
-  S.scrap=Math.round(120*goldMul());
+  S.scrap=Math.round((120+500*rs('start'))*goldMul());
+  if(unl(4)){S.tix=(S.tix||0)+3;S.pick=(S.pick||0)+10}
   SLOTS.forEach(s=>S.gear[s.k]=null);
   recalc();P.hp=P.s.hp;
   makeEnemy();scene();drawUnits();
   renderTop();renderGrid();renderHP();save();
   $('emask').classList.remove('show');
   playCut({oldSvg,newSvg:unitSVG(playerCfg(false)),bg:'#2a1f45',hi:cycColor(nc),
-    t1:'문명의 순환',t2:'★'+nc+'회차',t3:`석기시대부터 다시 — 유산 계승 <b>모든 능력치 ×${fmt(legacyMul())}</b><br>유물 도감은 그대로 남아요`,
-    after:()=>toast(`<b style="color:${cycColor(nc)}">★${nc}회차</b> 개막 — 모든 스탯 ×${fmt(legacyMul())} 유산 계승`)});
+    t1:'문명의 순환 · 칭호 「'+titleOf(nc)+'」',t2:'★'+nc+'회차',t3:`유산 포인트 <b>+${lg}</b> · 모든 능력치 <b>×${fmt(legacyMul())}</b>`+
+      (MILES.find(m=>m.c===nc)?`<br>새로 해금: <b>${MILES.find(m=>m.c===nc).t}</b>`:''),
+    after:()=>{applyCosmetic();renderTop();updateCmdDot();toast(`<b style="color:${cycColor(nc)}">★${nc}회차</b> 개막 — 유산 포인트 +${lg}`);setTimeout(()=>openCmd(MILES.find(m=>m.c===nc)?'mile':'res'),600)}});
 }
 
 /* ===========================================================
@@ -2739,7 +2785,7 @@ function tutAvatar(){
   return `<svg viewBox="-13 -55 26 36" width="100%" height="100%">${ugDefs('tav',DPAL[0][0])}
     ${soldier('tav',0,0,1,{helm,cloth:cl,dark:'#3a2a1a',wpn:'none',wa:1.1})}</svg>`;
 }
-function anyModal(){return ['mask','emask','smask','dmask','amask','gmask','umask','omask','bkmask','lzmask','cmask','pkmask','rmask'].some(id=>$(id).classList.contains('show'))}
+function anyModal(){return ['mask','emask','smask','dmask','amask','gmask','umask','omask','bkmask','lzmask','cmask','pkmask','rmask','cmdmask'].some(id=>$(id).classList.contains('show'))}
 function tutEl(d){if(!d||!d.target)return null;
   const el=typeof d.target==='function'?d.target():document.querySelector(d.target);
   return el&&el.getClientRects().length?el:null}
@@ -2986,7 +3032,7 @@ const SLOT_INFO={
 };
 /* 등급별 확률 (공방 레벨·회차 반영, 무작위 없이 계산) */
 function gradeProbs(tier,cycle,minG){
-  tier+=6*pk('luck')+rv('luck');const c=cycle||0,mg=Math.max(Math.min(3,c),minG||0);
+  tier+=6*pk('luck')+rv('luck')+rs('luck');const c=cycle||0,mg=Math.max(Math.min(3,c),minG||0);
   const w=GRADES.map((g,i)=>i<mg?0:g.w*(1+i*(tier*0.035+c*0.6)));
   const s=w.reduce((a,b)=>a+b,0);return w.map(x=>x/s*100);
 }
@@ -3075,7 +3121,7 @@ function skClear(){
 }
 function castSkill(i,auto){
   if(!canCast(i))return;
-  SK.cd[i]=SKILL[i].cd*Math.pow(.75,pk('skill'))*Math.max(.5,1-rv('skill'));
+  SK.cd[i]=SKILL[i].cd*Math.pow(.75,pk('skill'))*Math.max(.5,1-rv('skill'))*(1-rs('skill'));
   const era=S.era;
   if(i===0){
     const uid=E.uid,base=P.s.atk*P.s.atk/(P.s.atk+E.def),dmg=base*8*(Math.random()*100<P.s.crit?2:1);
@@ -3182,8 +3228,8 @@ SFX.skRage=function(){if(!sOn())return;
    17. 버전 · 업데이트 알림 · 업데이트 내역
    ─ 새 버전을 올릴 때: 아래 BUILD 숫자와 version.json 의 build 숫자를 같이 올린다
 =========================================================== */
-const BUILD=10, BUILD_NAME='1.5.0';
-const CHANGELOG=[{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
+const BUILD=11, BUILD_NAME='1.6.0';
+const CHANGELOG=[{b:11,v:'1.6.0',d:'2026-09-30',items:['🏛 <b>문명의 유산</b> — 왼쪽 위 사령관 아이콘을 눌러 열어요','회귀하면 <b>유산 포인트</b>(도달한 전투 × 회차 보너스)를 받아 16가지 영구 연구에 투자','회차마다 새 기능 해금: 자동 시대 진출 · 특성 카드 4장 · 회귀 보급품 · 자동 공방 강화 · 전설 문명 특성 · 황금/무지개 오라','회차에 따라 칭호가 바뀌어요 (족장 → 개척자 → 정복자 → … → 영원한 문명)','이미 회귀한 분들은 지난 회차만큼 유산 포인트를 소급 지급했어요']},{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
  {b:1,v:'1.0.0',d:'2026-09-28',items:[
   '석기시대 → 미래시대 6개 문명 진화 · 회귀(회차) 시스템',
   '시대별 유닛 24종 · 움직이는 배경 · 시대별 탄환과 폭발 연출',
@@ -3663,8 +3709,8 @@ function applyTraits(en,tr){
 }
 function hasTr(en,k){return !!(en&&en.tr&&en.tr.includes(k))}
 /* 공격 한 번의 기대 피해 · 초당 피해 (특성·문명 특성 반영) */
-function critMul(){return 2+.3*pk('crit')+rv('critd')}
-function vsMul(en){let m=1;if(en.boss)m*=(1+.4*pk('boss'))*(1+rv('boss'));if(hasTr(en,'shield')||hasTr(en,'swift'))m*=1+.5*pk('breaker');return m}
+function critMul(){return 2+.3*pk('crit')+rv('critd')+rs('critd')}
+function vsMul(en){let m=1;if(en.boss)m*=(1+.4*pk('boss'))*(1+rv('boss'))*(1+rs('boss'));if(hasTr(en,'shield')||hasTr(en,'swift'))m*=1+.5*pk('breaker');return m}
 function pdOf(s,en){const c=s.crit/100,h=d=>s.atk*s.atk/(s.atk+d);
   const pd=((1-c)*h(en.def)+c*critMul()*h(en.def*.5))/s.interval*(1-(en.eva||0)/100)*vsMul(en);
   return Math.max(en.max*.002,pd-(en.regen||0)*en.max)}
@@ -3702,9 +3748,14 @@ const PERKS={
  xp:{n:'현자의 가르침',ic:'book',d:'경험치 +35%'},
  luck:{n:'행운의 부적',ic:'clover',d:'상위 등급 제작 확률 증가 (공방 +6레벨 효과)'},
  first:{n:'선제 공격',ic:'sun',d:'라운드 시작 시 적 체력 8% 즉시 감소'},
+ apex:{n:'★ 문명의 정점',ic:'gem',d:'모든 능력치 +40% (전설)',leg:1},
+ golden:{n:'★ 황금 시대',ic:'crown',d:'고철 · 경험치 +80% (전설)',leg:1},
 };
 function pk(id){if(!S.perks)return 0;let n=0;for(const x of S.perks)if(x===id)n++;return n}
-function perkOffer(){const ids=Object.keys(PERKS),out=[];while(out.length<3){const k=ids[Math.floor(Math.random()*ids.length)];if(!out.includes(k))out.push(k)}return out}
+function perkOffer(){const ids=Object.keys(PERKS).filter(k=>!PERKS[k].leg),n=unl(3)?4:3,out=[];
+  while(out.length<n){const k=ids[Math.floor(Math.random()*ids.length)];if(!out.includes(k))out.push(k)}
+  if(unl(8)&&Math.random()<.22)out[n-1]=Math.random()<.5?'apex':'golden';
+  return out}
 /* 지금 편성된 적에게 유리한 특성은 표시 */
 function perkHot(id){const th=stageTraits(S.stage+1).concat(stageTraits(S.stage));
   return (id==='breaker'&&(th.includes('shield')||th.includes('swift')))||(id==='crit'&&th.includes('shield'))||
@@ -3723,15 +3774,15 @@ function openPerk(view){
     $('pkRoll').style.display='none';$('pkClose').style.display='block';M0.classList.add('show');return;
   }
   if(!(S.perkOwed>0))return;
-  if(!S.pkOffer||S.pkOffer.length!==3)S.pkOffer=perkOffer();save();
+  if(!S.pkOffer||S.pkOffer.length<3)S.pkOffer=perkOffer();save();
   $('pkT').innerHTML=ico('crown')+' 문명 특성 선택';
-  $('pkS').innerHTML=`<b>${ERAS[S.era].n}</b>의 방향을 정하세요 · 3개 중 1개`+(S.perkOwed>1?` (남은 선택 ${S.perkOwed})`:'');
+  $('pkS').innerHTML=`<b>${ERAS[S.era].n}</b>의 방향을 정하세요 · ${S.pkOffer.length}개 중 1개`+(S.perkOwed>1?` (남은 선택 ${S.perkOwed})`:'');
   $('pkBody').innerHTML=S.pkOffer.map(k=>{const P1=PERKS[k],n=pk(k),hot=perkHot(k);
-    return `<button class="pkc${hot?' hot':''}" data-k="${k}"><div class="pi">${ico(P1.ic)}</div><div><div class="pn">${P1.n}</div><div class="pd">${P1.d}</div>
+    return `<button class="pkc${hot?' hot':''}${P1.leg?' leg':''}" data-k="${k}"><div class="pi">${ico(P1.ic)}</div><div><div class="pn">${P1.n}</div><div class="pd">${P1.d}</div>
       ${hot?'<div class="ph">▲ 다가올 적에게 효과적</div>':''}</div>${n?`<span class="po">보유 ×${n}</span>`:''}</button>`}).join('');
   $('pkBody').querySelectorAll('.pkc').forEach(b=>b.onclick=()=>pickPerk(b.dataset.k));
-  const r=$('pkRoll');r.style.display='block';r.disabled=!!S.pkRolled;r.innerHTML=S.pkRolled?'다시 뽑기 사용함':'🎲 다시 뽑기 (1회)';
-  r.onclick=()=>{if(S.pkRolled)return;S.pkRolled=1;S.pkOffer=perkOffer();SFX.click();openPerk()};
+  const r=$('pkRoll');r.style.display='block';const left=rerollMax()-(S.pkRolled||0);r.disabled=left<=0;r.innerHTML=left<=0?'다시 뽑기 모두 사용':'🎲 다시 뽑기 ('+left+'회)';
+  r.onclick=()=>{if(rerollMax()-(S.pkRolled||0)<=0)return;S.pkRolled=(S.pkRolled||0)+1;S.pkOffer=perkOffer();SFX.click();openPerk()};
   $('pkClose').style.display='none';
   if(!M0.classList.contains('show')){M0.classList.add('show');SFX.level()}
 }
@@ -3787,7 +3838,7 @@ function offCap(){return OFF_CAP+rv('offcap')}
 function pickTxt(n){return ico('pick')+(n||0)}
 function drawOne(guar){
   S.pity=(S.pity||0)+1;let r;
-  if(S.pity>=50)r=3;else{const x=Math.random()*100;r=x<1?3:x<8?2:x<30?1:0}   // 전설 1 · 영웅 7 · 희귀 22 · 일반 70
+  if(S.pity>=pityMax())r=3;else{const x=Math.random()*100;r=x<1?3:x<8?2:x<30?1:0}   // 전설 1 · 영웅 7 · 희귀 22 · 일반 70
   if(guar&&r<1)r=1;
   if(r===3)S.pity=0;
   const pool=RELICS.filter(x=>x.r===r),rel=pool[Math.floor(Math.random()*pool.length)];
@@ -3842,11 +3893,11 @@ function renderRel(){
     const free=S.freeDig!==todayStr(),p=S.pick||0,pity=S.pity||0;
     B.innerHTML=`<div class="rsite">${SITE_SVG}</div>
       <div class="rcur"><span>${ico('pick')} 곡괭이 <b>${p}</b></span><button id="rEx">${ico('ticket')}2 → ${ico('pick')}1 교환</button></div>
-      <div class="rpity"><span>전설 확정까지</span><span><b>${50-pity}</b>회</span></div><div class="rpbar"><i style="width:${pity/50*100}%"></i></div>
+      <div class="rpity"><span>전설 확정까지</span><span><b>${pityMax()-pity}</b>회</span></div><div class="rpbar"><i style="width:${pity/pityMax()*100}%"></i></div>
       <div class="rbtns"><button id="rFree" style="display:${free?'block':'none'}">🎁 오늘의 무료 발굴</button>
         <button id="rOne" ${p<1?'disabled':''}>1회 발굴<small>${pickTxt(1)}</small></button>
         <button id="rTen" ${p<10?'disabled':''}>10회 발굴<small>${pickTxt(10)} · 희귀 이상 1개 확정</small></button></div>
-      <div class="rrate">일반 70% · 희귀 22% · 영웅 7% · 전설 1% · 50회 안에 전설 확정<br>곡괭이: 전투 클리어 · 일일 임무 · 출석 · 회귀 보상</div>`;
+      <div class="rrate">일반 70% · 희귀 22% · 영웅 7% · 전설 1% · ${pityMax()}회 안에 전설 확정<br>곡괭이: 전투 클리어 · 일일 임무 · 출석 · 회귀 보상</div>`;
     $('rOne').onclick=()=>doDig(1);$('rTen').onclick=()=>doDig(10);$('rFree').onclick=()=>doDig(1,true);
     $('rEx').onclick=()=>{if((S.tix||0)<2){toast('제작권이 2장 필요해요');return}S.tix-=2;S.pick=(S.pick||0)+1;updateDots();save();SFX.click();renderRel()};
   }else if(RTAB==='list'){
@@ -3871,6 +3922,98 @@ function showRelDet(){const r=RMAP[RSEL],l=relLv(r.id),c=(S.rel&&S.rel[r.id])||0
 function openRel(tab){if(tab)RTAB=tab;if(RTAB==='col'){openCol();return}renderRel();$('rmask').classList.add('show')}
 function relDot(){return S.freeDig!==todayStr()||(S.pick||0)>=10}
 
+
+/* ===========================================================
+   25. 문명의 유산 — 회귀할수록 쌓이는 연구 · 회차 해금 · 칭호
+=========================================================== */
+const RES_BR=[{k:'war',n:'전쟁술',ic:'swords'},{k:'eco',n:'경제',ic:'bag'},{k:'grow',n:'발전',ic:'anvil'},{k:'arc',n:'비술',ic:'qSight'}];
+const RESEARCH=[
+ {id:'atk',b:'war',n:'무기 연구',ic:'swords',max:10,base:3,v:.15,f:'공격력 +{p}'},
+ {id:'hp',b:'war',n:'체력 단련',ic:'heart',max:10,base:3,v:.2,f:'체력 +{p}'},
+ {id:'def',b:'war',n:'축성술',ic:'shield',max:10,base:3,v:.25,f:'방어력 +{p}'},
+ {id:'critd',b:'war',n:'급소 해부학',ic:'target',max:5,base:6,v:.15,f:'치명타 피해 +{p}'},
+ {id:'scrap',b:'eco',n:'약탈 기록',ic:'nut',max:10,base:3,v:.15,f:'적 처치 고철 +{p}'},
+ {id:'off',b:'eco',n:'야영지 관리',ic:'bonfire',max:5,base:4,v:.2,f:'방치 보상 +{p}'},
+ {id:'pick',b:'eco',n:'발굴 탐사대',ic:'pick',max:5,base:8,v:.15,f:'전투 클리어 시 곡괭이 추가 확률 +{p}'},
+ {id:'start',b:'eco',n:'비상 식량',ic:'urn',max:5,base:4,v:1,f:'회귀 직후 고철 +{s}'},
+ {id:'tier',b:'grow',n:'기술 전승',ic:'anvil',max:7,base:5,v:3,f:'회귀 직후 공방 +{a}레벨'},
+ {id:'xp',b:'grow',n:'문자 기록',ic:'book',max:10,base:3,v:.15,f:'경험치 +{p}'},
+ {id:'forge',b:'grow',n:'표준 규격',ic:'gear',max:6,base:4,v:.05,f:'제작 비용 -{p}'},
+ {id:'boss',b:'grow',n:'전술 교범',ic:'crown',max:5,base:5,v:.15,f:'보스에게 주는 피해 +{p}'},
+ {id:'reroll',b:'arc',n:'점성술',ic:'sun',max:2,base:10,v:1,f:'문명 특성 다시 뽑기 +{a}회'},
+ {id:'skill',b:'arc',n:'고대 주문',ic:'hourglass',max:5,base:5,v:.06,f:'스킬 재사용 대기 -{p}'},
+ {id:'pity',b:'arc',n:'고고학',ic:'tablet',max:4,base:12,v:5,f:'유물 전설 확정 -{a}회'},
+ {id:'luck',b:'arc',n:'연금술',ic:'clover',max:5,base:6,v:2,f:'상위 등급 확률 (공방 +{a}레벨 효과)'},
+];
+const RMAP2={};RESEARCH.forEach(r=>RMAP2[r.id]=r);
+function resLv(id){return (S.res&&S.res[id])||0}
+function rs(id){const r=RMAP2[id];return r?r.v*resLv(id):0}
+function resCost(r){return r.base*(resLv(r.id)+1)}
+function resTxt(r,l){const x=r.v*Math.max(1,l);
+  return r.f.replace('{p}',Math.round(x*100)+'%').replace('{a}',Math.round(x)).replace('{s}',fmt(500*x*goldMul()))}
+function lpGain(){return Math.floor(S.stage*(1+.1*(S.cycle||0)))}
+function pityMax(){return 50-rs('pity')}
+function rerollMax(){return 1+rs('reroll')}
+const MILES=[
+ {c:1,t:'유산 연구',d:'회귀할 때 받은 유산 포인트로 영구 연구를 할 수 있어요'},
+ {c:2,t:'자동 시대 진출',d:'레벨 30이 되면 알아서 다음 시대로 넘어가요',sw:'autoAdv'},
+ {c:3,t:'문명 특성 4장',d:'문명 특성을 고를 때 카드가 4장 나와요'},
+ {c:4,t:'회귀 보급품',d:'회귀할 때마다 고급 제작권 3장 · 곡괭이 10개 추가'},
+ {c:5,t:'황금 문명',d:'유닛에 황금빛 오라가 생겨요 · 칭호 「황제」'},
+ {c:6,t:'자동 공방 강화',d:'고철이 모이면 공방을 알아서 강화해요',sw:'autoUpg'},
+ {c:8,t:'전설 문명 특성',d:'특성 선택에 강력한 전설 카드가 등장해요'},
+ {c:10,t:'영원한 문명',d:'유닛에 무지갯빛 오라 · 칭호 「영원한 문명」'},
+];
+function unl(c){return (S.cycle||0)>=c}
+const TITLES=[[10,'영원한 문명'],[7,'전설의 황제'],[5,'황제'],[4,'대군주'],[3,'군주'],[2,'정복자'],[1,'개척자'],[0,'족장']];
+function titleOf(c){return TITLES.find(t=>(c||0)>=t[0])[1]}
+function applyCosmetic(){const t=$('ptank');if(!t)return;t.classList.toggle('rainbow',unl(10));t.classList.toggle('gold',unl(5)&&!unl(10))}
+function resAffordable(){return RESEARCH.some(r=>resLv(r.id)<r.max&&(S.lp||0)>=resCost(r))}
+function updateCmdDot(){const a=$('avatar');if(a)a.classList.toggle('red',unl(1)&&resAffordable())}
+let CTAB2='res';
+function renderCmd(){
+  const c=S.cycle||0;
+  $('cmdHd').innerHTML=`<div class="chd">${ico(unl(5)?'crown':'helmet')}<div><div class="tt" style="color:${c?cycColor(c):'#fff'}">${titleOf(c)}</div>
+    <div class="ts">${c?'★'+c+'회차 · ':''}${ERAS[S.era].n} · 최고 전투 ${S.bestStage||S.stage}</div></div>
+    <div class="lp">유산 포인트<b>${S.lp||0}</b></div></div>`;
+  document.querySelectorAll('.ctabb').forEach(t=>t.classList.toggle('on',t.dataset.t===CTAB2));
+  const B=$('cmdBody');
+  if(CTAB2==='res'){
+    if(!unl(1)){B.innerHTML=`<div class="mile next"><div class="mc">1회차</div><div><div class="mt">첫 회귀 후 해금</div>
+      <div class="md">미래시대 전투 ${rebirthStage()}에 도달하면 회귀할 수 있어요.<br>회귀하면 <b>도달한 전투만큼 유산 포인트</b>를 받아 영구 연구에 써요.</div></div></div>`;return}
+    B.innerHTML=`<div class="rpity"><span>연구는 <b>회귀해도 영원히</b> 유지돼요</span><span>더 멀리 가서 회귀할수록 포인트 ↑</span></div>`+
+      RES_BR.map(br=>`<div class="rbr">${ico(br.ic)}${br.n}</div>`+RESEARCH.filter(r=>r.b===br.k).map(r=>{const l=resLv(r.id),mx=l>=r.max,cost=resCost(r);
+        return `<div class="rnode${mx?' max':''}">${ico(r.ic)}<div style="min-width:0"><div class="nm">${r.n} <span class="lv">Lv.${l}/${r.max}</span></div>
+          <div class="ds">${l?'현재 <b>'+resTxt(r,l)+'</b>':resTxt(r,1).replace(/^/,'Lv.1: ')}${!mx&&l?' → '+resTxt(r,l+1):''}</div></div>
+          <button data-id="${r.id}" ${mx||(S.lp||0)<cost?'disabled':''}>${mx?'완료':ico('crown')+' '+cost}</button></div>`}).join('')).join('');
+    B.querySelectorAll('.rnode button').forEach(b=>b.onclick=()=>{const r=RMAP2[b.dataset.id],cost=resCost(r);
+      if(resLv(r.id)>=r.max||(S.lp||0)<cost)return;S.lp-=cost;S.res=S.res||{};S.res[r.id]=resLv(r.id)+1;
+      recalc();renderTop();renderHP();save();SFX.anvil();buzz(25);toast(ico(r.ic)+' <b>'+r.n+'</b> Lv.'+resLv(r.id)+' · '+resTxt(r,resLv(r.id)));updateCmdDot();renderCmd()});
+  }else if(CTAB2==='mile'){
+    const nx=MILES.find(m=>!unl(m.c));
+    B.innerHTML=`<div class="rpity"><span>회귀할 때마다 새 기능이 열려요</span><span>${nx?'다음: <b>'+nx.c+'회차</b>':'모두 해금!'}</span></div>`+
+      MILES.map(m=>{const ok=unl(m.c),isN=nx===m;
+        return `<div class="mile${ok?' ok':isN?' next':' lock'}"><div class="mc">${ok?'✓':''}${m.c}회차</div><div><div class="mt">${m.t}</div><div class="md">${m.d}</div></div>
+          ${ok&&m.sw?`<button class="sw${S[m.sw]!==false?' on':''}" data-sw="${m.sw}"></button>`:''}</div>`}).join('');
+    B.querySelectorAll('[data-sw]').forEach(b=>b.onclick=()=>{const k=b.dataset.sw;S[k]=S[k]===false;save();SFX.click();renderCmd()});
+  }else{
+    const relN=RELICS.filter(r=>relLv(r.id)>0).length,resN=RESEARCH.reduce((a,r)=>a+resLv(r.id),0);
+    B.innerHTML=`<div class="recs"><div><b>${c}</b>회귀 횟수</div><div><b>${S.bestStage||S.stage}</b>최고 전투</div>
+      <div><b>${S.lpTotal||0}</b>누적 유산 포인트</div><div><b>${resN}</b>연구 레벨 합계</div>
+      <div><b>${relN}/${RELICS.length}</b>발굴한 유물</div><div><b>${colPoints()}/${COL_MAX}</b>부품 도감 점수</div>
+      <div><b>×${fmt(legacyMul())}</b>회차 유산 (능력치)</div><div><b>${titleOf(c)}</b>칭호</div></div>
+      <div class="cnote">회귀할 때 <b>유산 포인트 = 도달한 전투 × (1 + 회차 × 10%)</b></div>`;
+  }
+}
+function openCmd(tab){if(tab)CTAB2=tab;renderCmd();$('cmdmask').classList.add('show')}
+/* 자동 시대 진출 · 자동 공방 강화 (회차 해금) */
+function autoTick(){
+  if(anyModal()||TUT.on||(typeof CUT!=='undefined'&&CUT)||dead||resolving)return;
+  if(unl(2)&&S.autoAdv!==false&&canAdvance()){doAdvance();return}
+  if(unl(6)&&S.autoUpg!==false){let n=0;while(n<8&&S.tier<tierCap()&&S.scrap>=upgCost()){S.scrap-=upgCost();S.tier++;n++}
+    if(n){daily('upg',n);renderTop();save()}}
+}
+
 /* ===========================================================
    11. 초기화 / 루프
 =========================================================== */
@@ -3887,7 +4030,7 @@ function addOffline(sec){
   const P0=S.offPend||{sec:0,gain:0,kills:0};
   const add=Math.min(sec,offCap()-P0.sec);if(add<=0){S.offPend=P0;return true}
   const kills=Math.floor(add/9);            // 접속 중보다 약간 느린 속도(약 70%)로 계산
-  P0.sec+=add;P0.kills+=kills;P0.gain+=Math.round(rewardUnit()*1.05*kills*(1+rv('off')));
+  P0.sec+=add;P0.kills+=kills;P0.gain+=Math.round(rewardUnit()*1.05*kills*(1+rv('off'))*(1+rs('off')));
   S.offPend=P0;save();return true;
 }
 function offDblReady(){return S.offDbl!==todayStr()}
@@ -4066,6 +4209,8 @@ function init(){
   SLOTS.forEach(s=>{if(!(s.k in S.gear))S.gear[s.k]=null});
   if(!Array.isArray(S.perks)){S.perks=[];S.perkOwed=(had&&(S.stage>=2||S.era>0||(S.cycle||0)>0))?1+S.era:0;S.perkCyc=S.cycle||0;S.perkAt=Date.now()+4000}
   if(!S.rel){S.rel={};S.pick=(S.pick||0)+10;S.pity=0}
+  if(S.lpTotal===undefined){let lp=0;for(let c=0;c<(S.cycle||0);c++)lp+=Math.floor((30+4*c)*(1+.1*c));S.lp=lp;S.lpTotal=lp;S.res=S.res||{};
+    if((S.cycle||0)>0)S.bestStage=Math.max(S.bestStage||0,S.stage)}
   colInit();SLOTS.forEach(s=>{const it=S.gear[s.k];if(it)colRecord(it,true)});S.maxEra=Math.max(S.maxEra||0,S.era);
   recalc();P.hp=P.s.hp;
   makeEnemy();scene();drawUnits();
@@ -4133,7 +4278,7 @@ setInterval(()=>{
   if(!document.hidden&&S.daily){S.daily.sec=(S.daily.sec||0)+1;
     const mm=S.daily.list.find(m=>m.id==='min');
     if(mm&&!mm.got){const v=Math.min(mm.n,Math.floor(S.daily.sec/60));if(v!==mm.c){mm.c=v;updateDots()}}}
-  tickBoost();checkPerk();
+  tickBoost();checkPerk();autoTick();updateCmdDot();S.bestStage=Math.max(S.bestStage||0,S.stage);
   // 다른 창 때문에 미뤄진 방치 보상은 화면이 비면 바로 보여줌
   if(S.offPend&&S.offPend.gain>0&&Date.now()>(S.offAt||0)&&!anyModal()&&!TUT.on&&!(typeof CUT!=='undefined'&&CUT))openOffline();
 },1000);
@@ -4141,6 +4286,8 @@ $('bGuide').onclick=()=>openGuide();
 $('bCol').onclick=()=>openRel();updateColDot();
 document.querySelectorAll('.rtab').forEach(t=>t.onclick=()=>{SFX.click();if(t.dataset.t==='col'){$('rmask').classList.remove('show');openCol();return}RTAB=t.dataset.t;renderRel()});
 $('pkbar').onclick=()=>openPerk(true);
+$('avatar').onclick=()=>{SFX.click();openCmd()};
+document.querySelectorAll('.ctabb').forEach(t=>t.onclick=()=>{CTAB2=t.dataset.t;SFX.click();renderCmd()});
 $('minfo').onclick=()=>openGuide('slot',M.slot);
 document.querySelectorAll('.gtab').forEach(t=>t.onclick=()=>{GTAB=t.dataset.t;renderGuide()});
 $('gmask').onclick=e=>{if(e.target.id==='gmask')$('gmask').classList.remove('show')};
