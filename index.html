@@ -704,6 +704,48 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 .pkc.leg .pn{color:#ffd43b}
 .nfb{padding:7px 11px;font-size:12px;background:#34405c;border-radius:9px;min-width:132px}
 #cp{cursor:pointer}
+
+/* ---- 동료 ---- */
+#comps{position:absolute;left:54px;top:2px;z-index:6;display:flex;gap:3px;pointer-events:none}
+#comps .cu{position:relative;width:var(--cs,34px);height:var(--cs,34px);animation:cbob 2.2s ease-in-out infinite}
+#comps .cu:nth-child(2){animation-delay:-.7s}#comps .cu:nth-child(3){animation-delay:-1.4s}
+#comps .cu svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+#comps .cu.ctr svg{filter:drop-shadow(0 0 5px #ffd43b)}
+@keyframes cbob{50%{transform:translateY(-3px)}}
+.corb{position:absolute;width:9px;height:9px;border-radius:50%;z-index:7;pointer-events:none;box-shadow:0 0 8px 2px currentColor;background:currentColor}
+.ctab3{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:9px}
+.pslots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
+.pslot{background:radial-gradient(circle at 50% 35%,#2a3550,#12161f);border:1.5px solid #3d4a68;border-radius:11px;padding:5px 3px 6px;text-align:center;min-height:118px;position:relative}
+.pslot.sel{border-color:#ffd166;box-shadow:0 0 10px rgba(255,209,102,.4)}
+.pslot.lock{opacity:.5;display:flex;align-items:center;justify-content:center;font-size:10.5px;color:#8b96ae;line-height:1.4}
+.pslot svg.csp{width:66px;height:60px}
+.pslot .nm,.cdcard .nm{font-size:11px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pslot .lv,.cdcard .lv{font-size:9.5px;color:#aab4c8}
+.pslot .ct{font-size:9px;font-weight:800;margin-top:2px}.pslot .ct .ico{width:12px;height:12px;vertical-align:-2px}
+.pslot .em{font-size:10.5px;color:#78839a;padding-top:30px}
+.cfoe{display:flex;align-items:center;justify-content:space-between;gap:6px;background:#10141d;border:1px solid #2c344a;border-radius:9px;padding:6px 9px;margin-bottom:8px;font-size:11px}
+.cfoe .ico{width:15px;height:15px;vertical-align:-3px}
+.cfoe button{padding:6px 10px;font-size:11px;background:linear-gradient(#ffd166,#f59f00);color:#241400}
+.cowned{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.cdcard{background:#161c2a;border:1.5px solid var(--rc);border-radius:9px;padding:3px 2px 4px;text-align:center;position:relative}
+.cdcard svg.csp{width:52px;height:46px}
+.cdcard.inp{opacity:.45}.cdcard .tag{position:absolute;top:2px;left:3px;font-size:8.5px;font-weight:900;color:#ffd166}
+.cdcard .evo{position:absolute;top:2px;right:3px;font-size:8.5px;font-weight:900;color:#fff;background:#2f9e44;border-radius:5px;padding:0 3px;animation:dotp 1.3s infinite}
+.cdex{display:flex;align-items:center;gap:4px;background:#161c2a;border:1px solid #2c344a;border-radius:10px;padding:4px 6px;margin-top:5px;cursor:pointer}
+.cdex .fs{display:flex;gap:2px}.cdex svg.csp{width:46px;height:42px}
+.cdex .ci2{flex:1;min-width:0;padding-left:4px}.cdex .ci2 b{font-size:12px}.cdex .ci2 small{display:block;font-size:10px;color:#aab4c8}
+.cdet{background:#10141d;border:1.5px solid var(--rc);border-radius:12px;padding:10px;margin-bottom:8px;text-align:center}
+.cdet svg.csp{width:120px;height:108px}
+.cdet .tn{font-size:16px;font-weight:900}.cdet .ts{font-size:11px;color:#aab4c8;margin:2px 0 6px}
+.cdet .rows{text-align:left;font-size:11.5px;line-height:1.6;background:#161c2a;border-radius:8px;padding:7px 9px}
+.cdet .rows b{color:#8ff09a}
+.cdet .evb{width:100%;margin-top:8px;padding:11px;font-size:13.5px;background:linear-gradient(#8ce99a,#2f9e44);box-shadow:0 3px 0 #1e6b2e}
+.cdet .evb:disabled{background:#2b3348;box-shadow:none;color:#8b96ae;font-size:11.5px}
+.stp{display:flex;justify-content:center;gap:4px;margin:3px 0}.stp i{width:22px;height:5px;border-radius:3px;background:#2c344a}.stp i.on{background:#ffd166}
+#rres.egg .rcard .b{background:radial-gradient(circle at 40% 35%,#fff8e6,#e8d6b0);border:2px solid #c9b27a;border-radius:50% 50% 46% 46%/60% 60% 40% 40%;box-shadow:inset 0 -6px 0 rgba(0,0,0,.08)}
+#rres.egg .rcard .b:after{content:"";width:60%;height:14%;border-top:2px solid #ff922b;border-bottom:2px solid #ff922b;opacity:.7}
+#rres.egg .rcard .f svg.csp{width:90%;height:auto}
+#rres.egg .rcard.big .f svg.csp{width:92%}
 #uClose{width:100%;padding:12px;font-size:14px;background:linear-gradient(#5ab5f8,#1c7ed6);box-shadow:0 3px 0 #10538f}
 </style>
 </head>
@@ -734,10 +776,11 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
     <div id="side">
       <button class="sib" id="bAtt"><span class="sic"><i data-ic="calendar"></i></span><span class="slb">출석</span></button>
       <button class="sib" id="bMis"><span class="sic"><i data-ic="scroll"></i></span><span class="slb">임무</span></button>
-      <button class="sib" id="bGuide"><span class="sic"><i data-ic="book"></i></span><span class="slb">안내</span></button>
+      <button class="sib" id="bComp"><span class="sic"><i data-ic="paw"></i></span><span class="slb">동료</span></button>
       <button class="sib" id="bCol"><span class="sic"><i data-ic="urn"></i></span><span class="slb">유물</span></button>
     </div>
     <div id="pkbar"></div>
+    <div id="comps"></div>
     <div id="fchips"><div id="boostChip"></div><div id="lzChip">💡 패배 분석</div></div>
     <div class="unit" id="pu">
       <div class="cycstars" id="pcyc"></div>
@@ -779,6 +822,7 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
     </div>
     <div id="opts">
       <label><input type="checkbox" id="quick"> 자동 장착</label>
+      <label id="autoUpgL" style="display:none"><input type="checkbox" id="autoUpgC"> 자동 강화</label>
       <span class="mini" id="pause">⏸ 일시정지</span>
       <span class="mini" id="spd">속도 x1</span>
       <span class="mini" id="diffbtn">난이도 보통</span>
@@ -816,6 +860,7 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   <div class="srow"><span>🔢 숫자 표시</span><button id="numFmt" class="nfb"></button></div>
   <div class="snote" id="numNote" style="margin-top:-2px"></div>
   <div class="snote">배경음악은 시대마다 바뀌고, 보스전에서는 박자가 빨라집니다<br><span id="verTxt"></span></div>
+  <button id="sGuide" style="width:100%;padding:10px;font-size:13px;background:#34405c;margin-bottom:8px">📖 장비 · 등급 안내</button>
   <button id="sBackup">💾 데이터 백업 · 불러오기</button>
   <button id="sTut">📖 튜토리얼 다시 보기</button>
   <button id="sReset">진행 초기화</button>
@@ -917,6 +962,13 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
   <div class="rtabs"><button class="ctabb rtab" data-t="res">유산 연구</button><button class="ctabb rtab" data-t="mile">회차 해금</button><button class="ctabb rtab" data-t="rec">기록</button></div>
   <div id="cmdBody"></div>
   <button class="pclose" data-close="cmdmask">닫기</button>
+</div></div>
+<div id="compmask" class="pmask"><div class="pmodal">
+  <div class="ptt"><i data-ic="paw"></i> 동료</div>
+  <div class="psub" id="cmpSub">함께 싸우는 동료 · 시대를 거치며 진화해요</div>
+  <div class="ctab3"><button class="rtab ctb" data-t="party">편성</button><button class="rtab ctb" data-t="dex">도감</button><button class="rtab ctb" data-t="hatch">부화</button></div>
+  <div id="cmpBody"></div>
+  <button class="pclose" id="cmpClose" data-close="compmask">닫기</button>
 </div></div>
 <div id="umask" class="pmask"><div class="pmodal">
   <div class="ptt">🆕 업데이트 내용</div>
@@ -1077,6 +1129,7 @@ function calcStats(gear,lv){
     s.crit+=it.crit||0;s.spd+=it.spd||0;s.eva+=it.eva||0}
   s.atk=Math.round(s.atk*L*LG);s.hp=Math.round(s.hp*L*LG);
   s.def=Math.round(s.def*L*LG);s.agl=Math.round(s.agl*L*LG);
+  if(S.party&&S.party.length){const ca=1+cv('all');s.atk=Math.round(s.atk*ca);s.hp=Math.round(s.hp*(1+cv('hp'))*ca);s.def=Math.round(s.def*(1+cv('def'))*ca);s.crit+=cv('crit');s.eva+=cv('eva')}
   {const A=1+rv('all');s.atk=Math.round(s.atk*(1+rv('atk'))*A);s.hp=Math.round(s.hp*(1+rv('hp'))*A);s.def=Math.round(s.def*(1+rv('def'))*A);s.crit+=rv('crit');s.eva+=rv('eva')}
   if(S.res){s.atk=Math.round(s.atk*(1+rs('atk')));s.hp=Math.round(s.hp*(1+rs('hp')));s.def=Math.round(s.def*(1+rs('def')))}
   if(pk('apex')){const m=1+.4*pk('apex');s.atk=Math.round(s.atk*m);s.hp=Math.round(s.hp*m);s.def=Math.round(s.def*m)}
@@ -1140,11 +1193,11 @@ function makeEnemy(){
   E.uid=++ENEMY_UID;
   if(pk('first'))E.hp=Math.round(E.max*(1-Math.min(.4,.08*pk('first'))));
 }
-function roundReward(){return Math.round(16*Math.pow(1.115,totalRound()-1)*(S.round===15?4:1)*goldMul()*(boostOn()?2:1)*(1+.4*pk('loot'))*(1+rv('scrap')+rv('reward'))*(1+rs('scrap'))*(1+.8*pk('golden')))}
+function roundReward(){return Math.round(16*Math.pow(1.115,totalRound()-1)*(S.round===15?4:1)*goldMul()*(boostOn()?2:1)*(1+.4*pk('loot'))*(1+rv('scrap')+rv('reward'))*(1+rs('scrap'))*(1+.8*pk('golden'))*(1+cv('scrap')))}
 // 초반 난이도 곡선 (1회차 한정): 첫 두 전투는 적이 서서히 강해지고, 초반 보스 배율도 낮음
 let EARLY_N=30,EARLY_R0=.35,BOSS_EARLY=[1.4,1.7];
 let XP_ERA=[1.6,2.2,2.8,3.4,4,4.6];     // 시대가 오를수록 레벨업에 필요한 경험치 증가
-function xpReward(){return Math.round((S.round===15?30:10)*(1+.35*pk('xp'))*(1+rv('xp')+rv('reward'))*(1+rs('xp'))*(1+.8*pk('golden')))}
+function xpReward(){return Math.round((S.round===15?30:10)*(1+.35*pk('xp'))*(1+rv('xp')+rv('reward'))*(1+rs('xp'))*(1+.8*pk('golden'))*(1+cv('xp')))}
 function xpNeed(){return Math.round((10+S.lv)*XP_ERA[Math.min(S.era,XP_ERA.length-1)])}
 function forgeCost(){return Math.round(28*Math.pow(1.28,S.tier-1)*Math.pow(.75,pk('forge'))*Math.max(.5,1-rv('forge'))*(1-rs('forge')))}
 function slotForgeCost(){return Math.round(forgeCost()*1.9)}
@@ -2094,7 +2147,8 @@ function renderTop(){
   $('fcost').textContent=fmt(forgeCost());
   const capped=S.tier>=tierCap();
   $('ucost').textContent=capped?'한계':fmt(upgCost());
-  $('ulv').textContent='공방 '+S.tier+(tierCap()===Infinity?' / ∞':' / '+tierCap());
+  $('ulv').textContent='공방 '+S.tier+(tierCap()===Infinity?' / ∞':' / '+tierCap())+(unl(6)&&S.autoUpg!==false?' · 자동':'');
+  {const l=$('autoUpgL');if(l){l.style.display=unl(6)?'flex':'none';$('autoUpgC').checked=S.autoUpg!==false}}
   $('forge').disabled=S.scrap<forgeCost();
   $('upg').disabled=capped||S.scrap<upgCost();
   $('upg').style.background=capped?'linear-gradient(#8a6a6a,#6b4a4a)':'';
@@ -2254,14 +2308,14 @@ function damage(atk,def,crit,pl){
   return {d:Math.max(1,d*(c?(pl?critMul():2):1)),c:c};
 }
 function tick(dt){
-  skTick(dt);
+  skTick(dt);compTick(dt);
   if(resolving)return;
   if(dead){deadT-=dt;
     if(deadT<=0){dead=false;S.round=1;makeEnemy();scene();drawUnits();onNewEnemy();
       $('ptank').classList.remove('wrecked');P.hp=P.s.hp;renderTop();renderHP()}
     return}
   pcd-=dt;E.cd-=dt;
-  {const rg=.012*pk('regen')+rv('regen');if(rg&&P.hp<P.s.hp)P.hp=Math.min(P.s.hp,P.hp+P.s.hp*rg*dt)}
+  {const rg=.012*pk('regen')+rv('regen')+cv('regen');if(rg&&P.hp<P.s.hp)P.hp=Math.min(P.s.hp,P.hp+P.s.hp*rg*dt)}
   if(E.regen&&E.hp<E.max){E.hp=Math.min(E.max,E.hp+E.max*E.regen*dt);E.rgT=(E.rgT||0)+dt;
     if(E.rgT>1){E.rgT=0;const c=centerOf($('etank'));const d=fxAt('dmg',c.x+4,40,900);d.textContent='+'+fmt(E.max*E.regen);d.style.color='#69db7c';renderHP()}}
   if(pcd<=0){pcd=P.s.interval*(SK.rageT>0?.5:1);
@@ -2302,6 +2356,7 @@ function winRound(){
   const cleared=S.round>=15;
   if(cleared){S.stage++;S.round=1;P.hp=P.s.hp;clearLoseOnWin();if(S.stage===2&&!S.firstWin)setTimeout(firstWin,900);
     if(S.stage===2&&S.perkCyc!==(S.cycle||0)){S.perkCyc=S.cycle||0;owePerk(3600)}
+    if((S.stage-1)%5===0){S.egg=(S.egg||0)+1;updateCompDot()}
     {const g=((S.stage-1)%5===0?3:1)+(Math.random()<rs('pick')?1:0);S.pick=(S.pick||0)+g;S.pickGot=g;updateColDot()}}
   else S.round++;
   P.hp=Math.min(P.s.hp,P.hp+P.s.hp*0.10);
@@ -2415,7 +2470,7 @@ function doAdvance(){
   recalc();P.hp=P.s.hp;
   makeEnemy();scene();drawUnits();
   renderTop();renderGrid();renderHP();save();
-  $('emask').classList.remove('show');S.maxEra=Math.max(S.maxEra||0,to);owePerk(0);save();
+  $('emask').classList.remove('show');S.maxEra=Math.max(S.maxEra||0,to);owePerk(0);save();renderComps();updateCompDot();
   playCut({oldSvg,newSvg:unitSVG(playerCfg(false)),bg:ERAS[to].pal.b,hi:'#ffd166',
     t1:'새로운 문명',t2:ERAS[to].n,t3:`주력 유닛 <b>${ERAS[to].unit}</b><br>장비 개조 완료 · 부품 수치 <b>×${ERA_M}</b>`,
     after:()=>toast('<b style="color:#8ce99a">'+ERAS[to].n+'</b> 진입! '+ERAS[to].unit+' 배치 완료')});
@@ -2463,7 +2518,7 @@ function doRebirth(){
   const nc=(S.cycle||0)+1,lg=lpGain();
   S.bestStage=Math.max(S.bestStage||0,S.stage);S.lp=(S.lp||0)+lg;S.lpTotal=(S.lpTotal||0)+lg;
   S.cycle=nc;S.era=0;S.lv=1;S.xp=0;S.tier=Math.min(tierCap(0)-1,1+rs('tier'));S.stage=1;S.round=1;
-  S.perks=[];S.perkOwed=0;S.pkOffer=null;S.pkRolled=0;renderPerkBar();S.pick=(S.pick||0)+5*nc;
+  S.perks=[];S.perkOwed=0;S.pkOffer=null;S.pkRolled=0;renderPerkBar();S.pick=(S.pick||0)+5*nc;S.egg=(S.egg||0)+3;
   S.scrap=Math.round((120+500*rs('start'))*goldMul());
   if(unl(4)){S.tix=(S.tix||0)+3;S.pick=(S.pick||0)+10}
   SLOTS.forEach(s=>S.gear[s.k]=null);
@@ -2821,7 +2876,7 @@ function tutAvatar(){
   return `<svg viewBox="-13 -55 26 36" width="100%" height="100%">${ugDefs('tav',DPAL[0][0])}
     ${soldier('tav',0,0,1,{helm,cloth:cl,dark:'#3a2a1a',wpn:'none',wa:1.1})}</svg>`;
 }
-function anyModal(){return ['mask','emask','smask','dmask','amask','gmask','umask','omask','bkmask','lzmask','cmask','pkmask','rmask','cmdmask'].some(id=>$(id).classList.contains('show'))}
+function anyModal(){return ['mask','emask','smask','dmask','amask','gmask','umask','omask','bkmask','lzmask','cmask','pkmask','rmask','cmdmask','compmask'].some(id=>$(id).classList.contains('show'))}
 function tutEl(d){if(!d||!d.target)return null;
   const el=typeof d.target==='function'?d.target():document.querySelector(d.target);
   return el&&el.getClientRects().length?el:null}
@@ -2932,12 +2987,13 @@ function rewardUnit(){return Math.round(16*Math.pow(1.115,totalRound()-1)*goldMu
 function boostOn(){return (S.boostUntil||0)>Date.now()}
 function addBoost(min){S.boostUntil=Math.max(Date.now(),S.boostUntil||0)+min*60000}
 function rwText(r,sep){const p=[];
-  if(r.s)p.push(ico('nut')+fmt(rewardUnit()*r.s));if(r.k)p.push(ico('ticket')+r.k);if(r.p)p.push(ico('pick')+r.p);if(r.b)p.push(ico('bolt')+(r.b*30)+'분');
+  if(r.s)p.push(ico('nut')+fmt(rewardUnit()*r.s));if(r.k)p.push(ico('ticket')+r.k);if(r.p)p.push(ico('pick')+r.p);if(r.e)p.push(ico('egg')+r.e);if(r.b)p.push(ico('bolt')+(r.b*30)+'분');
   if(sep)return p.join(sep);
   return p.join(' ')}
 function grant(r){const p=[];
   if(r.s){const v=rewardUnit()*r.s;S.scrap+=v;p.push(ico('nut')+fmt(v))}
   if(r.k){S.tix=(S.tix||0)+r.k;p.push(ico('ticket')+' 제작권 '+r.k)}
+  if(r.e){S.egg=(S.egg||0)+r.e;p.push(ico('egg')+' 알 '+r.e);updateCompDot()}
   if(r.p){S.pick=(S.pick||0)+r.p;p.push(ico('pick')+' 곡괭이 '+r.p);updateColDot()}
   if(r.b){addBoost(r.b*30);p.push(ico('bolt')+' 부스트 '+(r.b*30)+'분')}
   renderTop();save();return p.join(' · ')}
@@ -2955,7 +3011,7 @@ const MIS_POOL=[
  {id:'dig',  ic:'⛏️',t:n=>`유물 ${n}회 발굴`,        n:[1,2], r:{p:1}},
  {id:'skill',ic:'💫',t:n=>`스킬 ${n}회 사용`,          n:[10,20],r:{s:25}},
 ];
-const MS_REWARD={3:{k:1,p:2},5:{k:2,b:1,p:3}};
+const MS_REWARD={3:{k:1,p:2},5:{k:2,b:1,p:3,e:1}};
 function newDaily(){
   const day=todayStr(),seed=+day.replace(/-/g,'');
   let r=seed%2147483647;const rnd2=()=>(r=r*16807%2147483647)/2147483647;
@@ -3004,7 +3060,7 @@ function renderMissions(){
 function openMissions(){renderMissions();$('dmask').classList.add('show')}
 
 /* ---------- 출석 보상 (7일 누적, 빠진 날이 있어도 이어짐) ---------- */
-const ATT=[{s:30,p:1},{k:1},{s:60,p:1},{b:1},{s:100,p:2},{k:2},{k:3,b:1,p:5}];
+const ATT=[{s:30,p:1},{k:1},{s:60,p:1,e:1},{b:1},{s:100,p:2},{k:2},{k:3,b:1,p:5,e:2}];
 function attReady(){return !S.att||S.att.last!==todayStr()}
 function renderAttendance(){
   const A=S.att||{day:0,last:'',total:0},ready=attReady();
@@ -3264,8 +3320,8 @@ SFX.skRage=function(){if(!sOn())return;
    17. 버전 · 업데이트 알림 · 업데이트 내역
    ─ 새 버전을 올릴 때: 아래 BUILD 숫자와 version.json 의 build 숫자를 같이 올린다
 =========================================================== */
-const BUILD=12, BUILD_NAME='1.6.1';
-const CHANGELOG=[{b:12,v:'1.6.1',d:'2026-09-30',items:['🔢 숫자를 <b>한국식 단위</b>로 표시 (만·억·조·경·해…) — 설정에서 영문/지수 표기로 바꿀 수 있어요','전투력을 누르면 정확한 크기를 알려줘요','부위 제작 창 버튼 위치 고정 — 연속으로 눌러도 다른 버튼이 눌리지 않아요','자동 제작이 더 좋은 부품을 찾으면 <b>바로 장착</b>','자동 장착이 켜져 있으면 부위 제작도 더 좋으면 장착 · 아니면 자동 분해']},{b:11,v:'1.6.0',d:'2026-09-30',items:['🏛 <b>문명의 유산</b> — 왼쪽 위 사령관 아이콘을 눌러 열어요','회귀하면 <b>유산 포인트</b>(도달한 전투 × 회차 보너스)를 받아 16가지 영구 연구에 투자','회차마다 새 기능 해금: 자동 시대 진출 · 특성 카드 4장 · 회귀 보급품 · 자동 공방 강화 · 전설 문명 특성 · 황금/무지개 오라','회차에 따라 칭호가 바뀌어요 (족장 → 개척자 → 정복자 → … → 영원한 문명)','이미 회귀한 분들은 지난 회차만큼 유산 포인트를 소급 지급했어요']},{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
+const BUILD=14, BUILD_NAME='1.7.0';
+const CHANGELOG=[{b:14,v:'1.7.0',d:'2026-10-01',items:['🐾 <b>동료 시스템</b> — 12종 동료가 함께 싸우고, 시대를 거치며 3단계로 <b>진화</b> (늑대 → 군견 → 사이버 울프)','첫 보스를 잡으면 <b>첫 동료</b>를 3마리 중에서 골라요','동료마다 <b>상성</b>이 있어요 — 맞는 적 특성에게 피해 ×2.5','최대 3마리 편성 · 자동 편성 · 동료 도감 36칸','동료의 알: 5전투마다 · 일일 임무 · 출석 · 회귀 · 매일 무료 부화','장비 안내는 설정 화면으로 옮겼어요']},{b:13,v:'1.6.2',d:'2026-10-01',items:['공방 <b>자동 강화 / 수동 강화</b>를 화면 아래 체크박스로 바로 전환 (6회차 해금 후)','자동 강화 중에는 공방 버튼에 「자동」 표시']},{b:12,v:'1.6.1',d:'2026-09-30',items:['🔢 숫자를 <b>한국식 단위</b>로 표시 (만·억·조·경·해…) — 설정에서 영문/지수 표기로 바꿀 수 있어요','전투력을 누르면 정확한 크기를 알려줘요','부위 제작 창 버튼 위치 고정 — 연속으로 눌러도 다른 버튼이 눌리지 않아요','자동 제작이 더 좋은 부품을 찾으면 <b>바로 장착</b>','자동 장착이 켜져 있으면 부위 제작도 더 좋으면 장착 · 아니면 자동 분해']},{b:11,v:'1.6.0',d:'2026-09-30',items:['🏛 <b>문명의 유산</b> — 왼쪽 위 사령관 아이콘을 눌러 열어요','회귀하면 <b>유산 포인트</b>(도달한 전투 × 회차 보너스)를 받아 16가지 영구 연구에 투자','회차마다 새 기능 해금: 자동 시대 진출 · 특성 카드 4장 · 회귀 보급품 · 자동 공방 강화 · 전설 문명 특성 · 황금/무지개 오라','회차에 따라 칭호가 바뀌어요 (족장 → 개척자 → 정복자 → … → 영원한 문명)','이미 회귀한 분들은 지난 회차만큼 유산 포인트를 소급 지급했어요']},{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
  {b:1,v:'1.0.0',d:'2026-09-28',items:[
   '석기시대 → 미래시대 6개 문명 진화 · 회귀(회차) 시스템',
   '시대별 유닛 24종 · 움직이는 배경 · 시대별 탄환과 폭발 연출',
@@ -3570,6 +3626,10 @@ gem:()=>`<path d="M9 4 H23 L29 12 L16 29 L3 12Z" fill="${C.cyan}"/><path d="M3 1
 sundial:()=>`<ellipse cx="16" cy="21" rx="13" ry="6.5" fill="${C.stone}"/><ellipse cx="16" cy="19" rx="13" ry="6.5" fill="${C.cream}"/>
   <path d="M16 19 L16 6 L22 19Z" fill="${C.bronze}"/><path d="M16 19 L6 22.5" stroke="${ICK}" stroke-width="1.6" opacity=".45"/>
   <path d="M5 19 H7 M25 19 H27 M16 24.5 V26" stroke="${C.woodD}" stroke-width="1.2"/>`,
+paw:()=>`<ellipse cx="16" cy="21" rx="7.5" ry="6.5" fill="${C.leather}"/>
+  ${[[7,12],[12.5,7.5],[19.5,7.5],[25,12]].map(p=>`<ellipse cx="${p[0]}" cy="${p[1]}" rx="3.2" ry="3.8" fill="${C.leather}"/>`).join('')}${hl(14,19,2.6,1.4,.4)}`,
+egg:()=>`<path d="M16 3 Q26 4 27 18 Q27 29 16 29 Q5 29 5 18 Q6 4 16 3Z" fill="${C.cream}"/>
+  <path d="M7 15 L11 12 L15 16 L19 12 L23 16 L26 13" fill="none" stroke="${C.orange}" stroke-width="1.8"/><circle cx="12" cy="22" r="2" fill="${C.green}" stroke="none"/><circle cx="20" cy="21" r="1.6" fill="${C.blue}" stroke="none"/>${hl(12,9,2.4,3,.6)}`,
 /* ---------- UI ---------- */
 calendar:()=>`<rect x="4" y="6" width="24" height="23" rx="3" fill="${C.cream}"/><path d="M4 9 Q4 6 7 6 H25 Q28 6 28 9 V13 H4Z" fill="${C.red}"/>
   <path d="M10 3.5 V9 M22 3.5 V9" stroke="${C.ironD}" stroke-width="2.4"/>
@@ -3686,6 +3746,7 @@ function firstWin(){
     <div style="margin-top:6px;font-size:13px;font-weight:800;color:#ffe3a3">${ico('ticket')} 고급 제작권 1장 획득</div></div>`;
   F.appendChild(d);setTimeout(()=>d.remove(),2700);
   SFX.clear();buzz([30,30,80]);
+  S.starterAt=Date.now()+3200;
   setTimeout(()=>hint('tix1','#grid','첫 승리 기념으로 <b>고급 제작권</b>을 주겠네!<br>부위를 눌러 사용하면 <b>명품 이상</b>이 확정이라네.'),2800);
 }
 function bossIntro(){
@@ -3746,9 +3807,9 @@ function applyTraits(en,tr){
 function hasTr(en,k){return !!(en&&en.tr&&en.tr.includes(k))}
 /* 공격 한 번의 기대 피해 · 초당 피해 (특성·문명 특성 반영) */
 function critMul(){return 2+.3*pk('crit')+rv('critd')+rs('critd')}
-function vsMul(en){let m=1;if(en.boss)m*=(1+.4*pk('boss'))*(1+rv('boss'))*(1+rs('boss'));if(hasTr(en,'shield')||hasTr(en,'swift'))m*=1+.5*pk('breaker');return m}
+function vsMul(en){let m=1;if(en.boss)m*=(1+.4*pk('boss'))*(1+rv('boss'))*(1+rs('boss'))*(1+cv('boss'));if(hasTr(en,'shield')||hasTr(en,'swift'))m*=1+.5*pk('breaker');return m}
 function pdOf(s,en){const c=s.crit/100,h=d=>s.atk*s.atk/(s.atk+d);
-  const pd=((1-c)*h(en.def)+c*critMul()*h(en.def*.5))/s.interval*(1-(en.eva||0)/100)*vsMul(en);
+  const pd=((1-c)*h(en.def)+c*critMul()*h(en.def*.5))/s.interval*((1-(en.eva||0)/100)+compFactor(s,en))*vsMul(en);
   return Math.max(en.max*.002,pd-(en.regen||0)*en.max)}
 function edOf(s,en){const a=en.atk*(en.rage?1.3:1);
   return a*a/(a+s.def)*(1+(en.crit||10)/100)*(1-s.eva/100)/en.interval*Math.max(.3,1-rv('taken'))}
@@ -3759,7 +3820,7 @@ function trBadges(){
   if(E.tr&&E.tr[0])et.classList.add('tr-'+E.tr[0]);
 }
 function onNewEnemy(){
-  trBadges();
+  trBadges();updateCompCtr();
   if(E.tr)for(const k of E.tr){if(!(S.hints&&S.hints['tr_'+k])){
     setTimeout(()=>hint('tr_'+k,'#eu',`새로운 적 <b style="color:${TRAITS[k].c}">${TRAITS[k].n}</b> 등장!<br>${TRAITS[k].tip}`),E.boss?2100:500);break}}
 }
@@ -3923,7 +3984,7 @@ const SITE_SVG=`<svg viewBox="0 0 360 118" preserveAspectRatio="xMidYMax slice">
   <path d="M60 100 L84 70" stroke="#6e4424" stroke-width="4" stroke-linecap="round"/><path d="M72 66 Q84 58 98 66 L90 70 Q84 66 78 70Z" fill="#b9c5d2" stroke="#1d2230" stroke-width="1.5"/>
   <path d="M280 98 l8 -14 l8 14Z M292 102 l6 -9 l6 9Z" fill="#c9b27a" stroke="#1d2230" stroke-width="1.2"/></svg>`;
 function renderRel(){
-  document.querySelectorAll('.rtab').forEach(t=>t.classList.toggle('on',t.dataset.t===RTAB));
+  document.querySelectorAll('#rmask .rtab').forEach(t=>t.classList.toggle('on',t.dataset.t===RTAB));
   const B=$('rBody');S.rel=S.rel||{};
   if(RTAB==='dig'){
     const free=S.freeDig!==todayStr(),p=S.pick||0,pity=S.pity||0;
@@ -4031,7 +4092,7 @@ function renderCmd(){
       MILES.map(m=>{const ok=unl(m.c),isN=nx===m;
         return `<div class="mile${ok?' ok':isN?' next':' lock'}"><div class="mc">${ok?'✓':''}${m.c}회차</div><div><div class="mt">${m.t}</div><div class="md">${m.d}</div></div>
           ${ok&&m.sw?`<button class="sw${S[m.sw]!==false?' on':''}" data-sw="${m.sw}"></button>`:''}</div>`}).join('');
-    B.querySelectorAll('[data-sw]').forEach(b=>b.onclick=()=>{const k=b.dataset.sw;S[k]=S[k]===false;save();SFX.click();renderCmd()});
+    B.querySelectorAll('[data-sw]').forEach(b=>b.onclick=()=>{const k=b.dataset.sw;S[k]=S[k]===false;save();SFX.click();renderCmd();renderTop()});
   }else{
     const relN=RELICS.filter(r=>relLv(r.id)>0).length,resN=RESEARCH.reduce((a,r)=>a+resLv(r.id),0);
     B.innerHTML=`<div class="recs"><div><b>${c}</b>회귀 횟수</div><div><b>${S.bestStage||S.stage}</b>최고 전투</div>
@@ -4049,6 +4110,369 @@ function autoTick(){
   if(unl(6)&&S.autoUpg!==false){let n=0;while(n<8&&S.tier<tierCap()&&S.scrap>=upgCost()){S.scrap-=upgCost();S.tier++;n++}
     if(n){daily('upg',n);renderTop();save()}}
 }
+
+/* ===========================================================
+   26. 동료 그래픽 — 12종 × 3단계 (자연 → 무장 → 미래)
+=========================================================== */
+const CK='#1d2230';
+const CPAL={
+ wolf:{b:'#8a8f99',d:'#5c616b',l:'#d6d9de',a:'#e0e3e8'},
+ hawk:{b:'#9a6a3e',d:'#6b4526',l:'#efe2c8',a:'#ffcc33'},
+ boar:{b:'#7a5236',d:'#4a301e',l:'#c79a78',a:'#f2e6c8'},
+ turtle:{b:'#7fae5a',d:'#3f6b3a',l:'#a9d48a',a:'#c9b27a'},
+ owl:{b:'#a07850',d:'#6b4c30',l:'#e9d8b8',a:'#ffb627'},
+ bear:{b:'#7a4e2e',d:'#4e301b',l:'#c29a74',a:'#2b1d14'},
+ snake:{b:'#5fa35f',d:'#356b3a',l:'#d9e88a',a:'#e03131'},
+ deer:{b:'#c08850',d:'#7a5230',l:'#f4e2c4',a:'#8a5a30'},
+ monkey:{b:'#8a5a34',d:'#5a3a20',l:'#e8c8a0',a:'#c98a55'},
+ eleph:{b:'#8d95a3',d:'#5f6775',l:'#b8bfcb',a:'#f2e6c8'},
+ fox:{b:'#e8823a',d:'#a8521e',l:'#fff1dc',a:'#3a2a1f'},
+ dragon:{b:'#c0392b',d:'#7a1f18',l:'#f5b041',a:'#ffd166'},
+};
+function cmix(x,y,t){const h=v=>[1,3,5].map(i=>parseInt(v.slice(i,i+2),16));const A=h(x),B=h(y);
+  return '#'+A.map((c,i)=>Math.round(c+(B[i]-c)*t).toString(16).padStart(2,'0')).join('')}
+const FUT={b:'#8fa3bf',d:'#4a5878',l:'#c9d6ea',a:'#6fe3ff'};
+/* 동물별 몸통 + 장식 기준점 (back: 등 위 장갑, head: 투구, eye: 눈, thr: 추진기) */
+const CBODY={
+wolf:{back:[30,22,16],head:[52,16],eye:[55,21],thr:[13,31],
+ f:p=>`<path d="M14 30 Q3 25 4 15 Q10 23 16 26Z" fill="${p.b}"/>
+  <rect x="17" y="38" width="4.5" height="17" rx="2" fill="${p.d}"/><rect x="23" y="39" width="4.5" height="16" rx="2" fill="${p.d}"/>
+  <path d="M14 29 Q16 22 26 22 L40 22 Q48 22 49 30 L48 40 Q40 44 26 43 Q15 42 14 36Z" fill="${p.b}"/>
+  <path d="M20 40 Q30 44 44 40 L44 37 Q30 40 20 37Z" fill="${p.l}" stroke="none"/>
+  <rect x="37" y="39" width="4.5" height="16" rx="2" fill="${p.b}"/><rect x="43" y="38" width="4.5" height="17" rx="2" fill="${p.b}"/>
+  <path d="M44 27 Q45 17 54 17 L58 12 L59 19 L62 22 Q64.5 26 60.5 28 L52 30 Q46 31 44 27Z" fill="${p.b}"/>
+  <path d="M50 18 L51 10 L55.5 16.5Z" fill="${p.d}"/><circle cx="62.6" cy="24" r="1.3" fill="${CK}" stroke="none"/>
+  <path d="M54 29 Q58 30 61 28" fill="none" stroke="${p.l}" stroke-width="1.6"/>`},
+hawk:{back:[31,25,12],head:[46,20],eye:[47,25],thr:[16,32],
+ f:p=>`<path d="M21 33 L7 29 L9 39Z" fill="${p.d}"/>
+  <ellipse cx="32" cy="32" rx="14" ry="8" transform="rotate(-10 32 32)" fill="${p.b}"/>
+  <path d="M22 36 Q32 42 43 34 Q32 38 22 34Z" fill="${p.l}" stroke="none"/>
+  <path d="M25 29 Q28 7 47 4 Q41 17 37 29Z" fill="${p.d}"/><path d="M29 27 Q33 14 42 9 M33 28 Q37 18 44 13" fill="none" stroke="${p.b}" stroke-width="1.2"/>
+  <circle cx="46" cy="27" r="6.5" fill="${p.b}"/><path d="M51.5 25 L58 28 L51.5 31Z" fill="${p.a}"/>
+  <path d="M30 39 L28 46 M34 39 L34 46 M27 46 L30 46 M32 46 L36 46" stroke="${p.a}" stroke-width="1.6" fill="none"/>`},
+boar:{back:[30,21,20],head:[52,25],eye:[53,30],thr:[11,32],
+ f:p=>`<rect x="15" y="40" width="5" height="15" rx="2" fill="${p.d}"/><rect x="22" y="41" width="5" height="14" rx="2" fill="${p.d}"/>
+  <path d="M10 34 Q10 22 26 21 L42 22 Q52 24 52 34 Q50 44 36 44 L20 44 Q10 42 10 34Z" fill="${p.b}"/>
+  <path d="M17 23 L19 17 L22 22 L25 15 L28 21 L31 15 L34 21 L37 16 L39 22Z" fill="${p.d}"/>
+  <rect x="37" y="41" width="5" height="14" rx="2" fill="${p.b}"/><rect x="44" y="40" width="5" height="15" rx="2" fill="${p.b}"/>
+  <path d="M45 26 Q56 23 60 31 L63 36 Q59 41 52 39 Q45 37 45 26Z" fill="${p.b}"/>
+  <ellipse cx="61" cy="35.5" rx="2.6" ry="3.2" fill="${p.l}"/><path d="M57 38 Q59 44 63 40" fill="none" stroke="${p.a}" stroke-width="2.4"/>
+  <path d="M47 26 L49 19 L53 25Z" fill="${p.d}"/>`},
+turtle:{back:[33,18,22],head:[59,30],eye:[60,35],thr:[9,37],
+ f:p=>`<ellipse cx="17" cy="49" rx="5" ry="4" fill="${p.b}"/><ellipse cx="47" cy="49" rx="5" ry="4" fill="${p.b}"/>
+  <path d="M54 35 Q62 29 64 35 Q63 42 55 41Z" fill="${p.b}"/>
+  <path d="M10 41 H57 Q57 46 52 46 H15 Q10 46 10 41Z" fill="${p.a}"/>
+  <path d="M12 41 Q14 18 34 18 Q53 18 55 41Z" fill="${p.d}"/>
+  <path d="M24 22 L22 31 L28 37 L39 37 L45 31 L43 22 M22 31 L14 36 M45 31 L53 36 M28 37 L27 41 M39 37 L40 41 M24 22 L33 19 L43 22" fill="none" stroke="${p.l}" stroke-width="1.4"/>`},
+owl:{back:[33,15,15],head:[33,14],eye:[38,26],thr:[19,40],
+ f:p=>`<path d="M22 12 L24 4 L28 12 M44 12 L42 4 L38 12" fill="${p.d}"/>
+  <ellipse cx="33" cy="34" rx="14.5" ry="17.5" fill="${p.b}"/>
+  <path d="M20 30 Q14 40 22 50 Q24 40 22 30Z" fill="${p.d}"/>
+  <ellipse cx="34" cy="40" rx="9" ry="10" fill="${p.l}"/>
+  <path d="M29 37 l2.5 2 l2.5 -2 l2.5 2 l2.5 -2 M29 43 l2.5 2 l2.5 -2 l2.5 2 l2.5 -2" fill="none" stroke="${p.d}" stroke-width="1"/>
+  <circle cx="28" cy="25" r="6.2" fill="#f7f0e0"/><circle cx="39" cy="25" r="6.2" fill="#f7f0e0"/>
+  <circle cx="28" cy="25" r="3.2" fill="${p.a}"/><circle cx="39" cy="25" r="3.2" fill="${p.a}"/>
+  <circle cx="28" cy="25" r="1.6" fill="${CK}" stroke="none"/><circle cx="39" cy="25" r="1.6" fill="${CK}" stroke="none"/>
+  <path d="M31.5 30 L33.5 34.5 L35.5 30Z" fill="${p.a}"/><path d="M28 51 v4 M31 51 v4 M37 51 v4 M40 51 v4" stroke="${p.a}" stroke-width="1.8"/>`},
+bear:{back:[28,20,22],head:[53,16],eye:[55,24],thr:[8,36],
+ f:p=>`<rect x="12" y="40" width="7" height="15" rx="3" fill="${p.d}"/><rect x="21" y="41" width="7" height="14" rx="3" fill="${p.d}"/>
+  <path d="M8 40 Q7 20 28 20 L40 21 Q52 23 52 36 L52 44 Q44 47 26 46 Q10 46 8 40Z" fill="${p.b}"/>
+  <rect x="36" y="41" width="7" height="14" rx="3" fill="${p.b}"/><rect x="44" y="40" width="7" height="15" rx="3" fill="${p.b}"/>
+  <circle cx="47.5" cy="17.5" r="3.6" fill="${p.b}"/><circle cx="57" cy="17.5" r="3.6" fill="${p.b}"/>
+  <circle cx="52.5" cy="26" r="9" fill="${p.b}"/><ellipse cx="59" cy="29" rx="4.5" ry="3.4" fill="${p.l}"/>
+  <circle cx="62.5" cy="28" r="1.5" fill="${CK}" stroke="none"/><circle cx="47.5" cy="17.5" r="1.5" fill="${p.l}" stroke="none"/>`},
+snake:{back:[29,36,11],head:[51,13],eye:[52,18],thr:[9,48],
+ f:p=>`<path d="M7 50 Q19 59 30 50 Q41 42 30 36 Q19 30 30 23 Q38 18 46 21" fill="none" stroke="${CK}" stroke-width="11.5"/>
+  <path d="M7 50 Q19 59 30 50 Q41 42 30 36 Q19 30 30 23 Q38 18 46 21" fill="none" stroke="${p.b}" stroke-width="8.5"/>
+  <path d="M10 52 Q19 57 28 51 M33 44 Q36 40 31 37 M26 30 Q25 26 31 24" fill="none" stroke="${p.l}" stroke-width="2.4" stroke-dasharray="2 2.4"/>
+  <path d="M44 16 Q54 12 58.5 19.5 Q56.5 26.5 46 26 Q42 22 44 16Z" fill="${p.b}"/>
+  <path d="M58 22 L62 23 L64 21.5 M62 23 L64 25" fill="none" stroke="${p.a}" stroke-width="1.2"/>`},
+deer:{back:[28,26,14],head:[50,12],eye:[51,16],thr:[13,32],
+ f:p=>`<path d="M16 32 L12 28 L14 34Z" fill="${p.l}"/>
+  <rect x="18" y="37" width="3.4" height="19" rx="1.5" fill="${p.d}"/><rect x="23" y="38" width="3.4" height="18" rx="1.5" fill="${p.d}"/>
+  <ellipse cx="30" cy="33" rx="15" ry="8" fill="${p.b}"/>
+  <circle cx="24" cy="30" r="1.3" fill="${p.l}" stroke="none"/><circle cx="29" cy="28" r="1.3" fill="${p.l}" stroke="none"/><circle cx="34" cy="30" r="1.3" fill="${p.l}" stroke="none"/>
+  <rect x="35" y="38" width="3.4" height="18" rx="1.5" fill="${p.b}"/><rect x="40" y="37" width="3.4" height="19" rx="1.5" fill="${p.b}"/>
+  <path d="M39 30 L45 17 L50 19 L45 33Z" fill="${p.b}"/>
+  <path d="M45 16 Q50 11 56 14 L61 18 Q59 21.5 53 20 L47 22Z" fill="${p.b}"/>
+  <path d="M48 13 L45 5 M45 8 L41 6 M51 12 L53 4 M52 7 L57 5" fill="none" stroke="${p.a}" stroke-width="1.8"/>
+  <circle cx="60.5" cy="18.3" r="1" fill="${CK}" stroke="none"/>`},
+monkey:{back:[29,30,10],head:[34,13],eye:[37,22],thr:[18,44],
+ f:p=>`<path d="M22 48 Q7 51 9 38 Q11 30 18 33" fill="none" stroke="${CK}" stroke-width="5"/><path d="M22 48 Q7 51 9 38 Q11 30 18 33" fill="none" stroke="${p.b}" stroke-width="2.8"/>
+  <ellipse cx="25" cy="54" rx="5" ry="2.6" fill="${p.d}"/><ellipse cx="37" cy="54" rx="5" ry="2.6" fill="${p.d}"/>
+  <ellipse cx="30" cy="41" rx="10.5" ry="12.5" fill="${p.b}"/><ellipse cx="32" cy="44" rx="6" ry="7.5" fill="${p.l}"/>
+  <path d="M39 36 Q47 34 48 42" fill="none" stroke="${CK}" stroke-width="5"/><path d="M39 36 Q47 34 48 42" fill="none" stroke="${p.b}" stroke-width="2.8"/>
+  <circle cx="25" cy="22" r="3.4" fill="${p.l}"/><circle cx="34" cy="22" r="9.2" fill="${p.b}"/>
+  <ellipse cx="36" cy="24.5" rx="6.2" ry="5.4" fill="${p.l}"/>
+  <circle cx="34" cy="22" r="1.2" fill="${CK}" stroke="none"/><circle cx="39" cy="22" r="1.2" fill="${CK}" stroke="none"/>
+  <path d="M34 27 Q36.5 28.5 39 27" fill="none" stroke="${p.d}" stroke-width="1.1"/>`},
+eleph:{back:[28,22,20],head:[50,19],eye:[53,26],thr:[9,38],
+ f:p=>`<rect x="13" y="40" width="7" height="15" rx="2" fill="${p.d}"/><rect x="22" y="41" width="7" height="14" rx="2" fill="${p.d}"/>
+  <path d="M10 42 Q8 22 28 22 L42 23 Q50 25 50 36 L50 46 Q42 48 26 47 Q12 47 10 42Z" fill="${p.b}"/>
+  <rect x="35" y="41" width="7" height="14" rx="2" fill="${p.b}"/><rect x="43" y="40" width="7" height="15" rx="2" fill="${p.b}"/>
+  <circle cx="51" cy="28" r="9.5" fill="${p.b}"/>
+  <path d="M57 32 Q64 41 59 51 Q55.5 53.5 54.5 49 Q58 42 53.5 36Z" fill="${p.b}"/>
+  <path d="M45 23 Q37 29 41 39 Q48 40 48 30Z" fill="${p.d}"/>
+  <path d="M55 36 Q58 40 61 39" fill="none" stroke="${p.a}" stroke-width="2.4"/>`},
+fox:{back:[31,24,14],head:[53,15],eye:[55,21],thr:[14,32],
+ f:p=>`<path d="M18 33 Q2 34 3 20 Q7 13 12 17 Q8 25 19 28Z" fill="${p.b}"/><path d="M3 20 Q7 13 12 17 Q8 19 7 23Z" fill="${p.l}"/>
+  <rect x="19" y="38" width="3.6" height="17" rx="1.6" fill="${p.a}"/><rect x="24" y="39" width="3.6" height="16" rx="1.6" fill="${p.a}"/>
+  <path d="M17 31 Q19 24 28 24 L40 24 Q47 24 48 31 L47 39 Q40 42 28 41 Q18 40 17 35Z" fill="${p.b}"/>
+  <path d="M22 39 Q32 42 44 38 L44 36 Q32 39 22 36Z" fill="${p.l}" stroke="none"/>
+  <rect x="38" y="38" width="3.6" height="17" rx="1.6" fill="${p.a}"/><rect x="43" y="37" width="3.6" height="18" rx="1.6" fill="${p.a}"/>
+  <path d="M44 27 Q45 18 53 17 L57 21 L63 24 Q63 27 59 28 L51 30 Q45 31 44 27Z" fill="${p.b}"/>
+  <path d="M48 19 L49 9 L54 17Z M53 17 L57 9 L58 19Z" fill="${p.b}"/><path d="M49.5 12 L50 17 L52.5 16Z" fill="${p.a}" stroke="none"/>
+  <path d="M52 27 Q57 29.5 62 26.5" fill="none" stroke="${p.l}" stroke-width="2"/><circle cx="63" cy="24.3" r="1.2" fill="${CK}" stroke="none"/>`},
+dragon:{back:[28,24,14],head:[53,14],eye:[55,19],thr:[10,36],
+ f:p=>`<path d="M14 36 Q3 40 2 30 L-1 26 L5 27 Q6 34 14 32Z" fill="${p.b}"/>
+  <path d="M24 26 Q22 4 44 2 Q38 10 42 14 Q36 16 37 22 Q31 22 30 27Z" fill="${p.d}"/>
+  <path d="M27 24 Q28 12 40 6 M31 25 Q34 16 40 13" fill="none" stroke="${p.b}" stroke-width="1.2"/>
+  <rect x="17" y="38" width="5.5" height="16" rx="2.2" fill="${p.d}"/>
+  <path d="M13 34 Q15 25 27 25 L38 25 Q46 25 47 33 L46 41 Q38 45 26 44 Q15 43 13 38Z" fill="${p.b}"/>
+  <path d="M18 41 Q30 46 44 40 L44 37 Q30 41 18 38Z" fill="${p.l}" stroke="none"/>
+  <rect x="38" y="39" width="5.5" height="16" rx="2.2" fill="${p.b}"/>
+  <path d="M42 30 L47 18 Q51 12 58 14 L63 17 Q64 21 59 22 L53 22 L49 32Z" fill="${p.b}"/>
+  <path d="M51 14 L49 6 L54 13 M55 13 L57 5 L58.5 14" fill="${p.a}"/>
+  <path d="M58 21 Q61 23 63 21" fill="none" stroke="${p.l}" stroke-width="1.2"/>
+  <path d="M20 25 L22 21 L25 25 L28 21 L31 25" fill="${p.a}" stroke-width="1"/>`},
+};
+/* 2단계: 갑옷 · 투구 / 3단계: 금속 몸 · 회로 빛 · 눈빛 · 추진기 */
+function compDeco(a,st){
+  const [bx,by,bw]=a.back,[hx,hy]=a.head,[ex,ey]=a.eye,[tx,ty]=a.thr,h=bw/2;
+  if(st===2)return `<path d="M${bx-h} ${by+2} Q${bx} ${by-5} ${bx+h} ${by+2} L${bx+h-2} ${by+7} Q${bx} ${by+2} ${bx-h+2} ${by+7}Z" fill="#a9b4c2"/>
+    <path d="M${bx-h+2} ${by+4.5} Q${bx} ${by-1} ${bx+h-2} ${by+4.5}" fill="none" stroke="#f2c14e" stroke-width="1.3"/>
+    <circle cx="${bx-h/2}" cy="${by+1.2}" r=".9" fill="${CK}" stroke="none"/><circle cx="${bx+h/2}" cy="${by+1.2}" r=".9" fill="${CK}" stroke="none"/>
+    <path d="M${hx-6} ${hy+4} Q${hx} ${hy-5} ${hx+6} ${hy+4}Z" fill="#a9b4c2"/><path d="M${hx} ${hy-1} Q${hx-5} ${hy-9} ${hx-9} ${hy-6}" fill="none" stroke="#d9483b" stroke-width="2.6"/>`;
+  if(st===3)return `<path d="M${bx-h} ${by+3} Q${bx} ${by-2} ${bx+h} ${by+3}" fill="none" stroke="#6fe3ff" stroke-width="1.6"/>
+    <path d="M${bx-h+3} ${by+8} H${bx+h-3}" stroke="#6fe3ff" stroke-width="1" opacity=".8"/>
+    <rect x="${tx-5}" y="${ty-3}" width="6" height="6" rx="1.5" fill="#4a5878"/><path d="M${tx-5} ${ty} L${tx-11} ${ty-2} L${tx-11} ${ty+2}Z" fill="#6fe3ff" opacity=".85" stroke="none">
+      <animate attributeName="opacity" values=".9;.35;.9" dur=".5s" repeatCount="indefinite"/></path>
+    <path d="M${hx} ${hy} L${hx+1} ${hy-7}" stroke="#4a5878" stroke-width="1.4"/><circle cx="${hx+1}" cy="${hy-7.5}" r="1.5" fill="#ff6ec7"/>
+    <circle cx="${ex}" cy="${ey}" r="3" fill="#6fe3ff" opacity=".35" stroke="none"/><circle cx="${ex}" cy="${ey}" r="1.6" fill="#6fe3ff" stroke="none"/>`;
+  return `<circle cx="${ex}" cy="${ey}" r="1.4" fill="${CK}" stroke="none"/>`;
+}
+function compSVG(id,st,o){
+  o=o||{};const a=CBODY[id];if(!a)return '';
+  let p=CPAL[id];
+  if(st===3){const o0=CPAL[id];p={b:cmix(o0.b,FUT.b,.5),d:cmix(o0.d,FUT.d,.55),l:cmix(o0.l,FUT.l,.5),a:id==='owl'||id==='hawk'||id==='snake'?FUT.a:cmix(o0.a,FUT.a,.6)}}
+  else if(st===2)p=Object.assign({},p);
+  const sil=o.sil?' filter="url(#csil)"':'';
+  return `<svg viewBox="-2 -2 68 62" class="csp"${o.w?` width="${o.w}"`:''} aria-hidden="true">${o.sil?'<defs><filter id="csil"><feColorMatrix type="matrix" values="0 0 0 0 .12  0 0 0 0 .14  0 0 0 0 .2  0 0 0 1 0"/></filter></defs>':''}
+    <ellipse cx="32" cy="56.5" rx="22" ry="3" fill="#000" opacity=".25"/>
+    <g${sil} stroke="${CK}" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">${a.f(p)}${compDeco(a,st)}</g></svg>`;
+}
+
+/* ===========================================================
+   27. 동료 — 수집 · 편성 · 상성 · 진화
+=========================================================== */
+const COMP=[
+ {id:'wolf',r:0,n:['늑대','군견','사이버 울프'],ctr:'swift',cd:1.7,k:.9,ds:'빠르게 연속으로 물어뜯어요'},
+ {id:'hawk',r:0,n:['매','전령매','정찰 드론'],ctr:'archer',cd:2.2,k:1,pas:{crit:3},ds:'급소를 노려요 · 치명타 확률 증가'},
+ {id:'boar',r:0,n:['멧돼지','돌격 멧돼지','강철 멧돼지'],ctr:'shield',cd:2.6,k:1.25,ds:'방패를 들이받는 묵직한 돌진'},
+ {id:'turtle',r:0,n:['거북','방패 거북','요새 거북'],ctr:'brute',cd:3,k:.7,pas:{def:.12},ds:'단단한 등껍질 · 방어력 증가'},
+ {id:'owl',r:0,n:['올빼미','현자 올빼미','AI 올빼미'],ctr:'healer',cd:2.6,k:.9,pas:{xp:.1},ds:'지혜의 눈 · 경험치 증가'},
+ {id:'bear',r:1,n:['곰','전투곰','메카 베어'],ctr:'berserk',cd:2.8,k:1.2,pas:{hp:.12},ds:'거대한 체구 · 체력 증가'},
+ {id:'snake',r:1,n:['뱀','독사','나노 독사'],ctr:'healer',cd:2.3,k:1.15,ds:'맹독으로 회복을 끊어요'},
+ {id:'deer',r:1,n:['사슴','성록','홀로 사슴'],ctr:'archer',cd:2.6,k:.85,pas:{regen:.004},ds:'치유의 뿔 · 매초 체력 회복'},
+ {id:'monkey',r:1,n:['원숭이','공병 원숭이','기술자 로봇'],ctr:'shield',cd:2.4,k:.95,pas:{scrap:.12},ds:'손재주 · 고철 획득 증가'},
+ {id:'eleph',r:2,n:['코끼리','전투 코끼리','탱크 코끼리'],ctr:'brute',cd:3,k:1.6,pas:{boss:.15},ds:'거대한 돌진 · 보스 피해 증가'},
+ {id:'fox',r:2,n:['여우','구미호','홀로 여우'],ctr:'swift',cd:2,k:1.2,pas:{eva:2},ds:'환영 분신 · 회피 증가'},
+ {id:'dragon',r:3,n:['아기 용','비룡','메카 드래곤'],ctr:'*',cd:2.5,k:1.7,pas:{all:.1},ds:'모든 적에게 강함 · 모든 능력치 증가'},
+];
+const CMAP={};COMP.forEach(c=>CMAP[c.id]=c);
+const CRAR=[{n:'일반',c:'#c6cfe0',w:60,co:.4},{n:'희귀',c:'#4dabf7',w:28,co:.5},{n:'영웅',c:'#b197fc',w:10,co:.65},{n:'전설',c:'#ffd43b',w:2,co:.9}];
+const CL_NEED=[1,2,3,5,7,10,14,19,25,32];
+const C_STM=[0,1,1.7,2.8];
+const EVO_REQ=[null,{lv:4,era:2},{lv:8,era:4}];
+function cInfo(id){return (S.comp&&S.comp[id])||null}
+function cLv(id){const c=cInfo(id);if(!c)return 0;let l=0;while(l<10&&c.c>=CL_NEED[l])l++;return l}
+function cSt(id){const c=cInfo(id);return c?c.st||1:0}
+function cName(id,st){return CMAP[id].n[(st||cSt(id)||1)-1]}
+function partySlots(){return ((S.cycle||0)>0||(S.maxEra||0)>=3)?3:(S.maxEra||0)>=1?2:1}
+function party(){return (S.party||[]).slice(0,partySlots()).filter(id=>id&&cInfo(id))}
+function isCtr(id,en){const c=CMAP[id];return !!(en&&en.tr&&en.tr.length&&(c.ctr==='*'||en.tr.includes(c.ctr)))}
+function cCoef(id,en){const c=CMAP[id];return CRAR[c.r].co*c.k*C_STM[cSt(id)]*(1+.12*(cLv(id)-1))*(isCtr(id,en)?(c.ctr==='*'?1.6:2.5):1)}
+/* 동료들의 초당 피해를 내 공격 대비 비율로 (실전 효율 · 패배 분석에 반영) */
+function compFactor(s,en){let f=0;for(const id of party())f+=cCoef(id,en)*s.interval/CMAP[id].cd;return f}
+function cv(k){let v=0;for(const id of party()){const p=CMAP[id].pas;if(p&&p[k])v+=p[k]*cSt(id)*(1+.1*(cLv(id)-1))}return v}
+const SUMMON_PITY=60;
+function canEvolve(id){const st=cSt(id),q=EVO_REQ[st];return !!(q&&cLv(id)>=q.lv&&Math.max(S.maxEra||0,(S.cycle||0)>0?5:0,S.era)>=q.era)}
+function seenForms(){let n=0;for(const c of COMP)n+=cSt(c.id);return n}
+function addComp(id){S.comp=S.comp||{};const before=cLv(id),isNew=!cInfo(id);
+  if(isNew)S.comp[id]={c:1,st:1};else S.comp[id].c++;
+  if(isNew&&party().length<partySlots()){S.party=S.party||[];const i=S.party.findIndex((x,j)=>j<partySlots()&&!x);if(i>=0)S.party[i]=id;else S.party.push(id)}
+  return {id,r:CMAP[id].r,before,after:cLv(id),isNew}}
+function hatchOne(guar){
+  S.cpity=(S.cpity||0)+1;let r;
+  if(S.cpity>=SUMMON_PITY)r=3;else{const x=Math.random()*100;r=x<2?3:x<12?2:x<40?1:0}
+  if(guar&&r<1)r=1;if(r===3)S.cpity=0;
+  const pool=COMP.filter(c=>c.r===r);return addComp(pool[Math.floor(Math.random()*pool.length)].id);
+}
+function doHatch(n,free){
+  if(free){if(S.freeEgg===todayStr())return;S.freeEgg=todayStr()}
+  else{if((S.egg||0)<n)return;S.egg-=n}
+  const res=[];for(let i=0;i<n;i++)res.push(hatchOne(false));
+  if(n>=10&&!res.some(x=>x.r>=1)){res[res.length-1]=hatchOne(true)}
+  recalc();renderTop();renderComps();save();updateCompDot();showHatch(res,n);
+}
+function showHatch(res,n){
+  const box=$('rCards'),o=$('rres');o.classList.add('egg');o.classList.remove('done');
+  box.style.gridTemplateColumns=n>1?'repeat(5,auto)':'120px';
+  box.innerHTML=res.map(x=>{const c=CMAP[x.id],R=CRAR[x.r];
+    return `<div class="rcard r${x.r}${n>1?'':' big'}" style="--rc:${R.c}"><div class="in"><div class="b"></div>
+      <div class="f">${x.isNew?'<span class="new">NEW</span>':''}${compSVG(x.id,cSt(x.id))}<div class="n">${cName(x.id)}</div>
+      <div class="l">${x.isNew?R.n:(x.after>x.before?'Lv.'+x.before+'→'+x.after:'Lv.'+x.after)}</div></div></div></div>`}).join('');
+  $('rrT').textContent=n>1?'10회 부화 결과':'부화 결과';o.classList.add('on');SFX.anvil();
+  const cards=[...box.children];let i=0;
+  const next=()=>{if(i>=cards.length){o.classList.add('done');return}
+    const c=cards[i],x=res[i];i++;c.classList.add('flip');
+    if(x.r===3){const f=o.querySelector('.flash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go');SFX.clear();buzz([60,40,160])}
+    else if(x.r===2){SFX.level();buzz(40)}else SFX.forge(x.r?3:1);
+    DIG.t=setTimeout(next,x.r>=2?520:170)};
+  DIG.t=setTimeout(next,350);
+  const again=$('rrAgain');again.innerHTML=`${n>1?'10회':'1회'} 더 (${ico('egg')}${n})`;again.disabled=(S.egg||0)<n;
+  again.onclick=()=>{if((S.egg||0)<n)return;clearTimeout(DIG.t);doHatch(n)};
+  $('rrOk').onclick=()=>{clearTimeout(DIG.t);o.classList.remove('on','done','egg');renderComp()};
+  o.onclick=e=>{if(e.target.closest('button'))return;if(!o.classList.contains('done')){clearTimeout(DIG.t);cards.forEach(c=>c.classList.add('flip'));o.classList.add('done')}};
+}
+function evolve(id){
+  if(!canEvolve(id))return;const st=cSt(id),old=compSVG(id,st);
+  S.comp[id].st=st+1;recalc();renderTop();renderComps();save();updateCompDot();
+  $('compmask').classList.remove('show');
+  playCut({oldSvg:old.replace('class="csp"','class="csp" width="200"'),newSvg:compSVG(id,st+1).replace('class="csp"','class="csp" width="200"'),
+    bg:'#1f3a2e',hi:CRAR[CMAP[id].r].c,t1:cName(id,st)+'의 진화',t2:cName(id,st+1),
+    t3:`동료 위력 <b>×${(C_STM[st+1]/C_STM[st]).toFixed(1)}</b>`+(CMAP[id].pas?' · 패시브 효과 증가':''),
+    after:()=>{openComp('dex');CSEL=id;renderComp()}});
+}
+/* ---------- 전투 ---------- */
+const CT={};
+function compTick(dt){
+  if(dead||resolving||!E||E.hp<=0)return;
+  for(const id of party()){CT[id]=(CT[id]||0)+dt;const c=CMAP[id];
+    if(CT[id]>=c.cd){CT[id]=0;compAttack(id)}}
+}
+function compAttack(id){
+  const c=CMAP[id],ctr=isCtr(id,E),uid=E.uid;
+  const base=damage(P.s.atk,E.def,P.s.crit,true);let d=base.d*vsMul(E)*cCoef(id,E);
+  const el=document.querySelector(`#comps .cu[data-id="${id}"]`);
+  let ft=260;
+  if(el){const f=$('field').getBoundingClientRect(),r=el.getBoundingClientRect(),t=$('etank').getBoundingClientRect();
+    const sx=r.left-f.left+r.width/2,sy=r.top-f.top+r.height/2,tx=t.left-f.left+t.width*.45,ty=t.top-f.top+t.height*.5;
+    el.animate([{transform:'translateX(0)'},{transform:'translateX(10px) scale(1.12)'},{transform:'translateX(0)'}],{duration:280});
+    const o=document.createElement('div');o.className='corb';o.style.color=ctr?'#ffd43b':CRAR[c.r].c;$('field').appendChild(o);
+    ft=Math.max(220,Math.min(420,Math.hypot(tx-sx,ty-sy)*1.4));
+    o.animate([{transform:`translate(${sx-4}px,${sy-4}px) scale(.6)`},{transform:`translate(${tx-4}px,${ty-4}px) scale(1.3)`}],{duration:ft,easing:'cubic-bezier(.4,0,.8,.6)',fill:'forwards'});
+    setTimeout(()=>o.remove(),ft+20);
+  }
+  setTimeout(()=>{if(!E||E.uid!==uid||resolving||dead)return;
+    E.hp-=d;const cc=centerOf($('etank'));
+    const t=fxAt(ctr?'dmg big':'dmg',cc.x+8,ctr?38:44,ctr?1100:900);t.textContent=(ctr?'상성! ':'')+fmt(d);t.style.color=ctr?'#ffd43b':CRAR[c.r].c;
+    hitFlash($('etank'),'hitw',70);
+    if(E.hp<=0)winRound();else renderHP()},ft);
+}
+function renderComps(){
+  const box=$('comps');if(!box)return;const L=party();
+  // 아군 체력 숫자 바로 위에 붙여서 배치 (알림 문구와 겹치지 않게)
+  const f=$('field').getBoundingClientRect(),hp=$('phptxt').getBoundingClientRect(),room=hp.top-f.top-4;
+  const sz=Math.max(28,Math.min(48,Math.round(room>30?room:f.height*.16)));
+  box.style.setProperty('--cs',sz+'px');box.style.top=Math.max(2,Math.round(hp.top-f.top-sz-1))+'px';
+  box.style.left=(Math.round(hp.left-f.left)+46)+'px';
+  $('toast').style.top=(f.height<225&&L.length)?'44%':'8px';   // 작은 화면: 알림을 아래로 내려 동료와 겹치지 않게
+  box.innerHTML=L.map(id=>`<div class="cu${isCtr(id,E)?' ctr':''}" data-id="${id}">${compSVG(id,cSt(id))}</div>`).join('');
+}
+function updateCompCtr(){document.querySelectorAll('#comps .cu').forEach(e=>e.classList.toggle('ctr',isCtr(e.dataset.id,E)))}
+/* ---------- 화면 ---------- */
+let CTAB3='party',CSEL=null,PSEL=0;
+function autoParty(){
+  const th=stageTraits(S.stage),own=COMP.filter(c=>cInfo(c.id)).map(c=>c.id),fake={tr:th};
+  const score=id=>cCoef(id,th.length?{tr:th}:null)/CMAP[id].cd*(isCtr(id,fake)?1:1);
+  S.party=own.sort((a,b)=>score(b)-score(a)).slice(0,partySlots());
+  save();recalc();renderTop();renderComps();
+}
+function renderComp(){
+  document.querySelectorAll('.ctb').forEach(t=>t.classList.toggle('on',t.dataset.t===CTAB3));
+  const B=$('cmpBody');S.comp=S.comp||{};S.party=S.party||[];
+  $('cmpSub').innerHTML=`${ico('egg')} 알 <b>${S.egg||0}</b> · 수집 ${seenForms()}/${COMP.length*3}`;
+  if(CTAB3==='party'){
+    const ns=partySlots(),th=stageTraits(S.stage);
+    let h=`<div class="pslots">`;
+    for(let i=0;i<3;i++){
+      if(i>=ns){h+=`<div class="pslot lock">🔒<br>${i===1?'청동기시대':'산업시대'}<br>진출 시 해금</div>`;continue}
+      const id=S.party[i];
+      if(id&&cInfo(id)){const c=CMAP[id],R=CRAR[c.r],ct=c.ctr==='*'?'모든 적':TRAITS[c.ctr].n;
+        h+=`<div class="pslot${PSEL===i?' sel':''}" data-i="${i}" style="border-color:${PSEL===i?'#ffd166':R.c}">${compSVG(id,cSt(id))}
+          <div class="nm" style="color:${R.c}">${cName(id)}</div><div class="lv">Lv.${cLv(id)} · ${cSt(id)}단계</div>
+          <div class="ct">${c.ctr==='*'?ico('crown'):ico(TRAITS[c.ctr].ic)} ${ct}에 강함</div></div>`}
+      else h+=`<div class="pslot${PSEL===i?' sel':''}" data-i="${i}"><div class="em">비어 있음<br>아래에서 골라요</div></div>`;
+    }
+    h+=`</div><div class="cfoe"><span>이번 전투 적: ${th.length?th.map(k=>ico(TRAITS[k].ic)+TRAITS[k].n).join(' · '):'특성 없음'}</span><button id="cAuto">자동 편성</button></div>`;
+    const own=COMP.filter(c=>cInfo(c.id));
+    h+=own.length?`<div class="cowned">${own.map(c=>{const R=CRAR[c.r],inp=party().includes(c.id),hot=th.some(k=>c.ctr==='*'||c.ctr===k);
+      return `<div class="cdcard${inp?' inp':''}" data-id="${c.id}" style="--rc:${R.c}">${hot?'<span class="tag">▲상성</span>':''}${canEvolve(c.id)?'<span class="evo">진화</span>':''}
+        ${compSVG(c.id,cSt(c.id))}<div class="nm" style="color:${R.c}">${cName(c.id)}</div><div class="lv">Lv.${cLv(c.id)}</div></div>`}).join('')}</div>`
+      :`<div class="psub">아직 동료가 없어요 — 부화 탭에서 알을 깨 보세요</div>`;
+    B.innerHTML=h;
+    B.querySelectorAll('.pslot[data-i]').forEach(e=>e.onclick=()=>{PSEL=+e.dataset.i;SFX.click();renderComp()});
+    B.querySelectorAll('.cdcard').forEach(e=>e.onclick=()=>{const id=e.dataset.id,j=S.party.indexOf(id);
+      if(j>=0&&j<partySlots()){const t=S.party[PSEL];S.party[PSEL]=id;S.party[j]=t}else S.party[PSEL]=id;
+      PSEL=Math.min(partySlots()-1,PSEL+1);SFX.equip();save();recalc();renderTop();renderComps();renderComp()});
+    $('cAuto').onclick=()=>{autoParty();SFX.equip();toast('이번 전투에 맞게 자동 편성했어요');renderComp()};
+  }else if(CTAB3==='dex'){
+    let h='';
+    if(CSEL&&cInfo(CSEL)){const c=CMAP[CSEL],R=CRAR[c.r],st=cSt(CSEL),lv=cLv(CSEL),cnt=cInfo(CSEL).c,q=EVO_REQ[st];
+      const pasT=c.pas?Object.keys(c.pas).map(k=>({crit:'치명타 +'+(c.pas[k]*st*(1+.1*(lv-1))).toFixed(1)+'%p',def:'방어력 +',hp:'체력 +',xp:'경험치 +',scrap:'고철 +',boss:'보스 피해 +',all:'모든 능력치 +',eva:'회피 +'+(c.pas[k]*st*(1+.1*(lv-1))).toFixed(1)+'%p',regen:'매초 체력 '+(c.pas[k]*st*(1+.1*(lv-1))*100).toFixed(2)+'% 회복'})[k]+(['crit','eva','regen'].includes(k)?'':Math.round(c.pas[k]*st*(1+.1*(lv-1))*100)+'%')).join(' · '):'없음';
+      h+=`<div class="cdet" style="--rc:${R.c}">${compSVG(CSEL,st)}<div class="tn" style="color:${R.c}">${cName(CSEL)}</div>
+        <div class="ts">${R.n} · ${st}단계 · Lv.${lv}${lv<10?` (${cnt}/${CL_NEED[lv]})`:' MAX'}</div>
+        <div class="stp">${[1,2,3].map(x=>`<i class="${x<=st?'on':''}"></i>`).join('')}</div>
+        <div class="rows">${c.ds}<br>상성: <b>${c.ctr==='*'?'모든 적 ×1.6':TRAITS[c.ctr].n+'에게 피해 ×2.5'}</b><br>
+          공격: ${c.cd}초마다 내 공격의 <b>${Math.round(cCoef(CSEL,null)*100)}%</b><br>패시브: <b>${pasT}</b></div>
+        ${st<3?`<button class="evb" id="cEvo" ${canEvolve(CSEL)?'':'disabled'}>${canEvolve(CSEL)?'✨ '+cName(CSEL,st+1)+'(으)로 진화!':`진화 조건: Lv.${q.lv} · ${ERAS[q.era].n} 도달 경험`}</button>`:'<div class="ts" style="margin-top:6px;color:#8ff09a">최종 진화 완료</div>'}</div>`;
+    }
+    h+=COMP.map(c=>{const st=cSt(c.id),R=CRAR[c.r];
+      return `<div class="cdex" data-id="${c.id}"><div class="fs">${[1,2,3].map(x=>compSVG(c.id,x,{sil:x>st})).join('')}</div>
+        <div class="ci2"><b style="color:${st?R.c:'#78839a'}">${st?cName(c.id):'???'}</b><small>${R.n} · ${c.ctr==='*'?'모든 적':TRAITS[c.ctr].n}에 강함${st?' · Lv.'+cLv(c.id):''}</small></div>
+        ${canEvolve(c.id)?'<span class="evo" style="position:static;background:#2f9e44;color:#fff;font-size:9px;font-weight:900;border-radius:5px;padding:1px 4px">진화</span>':''}</div>`}).join('');
+    B.innerHTML=h;
+    B.querySelectorAll('.cdex').forEach(e=>e.onclick=()=>{if(!cInfo(e.dataset.id)){toast('아직 만나지 못한 동료예요');return}CSEL=e.dataset.id;SFX.click();renderComp();$('compmask').querySelector('.pmodal').scrollTop=0});
+    if($('cEvo'))$('cEvo').onclick=()=>evolve(CSEL);
+  }else{
+    const free=S.freeEgg!==todayStr(),e=S.egg||0,pt=S.cpity||0;
+    B.innerHTML=`<div class="rsite" style="background:linear-gradient(#1d3a2e,#2f5a3a 60%,#4a7a3e)"><svg viewBox="0 0 360 118" preserveAspectRatio="xMidYMax slice">
+        <ellipse cx="180" cy="100" rx="90" ry="14" fill="#6b4a2b"/><path d="M110 98 Q180 70 250 98" fill="#8a6a3e" stroke="#1d2230" stroke-width="2"/>
+        <g class="glow"><ellipse cx="180" cy="62" rx="40" ry="36" fill="#ffd43b" opacity=".2"/></g>
+        <path d="M180 30 Q204 32 206 64 Q206 90 180 90 Q154 90 154 64 Q156 32 180 30Z" fill="#fff8e6" stroke="#1d2230" stroke-width="2.4"/>
+        <path d="M158 58 L168 52 L178 60 L188 52 L198 60 L204 55" fill="none" stroke="#ff922b" stroke-width="3"/>
+        <circle cx="170" cy="74" r="4" fill="#5aa05a"/><circle cx="192" cy="72" r="3" fill="#4a90d9"/></svg></div>
+      <div class="rcur"><span>${ico('egg')} 동료의 알 <b>${e}</b></span><button id="cEx">${ico('pick')}5 → ${ico('egg')}1 교환</button></div>
+      <div class="rpity"><span>전설 확정까지</span><span><b>${SUMMON_PITY-pt}</b>회</span></div><div class="rpbar"><i style="width:${pt/SUMMON_PITY*100}%"></i></div>
+      <div class="rbtns"><button id="cFree" style="grid-column:1/3;display:${free?'block':'none'};padding:12px;background:linear-gradient(#8ce99a,#2f9e44);box-shadow:0 3px 0 #1e6b2e">🎁 오늘의 무료 부화</button>
+        <button id="cOne" style="background:linear-gradient(#5ab5f8,#1c7ed6);box-shadow:0 3px 0 #10538f" ${e<1?'disabled':''}>1회 부화<small>${ico('egg')}1</small></button>
+        <button id="cTen" style="background:linear-gradient(#b197fc,#7048e8);box-shadow:0 3px 0 #4526a8" ${e<10?'disabled':''}>10회 부화<small>${ico('egg')}10 · 희귀 이상 1마리</small></button></div>
+      <div class="rrate">일반 60% · 희귀 28% · 영웅 10% · 전설 2% · ${SUMMON_PITY}회 안에 전설 확정<br>중복으로 레벨업 · 레벨과 시대 진출로 진화 · 회귀해도 유지<br>알: 5전투마다 · 일일 임무 · 출석 · 회귀 보상</div>`;
+    $('cOne').onclick=()=>doHatch(1);$('cTen').onclick=()=>doHatch(10);$('cFree').onclick=()=>doHatch(1,true);
+    $('cEx').onclick=()=>{if((S.pick||0)<5){toast('곡괭이가 5개 필요해요');return}S.pick-=5;S.egg=(S.egg||0)+1;save();SFX.click();updateColDot();renderComp()};
+  }
+}
+function openComp(tab){if(tab)CTAB3=tab;$('cmpClose').style.display='block';renderComp();$('compmask').classList.add('show')}
+function compDot(){return S.freeEgg!==todayStr()||(S.egg||0)>=10||COMP.some(c=>cInfo(c.id)&&canEvolve(c.id))}
+function updateCompDot(){const b=$('bComp');if(b)b.classList.toggle('red',compDot())}
+/* 첫 동료 고르기 (포켓몬처럼 3마리 중 1) */
+function openStarter(){
+  if(S.starter)return;
+  CTAB3='party';$('compmask').classList.add('show');$('cmpClose').style.display='none';
+  document.querySelectorAll('.ctb').forEach(t=>t.classList.remove('on'));
+  $('cmpSub').innerHTML='첫 동료를 골라 주세요 — 함께 시대를 거치며 진화해요';
+  $('cmpBody').innerHTML=`<div class="pslots">${['wolf','hawk','turtle'].map(id=>{const c=CMAP[id];
+    return `<div class="pslot" data-id="${id}" style="cursor:pointer;border-color:#ffd166">${compSVG(id,1)}<div class="nm">${c.n[0]}</div>
+      <div class="lv">→ ${c.n[1]} → ${c.n[2]}</div><div class="ct">${ico(TRAITS[c.ctr].ic)} ${TRAITS[c.ctr].n}에 강함</div></div>`}).join('')}</div>
+    <div class="cdet" style="--rc:#3d4a68;text-align:left"><div class="rows">🐺 <b>늑대</b> — 빠른 연속 공격<br>🦅 <b>매</b> — 치명타 확률 증가<br>🐢 <b>거북</b> — 방어력 증가<br><span style="color:#8b96ae">나머지 동료는 알을 부화해서 모을 수 있어요</span></div></div>`;
+  $('cmpBody').querySelectorAll('.pslot[data-id]').forEach(e=>e.onclick=()=>{
+    const id=e.dataset.id;S.starter=id;addComp(id);S.party=[id];S.egg=(S.egg||0)+3;save();recalc();renderTop();renderComps();
+    SFX.clear();buzz([30,30,80]);$('compmask').classList.remove('show');$('cmpClose').style.display='block';
+    toast(`${ico('paw')} <b>${CMAP[id].n[0]}</b>이(가) 동료가 되었어요! 보너스 ${ico('egg')}알 3개`);updateCompDot();
+    setTimeout(()=>hint('comp','#bComp','<b>동료</b>는 함께 싸우고 시대를 거치며 <b>진화</b>한다네!<br>알을 부화해 더 모으고, 적에 맞게 <b>편성</b>하게.'),1200)});
+}
+function checkStarter(){if(!S.starter&&S.firstWin&&!anyModal()&&!TUT.on&&!(typeof CUT!=='undefined'&&CUT)&&Date.now()>(S.starterAt||0))openStarter()}
 
 /* ===========================================================
    11. 초기화 / 루프
@@ -4245,6 +4669,7 @@ function init(){
   SLOTS.forEach(s=>{if(!(s.k in S.gear))S.gear[s.k]=null});
   if(!Array.isArray(S.perks)){S.perks=[];S.perkOwed=(had&&(S.stage>=2||S.era>0||(S.cycle||0)>0))?1+S.era:0;S.perkCyc=S.cycle||0;S.perkAt=Date.now()+4000}
   if(!S.rel){S.rel={};S.pick=(S.pick||0)+10;S.pity=0}
+  if(!S.comp){S.comp={};S.party=[];S.egg=(S.egg||0)+(had&&S.firstWin?5:0);S.cpity=0;if(had&&S.firstWin)S.starterAt=Date.now()+5000}
   if(S.lpTotal===undefined){let lp=0;for(let c=0;c<(S.cycle||0);c++)lp+=Math.floor((30+4*c)*(1+.1*c));S.lp=lp;S.lpTotal=lp;S.res=S.res||{};
     if((S.cycle||0)>0)S.bestStage=Math.max(S.bestStage||0,S.stage)}
   colInit();SLOTS.forEach(s=>{const it=S.gear[s.k];if(it)colRecord(it,true)});S.maxEra=Math.max(S.maxEra||0,S.era);
@@ -4256,7 +4681,7 @@ function init(){
   timeScale=S.speed||1;$('spd').textContent='속도 x'+timeScale;
   $('diffbtn').textContent='난이도 '+diff().n;
   $('diffbtn').style.color=['#c6cfe0','#ffc078','#ff8787'][S.diff||0];
-  renderTop();renderGrid();renderHP();renderPerkBar();trBadges();
+  renderTop();renderGrid();renderHP();renderPerkBar();trBadges();renderComps();updateCompDot();
   // 튜토리얼: 새로 시작한 경우만 자동, 기존 진행이 있으면 완료 처리
   if(S.tut===undefined)S.tut=(had&&(S.stage>1||S.era>0||(S.cycle||0)>0||S.tier>1))?'done':0;
   ensureDaily();updateDots();tickBoost();renderSkills();
@@ -4314,13 +4739,16 @@ setInterval(()=>{
   if(!document.hidden&&S.daily){S.daily.sec=(S.daily.sec||0)+1;
     const mm=S.daily.list.find(m=>m.id==='min');
     if(mm&&!mm.got){const v=Math.min(mm.n,Math.floor(S.daily.sec/60));if(v!==mm.c){mm.c=v;updateDots()}}}
-  tickBoost();checkPerk();autoTick();updateCmdDot();S.bestStage=Math.max(S.bestStage||0,S.stage);
+  tickBoost();checkStarter();if(S.starter||!S.firstWin)checkPerk();autoTick();updateCmdDot();S.bestStage=Math.max(S.bestStage||0,S.stage);
   // 다른 창 때문에 미뤄진 방치 보상은 화면이 비면 바로 보여줌
   if(S.offPend&&S.offPend.gain>0&&Date.now()>(S.offAt||0)&&!anyModal()&&!TUT.on&&!(typeof CUT!=='undefined'&&CUT))openOffline();
 },1000);
-$('bGuide').onclick=()=>openGuide();
+$('sGuide').onclick=()=>{$('smask').classList.remove('show');openGuide()};
 $('bCol').onclick=()=>openRel();updateColDot();
-document.querySelectorAll('.rtab').forEach(t=>t.onclick=()=>{SFX.click();if(t.dataset.t==='col'){$('rmask').classList.remove('show');openCol();return}RTAB=t.dataset.t;renderRel()});
+$('bComp').onclick=()=>{SFX.click();openComp()};
+document.querySelectorAll('.ctb').forEach(t=>t.onclick=()=>{if(!S.starter&&S.firstWin)return;CTAB3=t.dataset.t;CSEL=null;SFX.click();renderComp()});
+addEventListener('resize',()=>renderComps());
+document.querySelectorAll('#rmask .rtab').forEach(t=>t.onclick=()=>{SFX.click();if(t.dataset.t==='col'){$('rmask').classList.remove('show');openCol();return}RTAB=t.dataset.t;renderRel()});
 $('pkbar').onclick=()=>openPerk(true);
 $('avatar').onclick=()=>{SFX.click();openCmd()};
 document.querySelectorAll('.ctabb').forEach(t=>t.onclick=()=>{CTAB2=t.dataset.t;SFX.click();renderCmd()});
@@ -4339,6 +4767,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdat
 $('mroll').onclick=rollAgain;
 $('mauto').onclick=startAuto;
 $('mclose').onclick=closeModal;
+$('autoUpgC').onchange=e=>{S.autoUpg=e.target.checked;save();renderTop();toast(S.autoUpg?'공방 <b>자동 강화</b> 켜짐 — 고철이 모이면 알아서 강화':'공방 <b>수동 강화</b> — 버튼을 눌러 강화하세요')};
 $('quick').onchange=e=>{S.quick=e.target.checked;save();tutEvent('quick')};
 $('spd').onclick=()=>{timeScale=timeScale===1?2:(timeScale===2?3:1);S.speed=timeScale;
   $('spd').textContent='속도 x'+timeScale;save()};
