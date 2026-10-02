@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>문명전쟁 : 키우기</title>
 <meta name="description" content="석기시대부터 미래 문명까지! 장비를 만들고 시대를 진화시키는 방치형 전쟁 RPG">
 <meta name="theme-color" content="#161b28">
@@ -827,6 +827,8 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 #app[data-era="5"] #panel{background:linear-gradient(rgba(102,217,255,.055) 1px,transparent 1px) 0 0/100% 22px,linear-gradient(90deg,rgba(102,217,255,.055) 1px,transparent 1px) 0 0/22px 100%,linear-gradient(#131a30,#0b0f1e)}
 #rMax,#cMax{grid-column:1/3;background:linear-gradient(#ffd166,#f08c00);box-shadow:0 3px 0 #a85e00;color:#2a1a00}
 .rcard .cnt{position:absolute;left:-5px;top:-6px;background:#1c7ed6;color:#fff;font-size:9px;font-weight:900;border-radius:6px;padding:1px 4px}
+html,body{overscroll-behavior:none}
+#sReset.arm{background:#e03131!important;color:#fff!important}
 </style>
 </head>
 <body>
@@ -1079,11 +1081,11 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
    1. 시대 정의 — 6단계
 =========================================================== */
 const ERAS=[
-{n:'석기시대',s:'석기',unit:'통나무 투석기',
+{n:'석기시대',s:'석기',unit:'매머드 전사',
  pal:{a:'#9a7a52',b:'#7a5c3c',c:'#54402a',t:'#8a6a44',m:'#5e4830'},
  parts:['돌망치','가죽갑옷','통나무바퀴','부족토템','매의눈','화톳불','정찰견','뗀석기'],
  icons:['🪨','🦬','🪵','🗿','👁️','🔥','🐕','⛏️'],
- foes:['들개 무리','원시 사냥꾼','뼈 투척병','매머드 기수'] },
+ foes:['검치호 기수','투석 썰매','매머드 전사','털코뿔소 족장'] },
 {n:'청동기시대',s:'청동',unit:'전차',
  pal:{a:'#c09a4a','b':'#9a7a34',b:'#9a7a34',c:'#6e5622',t:'#b08a3e',m:'#7a5f28'},
  parts:['청동창','청동갑주','전차바퀴','군단기','망루경','군마','전령병','투창'],
@@ -1859,7 +1861,19 @@ function design(era,d,u,p,pw){
 }
 
 /* ---------- 조립 ---------- */
+/* ---------- 일러스트 유닛 (img/u_시대_번호.webp) — 불러오기에 성공한 것만 사용, 실패하면 기존 그림 ---------- */
+const UIMG={'0_0':{s:1.1},'0_1':{s:1.04},'0_2':{s:1,y:2},'0_3':{s:1.14}},UOK={};
+function uimgPad(el,cfg){const k=cfg.era+'_'+(cfg.design||0),c=UOK[k]&&UIMG[k];const w=el.querySelector('.hpwrap');if(w)w.style.marginBottom=c&&$('field').clientHeight>235?Math.round(5+((c.s||1)-1)*120)+'px':''}
+function uimgSrc(k){const a=k.split('_');return 'img/u_'+(+a[0]+1)+'_'+(+a[1]+1)+'.webp'}
+function uimgLoad(){Object.keys(UIMG).forEach(k=>{const im=new Image();
+  im.onload=()=>{UOK[k]=1;try{if(typeof E!=='undefined'&&E&&$('ptank').innerHTML)drawUnits()}catch(e){}};im.src=uimgSrc(k)})}
+function unitIMG(cfg,k){const c=UIMG[k],sc=c.s||1,h=136*sc,w=216*sc,rival=cfg.pal&&cfg.flip&&(cfg.design||0)===0,cx=cfg.flip?86:112;
+  const f=[];if(cfg.wreck)f.push('grayscale(.9) brightness(.42)');else if(rival)f.push('grayscale(.8) brightness(.92) contrast(1.08)');
+  return `<svg viewBox="-10 -48 216 140" style="overflow:visible;${cfg.flip?'transform:scaleX(-1);':''}">
+    <ellipse cx="${cx}" cy="86" rx="${w*.26}" ry="6" fill="rgba(0,0,0,.34)"/>
+    <image href="${uimgSrc(k)}" x="${cx-w/2}" y="${88-h+(c.y||0)}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet" style="${f.length?'filter:'+f.join(' ')+';':''}${cfg.wreck?'transform:rotate(7deg);transform-origin:70% 100%;transform-box:fill-box;':''}"/></svg>`}
 function unitSVG(cfg){
+  {const k=cfg.era+'_'+(cfg.design||0);if(UOK[k])return unitIMG(cfg,k)}
   const u='u'+(uid++);
   const era=cfg.era, d=cfg.design||0;
   let p=cfg.pal||DPAL[era][d];
@@ -1944,6 +1958,7 @@ function drawUnits(){
   $('ptank').innerHTML=unitSVG(playerCfg(false));applyCosmetic();
   $('etank').innerHTML=unitSVG(enemyCfg(false));
   $('eu').style.width=(E.boss?196:172)+'px';
+  uimgPad($('pu'),playerCfg(false));uimgPad($('eu'),enemyCfg(false));
   const cn=S.cycle||0;
   $('pcyc').innerHTML=cn&&!(typeof party==='function'&&party().length)?(cn<=5?'★'.repeat(cn):'★×'+cn):'';
   $('pcyc').style.color=cn?cycColor(cn):'';
@@ -2800,9 +2815,9 @@ function auApplyVol(){
   AU.bgm.gain.setTargetAtTime(S.bgm===false?0:.32*(S.bgmVol==null?1:S.bgmVol),t,.12);
 }
 function auInit(){
-  if(AU.ctx){if(AU.ctx.state==='suspended'&&!document.hidden)AU.ctx.resume();return}
+  if(AU.ctx){if(AU.ctx.state==='suspended'&&!document.hidden&&!osSilent&&!osPaused)AU.ctx.resume();return}
   const C=window.AudioContext||window.webkitAudioContext;if(!C)return;
-  try{auSetup(new C());bgmStart()}catch(e){}
+  try{auSetup(new C());bgmStart();if(osSilent||osPaused)AU.ctx.suspend()}catch(e){}
 }
 function sOn(){return AU.ctx&&S.sfx!==false}
 /* 기본 음원: 톤 / 노이즈 */
@@ -2948,7 +2963,7 @@ function bgmStep(D,era,step,at,spb){
   }
 }
 document.addEventListener('visibilitychange',()=>{if(!AU.ctx)return;
-  if(document.hidden)AU.ctx.suspend();else AU.ctx.resume()});
+  if(document.hidden)AU.ctx.suspend();else if(!osSilent&&!osPaused)AU.ctx.resume()});
 document.addEventListener('pointerdown',auInit,true);
 
 /* ---- 설정 창 ---- */
@@ -3442,8 +3457,8 @@ SFX.skRage=function(){if(!sOn())return;
    17. 버전 · 업데이트 알림 · 업데이트 내역
    ─ 새 버전을 올릴 때: 아래 BUILD 숫자와 version.json 의 build 숫자를 같이 올린다
 =========================================================== */
-const BUILD=17, BUILD_NAME='1.8.0';
-const CHANGELOG=[{b:17,v:'1.8.0',d:'2026-10-02',items:['🎬 <b>전투 연출 강화</b> — 공격할 때 앞으로 치고 나가는 동작, 적이 달려 들어오는 등장, 발밑 먼지','배경에 깊이감: 천천히 움직이는 화면 · 앞쪽 풀/잔해 · 시간에 따라 바뀌는 빛(노을 → 낮 → 밤)','시대별 분위기: 햇살 · 공장 연기 · 탐조등 · 네온 스캔','체력바에 <b>피해 잔상</b> 표시 · 보스 격파 시 순간 정지와 「보스 격파!」 연출','화면 아래 조작부가 <b>시대마다 다른 질감과 색</b>으로 바뀌어요','⛏ <b>최대 발굴 / 최대 부화</b> — 한 번에 100회까지, 결과는 종류별로 묶어서 표시','유물 <b>초월</b> — Lv.10 이후에도 중복이 쌓이면 초월 레벨이 올라 모든 능력치 증가 (상한 없음)']},{b:16,v:'1.7.2',d:'2026-10-02',items:['산업시대 「유탄」 부품 아이콘이 잘못 표시되던 문제 수정','회차 별 표시와 동료가 겹치던 문제 수정','문명 특성 아이콘을 전투 정보 줄로 옮겨 적 특성 표시와 겹치지 않게 함']},{b:15,v:'1.7.1',d:'2026-10-02',items:['유산 연구: 공격 · 체력 · 방어 · 고철 · 경험치 연구는 이제 <b>상한 없이</b> 계속 올릴 수 있어요','새 갈래 <b>초월 연구</b> 4종 — 동료 조련 · 유물 공명 · 알 탐색대 · 선조의 가르침']},{b:14,v:'1.7.0',d:'2026-10-01',items:['🐾 <b>동료 시스템</b> — 12종 동료가 함께 싸우고, 시대를 거치며 3단계로 <b>진화</b> (늑대 → 군견 → 사이버 울프)','첫 보스를 잡으면 <b>첫 동료</b>를 3마리 중에서 골라요','동료마다 <b>상성</b>이 있어요 — 맞는 적 특성에게 피해 ×2.5','최대 3마리 편성 · 자동 편성 · 동료 도감 36칸','동료의 알: 5전투마다 · 일일 임무 · 출석 · 회귀 · 매일 무료 부화','장비 안내는 설정 화면으로 옮겼어요']},{b:13,v:'1.6.2',d:'2026-10-01',items:['공방 <b>자동 강화 / 수동 강화</b>를 화면 아래 체크박스로 바로 전환 (6회차 해금 후)','자동 강화 중에는 공방 버튼에 「자동」 표시']},{b:12,v:'1.6.1',d:'2026-09-30',items:['🔢 숫자를 <b>한국식 단위</b>로 표시 (만·억·조·경·해…) — 설정에서 영문/지수 표기로 바꿀 수 있어요','전투력을 누르면 정확한 크기를 알려줘요','부위 제작 창 버튼 위치 고정 — 연속으로 눌러도 다른 버튼이 눌리지 않아요','자동 제작이 더 좋은 부품을 찾으면 <b>바로 장착</b>','자동 장착이 켜져 있으면 부위 제작도 더 좋으면 장착 · 아니면 자동 분해']},{b:11,v:'1.6.0',d:'2026-09-30',items:['🏛 <b>문명의 유산</b> — 왼쪽 위 사령관 아이콘을 눌러 열어요','회귀하면 <b>유산 포인트</b>(도달한 전투 × 회차 보너스)를 받아 16가지 영구 연구에 투자','회차마다 새 기능 해금: 자동 시대 진출 · 특성 카드 4장 · 회귀 보급품 · 자동 공방 강화 · 전설 문명 특성 · 황금/무지개 오라','회차에 따라 칭호가 바뀌어요 (족장 → 개척자 → 정복자 → … → 영원한 문명)','이미 회귀한 분들은 지난 회차만큼 유산 포인트를 소급 지급했어요']},{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
+const BUILD=19, BUILD_NAME='1.9.0';
+const CHANGELOG=[{b:19,v:'1.9.0',d:'2026-10-02',items:['🎨 <b>석기시대 유닛 4종을 새 일러스트로 교체</b> — 매머드 전사 · 검치호 기수 · 투석 썰매 · 보스 털코뿔소 족장','다른 시대 유닛도 차례로 바뀔 예정이에요']},{b:18,v:'1.8.1',d:'2026-10-02',items:['원스토어 앱 연동 준비 — 앱에서 나가거나 전화가 오면 자동 저장 · 일시정지, 뒤로가기로 창 닫기, 무음 모드 반영','진행 초기화는 버튼을 두 번 눌러 확인하도록 변경 · 초기화가 되지 않던 문제 수정']},{b:17,v:'1.8.0',d:'2026-10-02',items:['🎬 <b>전투 연출 강화</b> — 공격할 때 앞으로 치고 나가는 동작, 적이 달려 들어오는 등장, 발밑 먼지','배경에 깊이감: 천천히 움직이는 화면 · 앞쪽 풀/잔해 · 시간에 따라 바뀌는 빛(노을 → 낮 → 밤)','시대별 분위기: 햇살 · 공장 연기 · 탐조등 · 네온 스캔','체력바에 <b>피해 잔상</b> 표시 · 보스 격파 시 순간 정지와 「보스 격파!」 연출','화면 아래 조작부가 <b>시대마다 다른 질감과 색</b>으로 바뀌어요','⛏ <b>최대 발굴 / 최대 부화</b> — 한 번에 100회까지, 결과는 종류별로 묶어서 표시','유물 <b>초월</b> — Lv.10 이후에도 중복이 쌓이면 초월 레벨이 올라 모든 능력치 증가 (상한 없음)']},{b:16,v:'1.7.2',d:'2026-10-02',items:['산업시대 「유탄」 부품 아이콘이 잘못 표시되던 문제 수정','회차 별 표시와 동료가 겹치던 문제 수정','문명 특성 아이콘을 전투 정보 줄로 옮겨 적 특성 표시와 겹치지 않게 함']},{b:15,v:'1.7.1',d:'2026-10-02',items:['유산 연구: 공격 · 체력 · 방어 · 고철 · 경험치 연구는 이제 <b>상한 없이</b> 계속 올릴 수 있어요','새 갈래 <b>초월 연구</b> 4종 — 동료 조련 · 유물 공명 · 알 탐색대 · 선조의 가르침']},{b:14,v:'1.7.0',d:'2026-10-01',items:['🐾 <b>동료 시스템</b> — 12종 동료가 함께 싸우고, 시대를 거치며 3단계로 <b>진화</b> (늑대 → 군견 → 사이버 울프)','첫 보스를 잡으면 <b>첫 동료</b>를 3마리 중에서 골라요','동료마다 <b>상성</b>이 있어요 — 맞는 적 특성에게 피해 ×2.5','최대 3마리 편성 · 자동 편성 · 동료 도감 36칸','동료의 알: 5전투마다 · 일일 임무 · 출석 · 회귀 · 매일 무료 부화','장비 안내는 설정 화면으로 옮겼어요']},{b:13,v:'1.6.2',d:'2026-10-01',items:['공방 <b>자동 강화 / 수동 강화</b>를 화면 아래 체크박스로 바로 전환 (6회차 해금 후)','자동 강화 중에는 공방 버튼에 「자동」 표시']},{b:12,v:'1.6.1',d:'2026-09-30',items:['🔢 숫자를 <b>한국식 단위</b>로 표시 (만·억·조·경·해…) — 설정에서 영문/지수 표기로 바꿀 수 있어요','전투력을 누르면 정확한 크기를 알려줘요','부위 제작 창 버튼 위치 고정 — 연속으로 눌러도 다른 버튼이 눌리지 않아요','자동 제작이 더 좋은 부품을 찾으면 <b>바로 장착</b>','자동 장착이 켜져 있으면 부위 제작도 더 좋으면 장착 · 아니면 자동 분해']},{b:11,v:'1.6.0',d:'2026-09-30',items:['🏛 <b>문명의 유산</b> — 왼쪽 위 사령관 아이콘을 눌러 열어요','회귀하면 <b>유산 포인트</b>(도달한 전투 × 회차 보너스)를 받아 16가지 영구 연구에 투자','회차마다 새 기능 해금: 자동 시대 진출 · 특성 카드 4장 · 회귀 보급품 · 자동 공방 강화 · 전설 문명 특성 · 황금/무지개 오라','회차에 따라 칭호가 바뀌어요 (족장 → 개척자 → 정복자 → … → 영원한 문명)','이미 회귀한 분들은 지난 회차만큼 유산 포인트를 소급 지급했어요']},{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
  {b:1,v:'1.0.0',d:'2026-09-28',items:[
   '석기시대 → 미래시대 6개 문명 진화 · 회귀(회차) 시스템',
   '시대별 유닛 24종 · 움직이는 배경 · 시대별 탄환과 폭발 연출',
@@ -4919,8 +4934,10 @@ $('diffbtn').onclick=()=>{S.diff=((S.diff||0)+1)%DIFFS.length;
   $('diffbtn').style.color=['#c6cfe0','#ffc078','#ff8787'][S.diff];
   makeEnemy();drawUnits();renderTop();renderHP();save();
   toast('난이도 '+diff().n)};
-$('sReset').onclick=()=>{if(confirm('모든 진행을 초기화할까요?')){
-  try{localStorage.removeItem('civwar_kr')}catch(e){};location.reload()}};
+{let armT=0;const rb=$('sReset'),rt=rb.innerHTML;
+$('sReset').onclick=()=>{if(!rb.classList.contains('arm')){rb.classList.add('arm');rb.textContent='정말 초기화할까요? 한 번 더 누르면 지워져요';
+    clearTimeout(armT);armT=setTimeout(()=>{rb.classList.remove('arm');rb.innerHTML=rt},3500);return}
+  clearTimeout(armT);RESETTING=true;window.__noSave=true;try{localStorage.removeItem('civwar_kr')}catch(e){};location.reload()}}
 $('setbtn').onclick=openSettings;
 $('sTut').onclick=()=>{$('smask').classList.remove('show');S.tut=0;save();setTimeout(()=>tutStart(0),200)};
 $('tbub').onclick=e=>{if(TUT.typing&&!e.target.closest('button')){clearInterval(TUT.typing);TUT.typing=null;
@@ -4940,21 +4957,59 @@ document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('.mi
 $('mask').onclick=e=>{if(e.target.id==='mask')closeModal()};
 
 let last=performance.now(),paused=false;
+/* ---------- 원스토어 앱 연동 훅 (H5 Game SDK가 호출) ---------- */
+let osPaused=false,osSilent=false,RESETTING=false;
+window.CW={
+  save(){try{if(!RESETTING)save()}catch(e){}},
+  pause(){osPaused=true;try{if(!RESETTING)save();if(AU.ctx)AU.ctx.suspend()}catch(e){}},
+  resume(sil){osPaused=false;last=performance.now();if(typeof sil==='boolean')osSilent=sil;
+    try{if(AU.ctx&&!osSilent&&!document.hidden)AU.ctx.resume()}catch(e){}},
+  silent(v){osSilent=!!v;try{if(AU.ctx){if(osSilent)AU.ctx.suspend();else if(!osPaused)AU.ctx.resume()}}catch(e){}},
+  safe(a){if(!a)return;const ap=$('app');ap.style.paddingTop=(a.top||0)+'px';ap.style.paddingBottom=(a.bottom||0)+'px';
+    ap.style.paddingLeft=(a.left||0)+'px';ap.style.paddingRight=(a.right||0)+'px'},
+  back(){try{
+    if(CUT){endCut();return true}
+    const rr=$('rres');if(rr&&rr.classList.contains('on')){$('rrOk').click();return true}
+    if($('mask').classList.contains('show')){closeModal();return true}
+    for(const id of ['lzmask','umask','omask','bkmask','cmask','rmask','cmdmask','compmask','dmask','amask','gmask','emask','smask']){
+      const m=$(id);if(m&&m.classList.contains('show')){m.classList.remove('show');return true}}
+    }catch(e){}
+    return false}
+};
 $('pause').onclick=()=>{paused=!paused;
   $('pause').textContent=paused?'▶ 재개':'⏸ 일시정지';last=performance.now()};
 document.addEventListener('visibilitychange',()=>{last=performance.now()});
 function loop(t){
   const raw=Math.min(.12,(t-last)/1000);let dt=raw*timeScale;last=t;
   if(hitStop>0){hitStop-=raw;dt=0}
-  try{if(!paused&&!$('mask').classList.contains('show')&&!$('emask').classList.contains('show'))tick(dt)}
+  try{if(!paused&&!osPaused&&!$('mask').classList.contains('show')&&!$('emask').classList.contains('show'))tick(dt)}
   catch(err){console.error(err);
     try{toast('오류 복구');recalc();makeEnemy();drawUnits();P.hp=P.s.hp;pcd=.6;dead=false;resolving=false}catch(e){}}
   requestAnimationFrame(loop);
 }
-init();
+init();uimgLoad();
 requestAnimationFrame(loop);
 setInterval(save,5000);
-window.addEventListener('beforeunload',save);
+window.addEventListener('beforeunload',()=>{if(!RESETTING)save()});
+</script>
+<script type="module">
+/* 원스토어 H5 Game SDK v1.1.0 — 원스토어 앱 안에서만 동작, 그 밖에서는 아무 일도 하지 않음 */
+if(location.protocol==='https:'){
+  import("https://h5sdk.onestore.net/lib/v1.1.0/onestore-h5-sdk.min.js").then(m=>{
+    const sdk=m.createSDK(),G=()=>window.CW;
+    sdk.on("pause",()=>{G()&&G().pause()});
+    sdk.on("resume",e=>{G()&&G().resume(e&&e.ringerSilent)});
+    sdk.on("exit",()=>{G()&&G().save()});
+    sdk.onBackPressed(()=>G()?G().back()===true:false);
+    sdk.initializeAsync().then(info=>{
+      if(info.err)return;
+      window.OS_CTX=info;
+      if(G()){G().safe(info.safeArea);if(info.ringerSilent)G().silent(true)}
+      sdk.setLoadingProgress(100);
+      return sdk.startGameAsync();
+    }).catch(e=>{console.warn("ONE store SDK",e&&e.reason)});
+  }).catch(()=>{});
+}
 </script>
 </body>
 </html>
