@@ -829,9 +829,29 @@ button{font-family:inherit;border:none;border-radius:10px;font-weight:800;cursor
 .rcard .cnt{position:absolute;left:-5px;top:-6px;background:#1c7ed6;color:#fff;font-size:9px;font-weight:900;border-radius:6px;padding:1px 4px}
 html,body{overscroll-behavior:none}
 #sReset.arm{background:#e03131!important;color:#fff!important}
+
+/* ===== 1.12 성장 체감 · 유물 장착 ===== */
+#gainChip{position:fixed;left:50%;top:10px;transform:translate(-50%,-14px);z-index:70;pointer-events:none;opacity:0;transition:opacity .25s,transform .25s;
+  background:linear-gradient(#1f3a2a,#12261b);border:1.5px solid #51cf66;border-radius:14px;padding:7px 13px;font-size:12.5px;font-weight:800;color:#d3f9d8;white-space:nowrap;
+  box-shadow:0 4px 14px rgba(0,0,0,.5),0 0 12px rgba(81,207,102,.35);text-align:center;line-height:1.35}
+#gainChip.on{opacity:1;transform:translate(-50%,0)}
+#gainChip b{color:#8ff09a}#gainChip s{color:#8b96ae;text-decoration:none}
+.oneshot{position:absolute;z-index:8;pointer-events:none;font-size:24px;font-weight:900;color:#ffe066;letter-spacing:1px;white-space:nowrap;
+  text-shadow:0 0 10px #ff922b,0 2px 0 #7a3b00,0 0 2px #000;animation:osh .8s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes osh{0%{transform:translate(-50%,-50%) scale(2.2) rotate(-10deg);opacity:0}20%{transform:translate(-50%,-50%) scale(1) rotate(-6deg);opacity:1}70%{opacity:1}100%{transform:translate(-50%,-90%) scale(1) rotate(-6deg);opacity:0}}
+.rslots{display:flex;gap:6px;justify-content:center;margin:2px 0 6px}
+.rslot{width:54px;height:58px;border-radius:10px;border:1.5px dashed #4d5a7a;background:#10141d;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#78839a;position:relative;line-height:1.2;text-align:center}
+.rslot.on{border:1.5px solid var(--rc);background:radial-gradient(circle at 50% 35%,#2d3754,#12161f);box-shadow:0 0 8px var(--rc);color:#e8edf5}
+.rslot .ico{width:28px;height:28px}.rslot.lock{opacity:.55}
+.rslot i.sd,.rcell i.sd{position:absolute;left:3px;top:3px;width:8px;height:8px;border-radius:50%;background:var(--sc)}
+.rsetln{text-align:center;font-size:11.5px;font-weight:800;margin-bottom:6px;color:#98a3b9}
+.rrec{display:flex;gap:6px;margin-bottom:8px}.rrec button{flex:1;padding:8px 2px;font-size:11.5px}
+.rcell .eq{position:absolute;right:-4px;top:-5px;background:#2f9e44;color:#fff;font-size:8.5px;font-weight:900;border-radius:6px;padding:1px 4px}
+.rdet .eqb{float:right;margin:0 0 4px 8px;padding:8px 12px;font-size:12px}
 </style>
 </head>
 <body>
+<div id="gainChip"></div>
 <div id="app">
   <div id="updBar"></div>
 
@@ -2225,12 +2245,12 @@ function enterFX(){const el=$('etank');if(!el)return;el.classList.remove('recoil
   el.classList.add('enter');if(E&&E.boss)el.classList.add('bossent');
   const ms=E&&E.boss?720:440;setTimeout(()=>{el.classList.remove('enter','bossent')},ms);
   setTimeout(()=>dustAt(el,E&&E.boss?6:3,1),ms*.6);if(E&&E.boss)setTimeout(()=>quake(.5,260),ms*.62)}
-function killFX(boss){const sc=$('scene');sc.classList.remove('punch','big');void sc.offsetWidth;sc.classList.add('punch');if(boss)sc.classList.add('big');
+function killFX(boss,txt){const sc=$('scene');sc.classList.remove('punch','big');void sc.offsetWidth;sc.classList.add('punch');if(boss)sc.classList.add('big');
   setTimeout(()=>sc.classList.remove('punch','big'),boss?920:520);
   if(!boss)return;hitStop=.3;const F=$('field');
   const w=document.createElement('div');w.className='whiteout big';F.appendChild(w);setTimeout(()=>w.remove(),720);
   const k=document.createElement('div');k.className='klines';F.appendChild(k);setTimeout(()=>k.remove(),620);
-  const st=document.createElement('div');st.className='kstamp';st.textContent='보스 격파!';F.appendChild(st);setTimeout(()=>st.remove(),1280)}
+  const st=document.createElement('div');st.className='kstamp';st.textContent=txt||'보스 격파!';F.appendChild(st);setTimeout(()=>st.remove(),1280)}
 
 /* ===========================================================
    6. 렌더
@@ -2458,7 +2478,7 @@ function tick(dt){
   if(pcd<=0){pcd=P.s.interval*(SK.rageT>0?.5:1);
     if(E.eva&&Math.random()*100<E.eva){const ft=shoot(true);SFX.shoot(S.era,true);
       setTimeout(()=>{dmgText(centerOf($('etank')).x-4,'빗나감','#aab4c8');SFX.evade()},ft);return}
-    const r=damage(P.s.atk,E.def,P.s.crit,true);r.d*=vsMul(E);E.hp-=r.d;
+    const r=damage(P.s.atk,E.def,P.s.crit,true);r.d*=vsMul(E);if(E.hp>=E.max*.999&&r.d>=E.hp)E.one=true;E.hp-=r.d;
     if(pk('leech'))P.hp=Math.min(P.s.hp,P.hp+r.d*.04*pk('leech'));
     atkAnim('ptank');
     const ft=shoot(true);SFX.shoot(S.era,true);
@@ -2479,14 +2499,20 @@ function tick(dt){
     renderHP()}
 }
 function winRound(){
-  S.scrap+=roundReward();setTimeout(()=>scrapFly(E&&E.boss?12:5),120);S.xp+=xpReward();
+  // 한 방 처치가 이어지면 소탕: 다음 라운드를 건너뛰고 보상은 그대로
+  const one=!!E.one&&!E.boss;OS=one?OS+1:0;
+  let skip=0;if(one&&!TUT.on&&S.firstWin)skip=Math.max(0,Math.min(OS>=8?2:OS>=3?1:0,14-S.round));
+  S.scrap+=roundReward()*(1+skip);setTimeout(()=>scrapFly(E&&E.boss?12:5),120);S.xp+=xpReward()*(1+skip);
+  for(let i=0;i<skip;i++)daily('kill');
+  if(one){const c=centerOf($('etank')),d=fxAt('oneshot',c.x,c.y-14,820);d.textContent=skip?'소탕 ×'+(skip+1):'한 방!'}
   resolving=true;
   const boss=E.boss,pw=boss?1.65:1, oldEra=enemyEra();
+  const rvg=boss&&S.rvg&&S.rvg.st===S.stage?{a:S.rvg.sec,b:(Date.now()-(E.t0||Date.now()))/1000}:null;if(boss)S.rvg=null;
   explode($('etank'),pw);SFX.explode(boss);buzz(boss?[60,40,120]:25);
   daily('kill');if(boss)daily('boss');
   $('etank').innerHTML=unitSVG(enemyCfg(true));
   $('etank').classList.add('wrecked');
-  $('ehpf').style.width='0%';hpGhost('ehpg',0);killFX(boss);$('ehptxt').textContent='0 / '+fmt(E.max);
+  $('ehpf').style.width='0%';hpGhost('ehpg',0);killFX(boss,rvg?'설욕 성공!':null);$('ehptxt').textContent='0 / '+fmt(E.max);
   let leveled=false;
   while(S.xp>=xpNeed()){S.xp-=xpNeed();S.lv++;leveled=true}
   if(leveled){recalc();P.hp=Math.min(P.s.hp,P.hp*1.1)}
@@ -2495,8 +2521,9 @@ function winRound(){
     if(S.stage===2&&S.perkCyc!==(S.cycle||0)){S.perkCyc=S.cycle||0;owePerk(3600)}
     if((S.stage-1)%5===0){S.egg=(S.egg||0)+1+(Math.random()<rs('egg')?1:0);updateCompDot()}
     {const g=((S.stage-1)%5===0?3:1)+(Math.random()<rs('pick')?1:0);S.pick=(S.pick||0)+g;S.pickGot=g;updateColDot()}}
-  else S.round++;
+  else S.round+=1+skip;
   P.hp=Math.min(P.s.hp,P.hp+P.s.hp*0.10);
+  if(rvg)setTimeout(()=>toast(`<b style="color:#ffd43b">설욕 성공!</b> 지난번 ${gnFmt(rvg.a)} 만에 패배 → 이번엔 <b>${gnFmt(rvg.b)}</b> 만에 격파`),1700);
   if(cleared&&enemyEra()>oldEra)
     toast('적 문명이 <b style="color:#ff8787">'+ERAS[enemyEra()].n+'</b>로 진입했습니다');
   else if(cleared)toast('전투 '+(S.stage-1)+' 클리어! · '+ico('pick')+' 곡괭이 +'+(S.pickGot||1));
@@ -2515,7 +2542,9 @@ function winRound(){
   },boss?1500:1050);
   tutEvent('kill');
 }
+let OS=0;
 function lose(){
+  OS=0;if(E&&E.boss)S.rvg={st:S.stage,sec:(Date.now()-(E.t0||Date.now()))/1000};
   skClear();
   dead=true;deadT=2.2;
   explode($('ptank'),1.15);SFX.explode(true);setTimeout(()=>SFX.lose(),320);buzz(180);
@@ -3457,8 +3486,8 @@ SFX.skRage=function(){if(!sOn())return;
    17. 버전 · 업데이트 알림 · 업데이트 내역
    ─ 새 버전을 올릴 때: 아래 BUILD 숫자와 version.json 의 build 숫자를 같이 올린다
 =========================================================== */
-const BUILD=23, BUILD_NAME='1.11.0';
-const CHANGELOG=[{b:23,v:'1.11.0',d:'2026-10-05',items:['🎨 <b>미래시대 유닛 4종을 새 일러스트로 교체</b> — 호버 전차 · 보행 로봇 · 전투 비행접시 · 보스 궤도 병기','이제 <b>6개 시대 전투 유닛 24종이 모두 새 그림</b>이에요']},{b:22,v:'1.10.1',d:'2026-10-05',items:['🎨 <b>현대시대 유닛 4종을 새 일러스트로 교체</b> — 주력전차 · 보병전투차 · 자주포 · 보스 정예 기갑 중전차','이제 미래시대만 예전 그림이에요 (준비 중)']},{b:21,v:'1.10.0',d:'2026-10-02',items:['🎨 <b>중세시대 · 산업시대 유닛 8종을 새 일러스트로 교체</b>','중세: 공성 투석기 · 중장 기사 · 공성탑 · 보스 흑기사단 공성추','산업: 강철 전차 · 장갑차 · 야전포 · 보스 장갑열차','이제 석기 · 청동기 · 중세 · 산업 네 시대가 새 그림이에요 (현대 · 미래는 준비 중)']},{b:20,v:'1.9.1',d:'2026-10-02',items:['🎨 <b>청동기시대 유닛 4종을 새 일러스트로 교체</b> — 청동 전차 · 창병 방진 · 전투 코끼리 · 보스 파라오의 황금 전차']},{b:19,v:'1.9.0',d:'2026-10-02',items:['🎨 <b>석기시대 유닛 4종을 새 일러스트로 교체</b> — 매머드 전사 · 검치호 기수 · 투석 썰매 · 보스 털코뿔소 족장','다른 시대 유닛도 차례로 바뀔 예정이에요']},{b:18,v:'1.8.1',d:'2026-10-02',items:['원스토어 앱 연동 준비 — 앱에서 나가거나 전화가 오면 자동 저장 · 일시정지, 뒤로가기로 창 닫기, 무음 모드 반영','진행 초기화는 버튼을 두 번 눌러 확인하도록 변경 · 초기화가 되지 않던 문제 수정']},{b:17,v:'1.8.0',d:'2026-10-02',items:['🎬 <b>전투 연출 강화</b> — 공격할 때 앞으로 치고 나가는 동작, 적이 달려 들어오는 등장, 발밑 먼지','배경에 깊이감: 천천히 움직이는 화면 · 앞쪽 풀/잔해 · 시간에 따라 바뀌는 빛(노을 → 낮 → 밤)','시대별 분위기: 햇살 · 공장 연기 · 탐조등 · 네온 스캔','체력바에 <b>피해 잔상</b> 표시 · 보스 격파 시 순간 정지와 「보스 격파!」 연출','화면 아래 조작부가 <b>시대마다 다른 질감과 색</b>으로 바뀌어요','⛏ <b>최대 발굴 / 최대 부화</b> — 한 번에 100회까지, 결과는 종류별로 묶어서 표시','유물 <b>초월</b> — Lv.10 이후에도 중복이 쌓이면 초월 레벨이 올라 모든 능력치 증가 (상한 없음)']},{b:16,v:'1.7.2',d:'2026-10-02',items:['산업시대 「유탄」 부품 아이콘이 잘못 표시되던 문제 수정','회차 별 표시와 동료가 겹치던 문제 수정','문명 특성 아이콘을 전투 정보 줄로 옮겨 적 특성 표시와 겹치지 않게 함']},{b:15,v:'1.7.1',d:'2026-10-02',items:['유산 연구: 공격 · 체력 · 방어 · 고철 · 경험치 연구는 이제 <b>상한 없이</b> 계속 올릴 수 있어요','새 갈래 <b>초월 연구</b> 4종 — 동료 조련 · 유물 공명 · 알 탐색대 · 선조의 가르침']},{b:14,v:'1.7.0',d:'2026-10-01',items:['🐾 <b>동료 시스템</b> — 12종 동료가 함께 싸우고, 시대를 거치며 3단계로 <b>진화</b> (늑대 → 군견 → 사이버 울프)','첫 보스를 잡으면 <b>첫 동료</b>를 3마리 중에서 골라요','동료마다 <b>상성</b>이 있어요 — 맞는 적 특성에게 피해 ×2.5','최대 3마리 편성 · 자동 편성 · 동료 도감 36칸','동료의 알: 5전투마다 · 일일 임무 · 출석 · 회귀 · 매일 무료 부화','장비 안내는 설정 화면으로 옮겼어요']},{b:13,v:'1.6.2',d:'2026-10-01',items:['공방 <b>자동 강화 / 수동 강화</b>를 화면 아래 체크박스로 바로 전환 (6회차 해금 후)','자동 강화 중에는 공방 버튼에 「자동」 표시']},{b:12,v:'1.6.1',d:'2026-09-30',items:['🔢 숫자를 <b>한국식 단위</b>로 표시 (만·억·조·경·해…) — 설정에서 영문/지수 표기로 바꿀 수 있어요','전투력을 누르면 정확한 크기를 알려줘요','부위 제작 창 버튼 위치 고정 — 연속으로 눌러도 다른 버튼이 눌리지 않아요','자동 제작이 더 좋은 부품을 찾으면 <b>바로 장착</b>','자동 장착이 켜져 있으면 부위 제작도 더 좋으면 장착 · 아니면 자동 분해']},{b:11,v:'1.6.0',d:'2026-09-30',items:['🏛 <b>문명의 유산</b> — 왼쪽 위 사령관 아이콘을 눌러 열어요','회귀하면 <b>유산 포인트</b>(도달한 전투 × 회차 보너스)를 받아 16가지 영구 연구에 투자','회차마다 새 기능 해금: 자동 시대 진출 · 특성 카드 4장 · 회귀 보급품 · 자동 공방 강화 · 전설 문명 특성 · 황금/무지개 오라','회차에 따라 칭호가 바뀌어요 (족장 → 개척자 → 정복자 → … → 영원한 문명)','이미 회귀한 분들은 지난 회차만큼 유산 포인트를 소급 지급했어요']},{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
+const BUILD=24, BUILD_NAME='1.12.0';
+const CHANGELOG=[{b:24,v:'1.12.0',d:'2026-10-06',items:['🏺 <b>유물 장착</b> — 유물을 골라 장착하면 <b>효과 2배</b>. 같은 계열(공격 · 수호 · 번영) 3개면 세트 효과. 적과 상황에 맞춰 바꿔 끼우세요','장착 칸은 3칸에서 시작 · 유물 8종 / 15종을 모으면 한 칸씩 늘어나요 · 「전투 추천 / 파밍 추천」 버튼 제공','기존 유물은 지금 적에게 가장 좋은 조합으로 자동 장착해 두었어요 (장착하지 않은 유물도 예전 그대로 효과 적용)','⚡ <b>성장 체감</b> — 강화 · 장착 · 발굴 직후 「적 처치 4.2초 → 3.1초」처럼 실제로 얼마나 강해졌는지 알려 줘요','💥 <b>한 방 처치 · 소탕</b> — 적을 한 방에 잡는 일이 이어지면 라운드를 건너뛰며 빠르게 진행 (보상은 그대로)','🔥 <b>설욕</b> — 나를 이겼던 보스를 잡으면 지난 기록과 비교해 줘요']},{b:23,v:'1.11.0',d:'2026-10-05',items:['🎨 <b>미래시대 유닛 4종을 새 일러스트로 교체</b> — 호버 전차 · 보행 로봇 · 전투 비행접시 · 보스 궤도 병기','이제 <b>6개 시대 전투 유닛 24종이 모두 새 그림</b>이에요']},{b:22,v:'1.10.1',d:'2026-10-05',items:['🎨 <b>현대시대 유닛 4종을 새 일러스트로 교체</b> — 주력전차 · 보병전투차 · 자주포 · 보스 정예 기갑 중전차','이제 미래시대만 예전 그림이에요 (준비 중)']},{b:21,v:'1.10.0',d:'2026-10-02',items:['🎨 <b>중세시대 · 산업시대 유닛 8종을 새 일러스트로 교체</b>','중세: 공성 투석기 · 중장 기사 · 공성탑 · 보스 흑기사단 공성추','산업: 강철 전차 · 장갑차 · 야전포 · 보스 장갑열차','이제 석기 · 청동기 · 중세 · 산업 네 시대가 새 그림이에요 (현대 · 미래는 준비 중)']},{b:20,v:'1.9.1',d:'2026-10-02',items:['🎨 <b>청동기시대 유닛 4종을 새 일러스트로 교체</b> — 청동 전차 · 창병 방진 · 전투 코끼리 · 보스 파라오의 황금 전차']},{b:19,v:'1.9.0',d:'2026-10-02',items:['🎨 <b>석기시대 유닛 4종을 새 일러스트로 교체</b> — 매머드 전사 · 검치호 기수 · 투석 썰매 · 보스 털코뿔소 족장','다른 시대 유닛도 차례로 바뀔 예정이에요']},{b:18,v:'1.8.1',d:'2026-10-02',items:['원스토어 앱 연동 준비 — 앱에서 나가거나 전화가 오면 자동 저장 · 일시정지, 뒤로가기로 창 닫기, 무음 모드 반영','진행 초기화는 버튼을 두 번 눌러 확인하도록 변경 · 초기화가 되지 않던 문제 수정']},{b:17,v:'1.8.0',d:'2026-10-02',items:['🎬 <b>전투 연출 강화</b> — 공격할 때 앞으로 치고 나가는 동작, 적이 달려 들어오는 등장, 발밑 먼지','배경에 깊이감: 천천히 움직이는 화면 · 앞쪽 풀/잔해 · 시간에 따라 바뀌는 빛(노을 → 낮 → 밤)','시대별 분위기: 햇살 · 공장 연기 · 탐조등 · 네온 스캔','체력바에 <b>피해 잔상</b> 표시 · 보스 격파 시 순간 정지와 「보스 격파!」 연출','화면 아래 조작부가 <b>시대마다 다른 질감과 색</b>으로 바뀌어요','⛏ <b>최대 발굴 / 최대 부화</b> — 한 번에 100회까지, 결과는 종류별로 묶어서 표시','유물 <b>초월</b> — Lv.10 이후에도 중복이 쌓이면 초월 레벨이 올라 모든 능력치 증가 (상한 없음)']},{b:16,v:'1.7.2',d:'2026-10-02',items:['산업시대 「유탄」 부품 아이콘이 잘못 표시되던 문제 수정','회차 별 표시와 동료가 겹치던 문제 수정','문명 특성 아이콘을 전투 정보 줄로 옮겨 적 특성 표시와 겹치지 않게 함']},{b:15,v:'1.7.1',d:'2026-10-02',items:['유산 연구: 공격 · 체력 · 방어 · 고철 · 경험치 연구는 이제 <b>상한 없이</b> 계속 올릴 수 있어요','새 갈래 <b>초월 연구</b> 4종 — 동료 조련 · 유물 공명 · 알 탐색대 · 선조의 가르침']},{b:14,v:'1.7.0',d:'2026-10-01',items:['🐾 <b>동료 시스템</b> — 12종 동료가 함께 싸우고, 시대를 거치며 3단계로 <b>진화</b> (늑대 → 군견 → 사이버 울프)','첫 보스를 잡으면 <b>첫 동료</b>를 3마리 중에서 골라요','동료마다 <b>상성</b>이 있어요 — 맞는 적 특성에게 피해 ×2.5','최대 3마리 편성 · 자동 편성 · 동료 도감 36칸','동료의 알: 5전투마다 · 일일 임무 · 출석 · 회귀 · 매일 무료 부화','장비 안내는 설정 화면으로 옮겼어요']},{b:13,v:'1.6.2',d:'2026-10-01',items:['공방 <b>자동 강화 / 수동 강화</b>를 화면 아래 체크박스로 바로 전환 (6회차 해금 후)','자동 강화 중에는 공방 버튼에 「자동」 표시']},{b:12,v:'1.6.1',d:'2026-09-30',items:['🔢 숫자를 <b>한국식 단위</b>로 표시 (만·억·조·경·해…) — 설정에서 영문/지수 표기로 바꿀 수 있어요','전투력을 누르면 정확한 크기를 알려줘요','부위 제작 창 버튼 위치 고정 — 연속으로 눌러도 다른 버튼이 눌리지 않아요','자동 제작이 더 좋은 부품을 찾으면 <b>바로 장착</b>','자동 장착이 켜져 있으면 부위 제작도 더 좋으면 장착 · 아니면 자동 분해']},{b:11,v:'1.6.0',d:'2026-09-30',items:['🏛 <b>문명의 유산</b> — 왼쪽 위 사령관 아이콘을 눌러 열어요','회귀하면 <b>유산 포인트</b>(도달한 전투 × 회차 보너스)를 받아 16가지 영구 연구에 투자','회차마다 새 기능 해금: 자동 시대 진출 · 특성 카드 4장 · 회귀 보급품 · 자동 공방 강화 · 전설 문명 특성 · 황금/무지개 오라','회차에 따라 칭호가 바뀌어요 (족장 → 개척자 → 정복자 → … → 영원한 문명)','이미 회귀한 분들은 지난 회차만큼 유산 포인트를 소급 지급했어요']},{b:10,v:'1.5.0',d:'2026-09-30',items:['⛏ <b>고대 유물 발굴</b> — 20종 유물을 뽑아 모으고, 중복으로 최대 Lv.10까지 성장. <b>회귀해도 영원히</b> 유지','매일 무료 발굴 1회 · 10회 발굴 시 희귀 이상 확정 · 50회 안에 전설 확정','곡괭이는 전투 클리어 · 일일 임무 · 출석 · 회귀 보상으로 획득, 제작권 2장과 교환도 가능','업데이트 기념 곡괭이 10개 지급!','기존 유물 도감은 <b>부품 도감</b>으로 이름이 바뀌어 유물 화면 안으로 옮겨졌어요']},{b:9,v:'1.4.1',d:'2026-09-29',items:['전투력이 아주 커졌을 때 부품 전투력이 0으로 보이던 문제 수정','공방 레벨이 낮을 때 만든 낡은 부품에 <b>교체</b> 표시']},{b:8,v:'1.4.0',d:'2026-09-29',items:['⚔ <b>적 특성</b> 6종 — 방패병 · 궁수대 · 돌격대 · 치유사 · 기동대 · 광전사. 전투마다 편성이 달라지고, 전투가 진행될수록 새로운 적이 등장','🧭 <b>문명 특성</b> — 시대마다 3개 중 1개를 골라 성장 방향 결정 (16종 · 다시 뽑기 1회). 회귀하면 새로 골라요','치명타는 이제 적 방어력을 절반 무시해요','패배 분석이 적 특성에 맞는 대처법을 알려줘요']},{b:7,v:'1.3.0',d:'2026-09-29',items:['🎨 부품 48종 · 스킬 18종 · 메뉴 아이콘을 전용 그림으로 교체 — 어느 기기에서나 같은 모습','💥 타격 번쩍임 · 치명타 순간 경직 · 고철이 튀어 들어오는 연출','⚠ 보스 등장 경고 연출','🏆 첫 보스 처치 시 고급 제작권 선물','⚖ 시대가 오를수록 레벨업 경험치 증가 — 시대 진출이 더 값진 순간이 되도록 조정','새로 시작하면 난이도 보통으로 시작 · 첫 전투 난이도 완화']},{b:6,v:'1.2.0',d:'2026-09-29',items:['⚔ 전투력 계산을 실제 전투(처치 속도 × 생존력) 기준으로 변경 — 숫자가 달라졌어요','자동 제작·자동 장착이 지금 싸우는 적 기준으로 실제로 유리한 부품만 골라요 · 장착 버튼에 <b>실전 효율 %</b> 표시','🏺 유물 도감 — 시대별 부품 48종 수집, 등급마다 모든 능력치 영구 보너스, 세트 보상','🎬 시대 진출 · 회귀 연출 추가']},{b:5,v:'1.1.1',d:'2026-09-29',items:['자동 제작·자동 장착이 이제 <b>전투력</b> 기준으로 더 좋은 부품을 판단해요 (주스탯이 조금 낮아도 전투력이 높으면 멈춤)']},{b:4,v:'1.1.0',d:'2026-09-28',items:['💤 방치 보상 화면 — 자리를 비운 시간·격파 수·보상을 한눈에, 하루 1번 무료 2배 받기','💾 데이터 백업 코드 — 설정에서 코드를 복사해 두면 기기를 바꿔도 이어서 플레이','💡 패배 분석 — 졌을 때 필요한 전투력과 지금 할 수 있는 해결책을 알려줘요']},{b:3,v:'1.0.2',d:'2026-09-28',items:['장착한 부품마다 전투력 숫자 표시 (부위 칸 · 부품 비교창)','공방 강화 버튼을 누르고 있으면 연속 강화 — 오래 누를수록 빨라짐']},{b:2,v:'1.0.1',d:'2026-09-28',items:['작은 화면·카카오톡 브라우저에서 튜토리얼 버튼이 화면 밖에 있어 누를 수 없던 문제 수정','화면이 짧은 휴대폰에서 아래쪽 메뉴가 잘리던 문제 수정']},
  {b:1,v:'1.0.0',d:'2026-09-28',items:[
   '석기시대 → 미래시대 6개 문명 진화 · 회귀(회차) 시스템',
   '시대별 유닛 24종 · 움직이는 배경 · 시대별 탄환과 폭발 연출',
@@ -3957,6 +3986,7 @@ function trBadges(){
   if(E.tr&&E.tr[0])et.classList.add('tr-'+E.tr[0]);
 }
 function onNewEnemy(){
+  if(E)E.t0=Date.now();
   trBadges();updateCompCtr();enterFX();
   if(E.tr)for(const k of E.tr){if(!(S.hints&&S.hints['tr_'+k])){
     setTimeout(()=>hint('tr_'+k,'#eu',`새로운 적 <b style="color:${TRAITS[k].c}">${TRAITS[k].n}</b> 등장!<br>${TRAITS[k].tip}`),E.boss?2100:500);break}}
@@ -4069,7 +4099,30 @@ function relLv(id){const c=(S.rel&&S.rel[id])||0;let l=0;while(c>=rlNeed(l))l++;
 function lvTxt(l){return l>10?'초월+'+(l-10):'Lv.'+l}
 function lvUp(b,a){return a<=10?'Lv.'+b+'→'+a:b<=10?'초월+'+(a-10):'초월+'+(b-10)+'→'+(a-10)}
 let RV=null;
-function rv(k){if(!RV){RV={};RELICS.forEach(r=>{const l=relLv(r.id);if(l)RV[r.k]=(RV[r.k]||0)+r.v*Math.min(l,10);if(l>10)RV.all=(RV.all||0)+TR_V[r.r]*(l-10)})}return (RV[k]||0)*(1+rs('relic'))}
+/* 유물 장착: 장착한 유물은 효과 2배 · 같은 계열 3개면 세트 효과 */
+const R_SET={atk:'A',critd:'A',boss:'A',crit:'A',aspd:'A',hp:'G',def:'G',taken:'G',eva:'G',regen:'G',scrap:'P',reward:'P',xp:'P',forge:'P',off:'P',offcap:'P',luck:'P',all:'W',skill:'W'};
+const SETS={A:{n:'공격',c:'#ff8787',d:'공격력 +20%',b:{atk:.2}},G:{n:'수호',c:'#74c0fc',d:'체력 · 방어력 +20%',b:{hp:.2,def:.2}},P:{n:'번영',c:'#ffd43b',d:'고철 · 경험치 +25%',b:{reward:.25}},W:{n:'만능',c:'#b197fc',d:'어느 세트에나 포함'}};
+function relOwn(){return RELICS.filter(r=>relLv(r.id)>0)}
+function relSlots(){const n=relOwn().length;return 3+(n>=8?1:0)+(n>=15?1:0)}
+function relEq(){return (S.relEq||[]).filter((id,i,a)=>RMAP[id]&&relLv(id)>0&&a.indexOf(id)===i).slice(0,relSlots())}
+function relSet(eq){eq=eq||relEq();const c={A:0,G:0,P:0};let w=0;eq.forEach(id=>{const t=R_SET[RMAP[id].k];if(t==='W')w++;else c[t]++});
+  let best=null;['A','G','P'].forEach(t=>{if(c[t]>=1&&c[t]+w>=3&&(!best||c[t]>c[best]))best=t});return best}
+function rv(k){if(!RV){RV={};const eq=relEq();RELICS.forEach(r=>{const l=relLv(r.id);if(l)RV[r.k]=(RV[r.k]||0)+r.v*Math.min(l,10)*(eq.includes(r.id)?2:1);if(l>10)RV.all=(RV.all||0)+TR_V[r.r]*(l-10)});
+    const st=relSet(eq);if(st)for(const b in SETS[st].b)RV[b]=(RV[b]||0)+SETS[st].b[b]}
+  return (RV[k]||0)*(1+rs('relic'))}
+function relApply(){RV=null;recalc();P.hp=Math.min(P.hp,P.s.hp);renderTop();renderHP();save();updateColDot()}
+function relToggle(id){S.relEq=relEq();const i=S.relEq.indexOf(id);
+  if(i>=0)S.relEq.splice(i,1);else{if(S.relEq.length>=relSlots()){toast('슬롯이 가득 찼어요 — 위쪽 칸을 눌러 먼저 하나를 빼세요');return}S.relEq.push(id)}
+  SFX.click();relApply();renderRel()}
+function relScore(){RV=null;const st=calcStats(S.gear);return refEnemies().reduce((t,en)=>t+Math.log(Math.max(1e-9,realScore(st,en))),0)}
+function relRecommend(mode){const own=relOwn().map(r=>r.id),n=relSlots();let eq=[];
+  if(mode==='farm'){const sc=id=>{const r=RMAP[id],t=R_SET[r.k];return (t==='P'?1000:t==='W'?500:0)+relLv(id)*(r.r+1)};eq=own.slice().sort((a,b)=>sc(b)-sc(a)).slice(0,n)}
+  else{while(eq.length<n){let best=null,bs=-Infinity;for(const id of own){if(eq.includes(id))continue;S.relEq=eq.concat(id);const v=relScore();if(v>bs){bs=v;best=id}}if(!best)break;eq.push(best)}
+    // 공격 세트를 억지로 맞춘 조합도 비교
+    const A=own.filter(id=>'AW'.includes(R_SET[RMAP[id].k])).sort((a,b)=>relLv(b)*(RMAP[b].r+1)-relLv(a)*(RMAP[a].r+1)).slice(0,n);
+    if(A.length>=3){S.relEq=eq;const v1=relScore();S.relEq=A;const v2=relScore();if(v2>v1)eq=A}}
+  S.relEq=eq;relApply()}
+function relEqDot(){return relEq().length<Math.min(relSlots(),relOwn().length)}
 function relTxt(r,l){const x=r.v*Math.max(1,l);
   return r.f.replace('{p}',(r.k==='regen'?(x*100).toFixed(2):Math.round(x*1000)/10)+'%').replace('{a}',Math.round(x*10)/10).replace('{m}',Math.round(x/60))}
 function offCap(){return OFF_CAP+rv('offcap')}
@@ -4081,6 +4134,7 @@ function drawOne(guar){
   if(r===3)S.pity=0;
   const pool=RELICS.filter(x=>x.r===r),rel=pool[Math.floor(Math.random()*pool.length)];
   const before=relLv(rel.id);S.rel[rel.id]=(S.rel[rel.id]||0)+1;RV=null;
+  if(before===0){S.relEq=relEq();if(S.relEq.length<relSlots())S.relEq.push(rel.id)}
   return {id:rel.id,r,before,after:relLv(rel.id),isNew:before===0};
 }
 function doDig(n,free){
@@ -4149,24 +4203,36 @@ function renderRel(){
     const keys=[['all','모든 능력치'],['atk','공격력'],['hp','체력'],['def','방어력'],['crit','치명타','p'],['critd','치명타 피해'],['eva','회피','p'],['aspd','공격 속도'],['boss','보스 피해'],['taken','받는 피해 감소'],
       ['scrap','고철'],['reward','고철·경험치'],['xp','경험치'],['forge','제작 비용 감소'],['skill','스킬 대기 감소'],['off','방치 보상'],['luck','등급 확률','t'],['regen','초당 회복'],['offcap','방치 최대','m']];
     const sum=keys.filter(k=>rv(k[0])).map(k=>{const v=rv(k[0]);return `<span>${k[1]} <b>+${k[2]==='p'?v.toFixed(1)+'%p':k[2]==='t'?Math.round(v)+'레벨':k[2]==='m'?Math.round(v/60)+'분':(k[0]==='regen'?(v*100).toFixed(2):Math.round(v*1000)/10)+'%'}</b></span>`}).join('');
-    B.innerHTML=`<div class="rpity"><span>보유 ${own} / ${RELICS.length}종</span><span>중복으로 레벨업 · Lv.10 뒤엔 초월</span></div>
+    const eq=relEq(),ns=relSlots(),st=relSet(eq),need=[0,0,0,8,15];
+    const slots=[0,1,2,3,4].map(i=>{if(i>=ns)return `<div class="rslot lock">🔒<br>유물 ${need[i]}종</div>`;
+      const id=eq[i];if(!id)return `<div class="rslot">빈 칸</div>`;const r=RMAP[id],T=SETS[R_SET[r.k]];
+      return `<div class="rslot on" data-id="${id}" style="--rc:${RAR[r.r].c}"><i class="sd" style="--sc:${T.c}"></i>${ico(r.ic)}<span>${r.n.length>5?r.n.slice(0,5)+'…':r.n}</span></div>`}).join('');
+    B.innerHTML=`<div class="rpity"><span>장착 ${eq.length} / ${ns}칸 · <b style="color:#8ff09a">장착하면 효과 2배</b></span><span>보유 ${own} / ${RELICS.length}종</span></div>
+      <div class="rslots">${slots}</div>
+      <div class="rsetln">${st?`<span style="color:${SETS[st].c}">● ${SETS[st].n} 세트 발동</span> — ${SETS[st].d}`:'같은 계열 3개를 장착하면 세트 효과 (<span style="color:#ff8787">●공격</span> <span style="color:#74c0fc">●수호</span> <span style="color:#ffd43b">●번영</span> · <span style="color:#b197fc">●만능</span>은 어디든 포함)'}</div>
+      <div class="rrec"><button class="mini" id="rRecB">⚔ 전투 추천</button><button class="mini" id="rRecF">💰 파밍 추천</button></div>
       <div class="rsum">${sum||'<span>아직 유물이 없어요 — 발굴해 보세요!</span>'}</div>
       <div class="rgrid">${RELICS.map(r=>{const l=relLv(r.id),c=(S.rel[r.id]||0),R=RAR[r.r],nx=rlNeed(l),pv=l?rlNeed(l-1):0;
-        return `<div class="rcell${l?'':' no'}" data-id="${r.id}" style="--rc:${R.c}">${ico(r.ic)}<div class="rn">${l?r.n:'???'}</div>
+        return `<div class="rcell${l?'':' no'}" data-id="${r.id}" style="--rc:${R.c}"><i class="sd" style="--sc:${SETS[R_SET[r.k]].c}"></i>${eq.includes(r.id)?'<span class="eq">장착</span>':''}${ico(r.ic)}<div class="rn">${l?r.n:'???'}</div>
           <div class="rl">${l?lvTxt(l):R.n}</div><div class="rb"><i style="width:${l?(c-pv)/(nx-pv)*100:0}%"></i></div></div>`}).join('')}</div>
       <div id="rDet"></div>`;
     B.querySelectorAll('.rcell').forEach(c=>c.onclick=()=>{RSEL=c.dataset.id;showRelDet()});
+    B.querySelectorAll('.rslot.on').forEach(c=>c.onclick=()=>relToggle(c.dataset.id));
+    $('rRecB').onclick=()=>{relRecommend('battle');SFX.level();renderRel();toast('지금 싸우는 적에게 가장 강한 조합으로 장착했어요')};
+    $('rRecF').onclick=()=>{relRecommend('farm');SFX.level();renderRel();toast('고철 · 경험치를 가장 많이 버는 조합으로 장착했어요')};
     if(RSEL)showRelDet();
   }
 }
 function showRelDet(){const r=RMAP[RSEL],l=relLv(r.id),c=(S.rel&&S.rel[r.id])||0,R=RAR[r.r],d=$('rDet');if(!d)return;
-  d.innerHTML=`<div class="rdet" style="--rc:${R.c}"><b class="t" style="color:${R.c}">${l?r.n:'???'}</b> · ${R.n}<br>
-    ${l?`현재 <b>Lv.${Math.min(l,10)}</b>: ${relTxt(r,Math.min(l,10))}<br>`:'아직 발굴하지 못했어요<br>'}
+  const on=relEq().includes(r.id),T=SETS[R_SET[r.k]];
+  d.innerHTML=`<div class="rdet" style="--rc:${R.c}">${l?`<button class="eqb" id="rEqB" style="background:${on?'#495670':'linear-gradient(#8ce99a,#2f9e44)'}">${on?'해제':'장착'}</button>`:''}<b class="t" style="color:${R.c}">${l?r.n:'???'}</b> · ${R.n} · <span style="color:${T.c}">●${T.n}</span><br>
+    ${l?`현재 <b>Lv.${Math.min(l,10)}</b>: ${relTxt(r,Math.min(l,10))}${on?' <b style="color:#8ff09a">×2 (장착 중)</b>':' <span style="color:#8b96ae">(장착하면 2배)</span>'}<br>`:'아직 발굴하지 못했어요<br>'}
     ${l>10?`<b style="color:#ffd43b">초월 +${l-10}</b>: 모든 능력치 +${Math.round(TR_V[r.r]*(l-10)*1000)/10}%<br>`:''}
     ${l<10?`Lv.${l+1}: ${relTxt(r,l+1)} <span style="color:#8b96ae">(${c}/${rlNeed(l)}개)</span>`
-      :`<span style="color:#ffd43b">초월 +${l-9}</span>: 모든 능력치 +${Math.round(TR_V[r.r]*(l-9)*1000)/10}% <span style="color:#8b96ae">(${c}/${rlNeed(l)}개)</span>`}</div>`}
+      :`<span style="color:#ffd43b">초월 +${l-9}</span>: 모든 능력치 +${Math.round(TR_V[r.r]*(l-9)*1000)/10}% <span style="color:#8b96ae">(${c}/${rlNeed(l)}개)</span>`}</div>`;
+  const eb=$('rEqB');if(eb)eb.onclick=()=>relToggle(r.id);try{d.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(e){}}
 function openRel(tab){if(tab)RTAB=tab;if(RTAB==='col'){openCol();return}renderRel();$('rmask').classList.add('show')}
-function relDot(){return S.freeDig!==todayStr()||(S.pick||0)>=10}
+function relDot(){return S.freeDig!==todayStr()||(S.pick||0)>=10||relEqDot()}
 
 
 /* ===========================================================
@@ -4897,7 +4963,7 @@ setInterval(()=>{
   if(!document.hidden&&S.daily){S.daily.sec=(S.daily.sec||0)+1;
     const mm=S.daily.list.find(m=>m.id==='min');
     if(mm&&!mm.got){const v=Math.min(mm.n,Math.floor(S.daily.sec/60));if(v!==mm.c){mm.c=v;updateDots()}}}
-  tickBoost();checkStarter();if(S.starter||!S.firstWin)checkPerk();autoTick();updateCmdDot();S.bestStage=Math.max(S.bestStage||0,S.stage);
+  gnSync();tickBoost();checkStarter();if(S.starter||!S.firstWin)checkPerk();autoTick();updateCmdDot();S.bestStage=Math.max(S.bestStage||0,S.stage);
   // 다른 창 때문에 미뤄진 방치 보상은 화면이 비면 바로 보여줌
   if(S.offPend&&S.offPend.gain>0&&Date.now()>(S.offAt||0)&&!anyModal()&&!TUT.on&&!(typeof CUT!=='undefined'&&CUT))openOffline();
 },1000);
@@ -4956,6 +5022,20 @@ $('volSfx').onchange=$('volBgm').onchange=()=>save();
 document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('.mini,.slot,#mclose,#sClose'))SFX.click()},true);
 $('mask').onclick=e=>{if(e.target.id==='mask')closeModal()};
 
+/* ---------- 성장 체감: 조작 직후 처치 속도 · 버티는 시간 변화를 보여 줌 ---------- */
+const GN={uid:0,k:0,s:0,fk:0,fs:0,at:0,tm:0};
+function gnNow(){return {k:E.max/pdOf(P.s,E),s:P.s.hp/Math.max(1e-9,edOf(P.s,E))}}
+function gnFmt(v){return v>=3600?'1시간+':v>=100?Math.round(v)+'초':v>=10?v.toFixed(0)+'초':v.toFixed(1)+'초'}
+function gnSync(){try{if(!E||!P.s)return;const n=gnNow();if(Date.now()-GN.at>2200){GN.uid=E.uid;GN.k=n.k;GN.s=n.s}}catch(e){}}
+function gnCheck(){try{if(!E||!P.s||TUT.on||CUT)return;const n=gnNow(),live=Date.now()-GN.at<2200;
+  if(GN.uid!==E.uid){GN.uid=E.uid;GN.k=n.k;GN.s=n.s;return}
+  const fk=live?GN.fk:GN.k,fs=live?GN.fs:GN.s,dk=1-n.k/fk,ds=fs>600?0:n.s/fs-1;
+  if(dk<.03&&ds<.03){if(!live){GN.k=n.k;GN.s=n.s}return}
+  GN.fk=fk;GN.fs=fs;GN.at=Date.now();GN.k=n.k;GN.s=n.s;
+  const L=[];if(dk>=.03)L.push(`⚡ 적 처치 <s>${gnFmt(fk)}</s> → <b>${gnFmt(n.k)}</b> <b>(${Math.round(dk*100)}% 빨라짐)</b>`);
+  if(ds>=.03)L.push(`🛡 버티는 시간 <s>${gnFmt(fs)}</s> → <b>${gnFmt(n.s)}</b> <b>(+${Math.round(ds*100)}%)</b>`);
+  const c=$('gainChip');c.innerHTML=L.join('<br>');c.classList.add('on');clearTimeout(GN.tm);GN.tm=setTimeout(()=>c.classList.remove('on'),2300)}catch(e){}}
+document.addEventListener('click',e=>{if(e.target.closest&&!e.target.closest('#field'))setTimeout(gnCheck,140)},true);
 let last=performance.now(),paused=false;
 /* ---------- 원스토어 앱 연동 훅 (H5 Game SDK가 호출) ---------- */
 let osPaused=false,osSilent=false,RESETTING=false;
@@ -4988,6 +5068,7 @@ function loop(t){
   requestAnimationFrame(loop);
 }
 init();uimgLoad();
+if(S.relEq===undefined){S.relEq=[];try{if(relOwn().length){relRecommend('battle');S.relNew=1}}catch(e){}}
 requestAnimationFrame(loop);
 setInterval(save,5000);
 window.addEventListener('beforeunload',()=>{if(!RESETTING)save()});
